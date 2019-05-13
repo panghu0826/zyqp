@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.buding</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../parent</relativePath>
+	</parent>
+
+	<artifactId>gamePlatform</artifactId>
+	<packaging>jar</packaging>
+
+	<name>gamePlatform</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.1.7.RELEASE</spring.version>
+		<buding.version>1.0-SNAPSHOT</buding.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.buding</groupId>
+			<artifactId>gameData</artifactId>
+			<version>${buding.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.buding</groupId>
+			<artifactId>gameToken</artifactId>
+			<version>${buding.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.buding</groupId>
+			<artifactId>gameMsg</artifactId>
+			<version>${buding.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.buding</groupId>
+			<artifactId>hallWeb</artifactId>
+			<version>${buding.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>com.buding</groupId>
+            <artifactId>gameTask</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.9.RELEASE</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>without-configs</classifier>
+							<includes>
+							    <include>com/**</include>
+							    <include>new_user.json</include>
+							    <include>server.state</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+<!-- 			打包加入Lib -->
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

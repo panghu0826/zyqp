@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tree>
+  <Node id="Node_0" name="TerranMarine" type="Root">
+    <Children>
+      <Node id="Node_24" type="Repeat">
+        <Children>
+          <Node id="Node_5" type="DynamicPriorityList">
+            <Children>
+              <Node id="Node_17" name="Attack" type="Action">
+                <Guard>
+                  <Node id="Node_19" name="HighDanger" type="Condition" />
+                </Guard>
+                <Parameters>
+                  <Parameter name="target" fromcontext="true">ss</Parameter>
+                </Parameters>
+              </Node>
+              <Node id="Node_20" type="Sequence">
+                <Guard>
+                  <Node id="Node_21" name="LowDanger" type="Condition" />
+                </Guard>
+                <Children>
+                  <Node id="Node_22" name="ComputeClosestBasePosition" type="Action" />
+                  <Node id="Node_12" name="Move" type="Action">
+                    <Guard>
+                      <Node id="Node_15" name="LowDanger" type="Condition" />
+                    </Guard>
+                    <Parameters>
+                      <Parameter name="target" fromcontext="true">abc</Parameter>
+                    </Parameters>
+                  </Node>
+                </Children>
+              </Node>
+              <Node id="Node_23" type="SubtreeLookup">
+                <Parameters>
+                  <Parameter name="subtreeName" fromcontext="false">StandardPatrol</Parameter>
+                </Parameters>
+              </Node>
+            </Children>
+          </Node>
+        </Children>
+      </Node>
+    </Children>
+  </Node>
+</Tree>
+

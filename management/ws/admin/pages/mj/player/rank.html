@@ -1,0 +1,76 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>排行榜查询(最后一天23:55统计)</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>游戏:</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.gameType" ng-options="a.code as a.name for a in tmp.gameTypeList"/>
+                                </td>
+                                <td>
+                                    <label>排行榜:</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.rankType" ng-options="a.code as a.name for a in tmp.rankTypeList"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >游戏名称</th>
+                            <th >排行类型</th>
+                            <th >排行周期</th>
+                            <th >统计时间</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{getGameTypeTxt(one.gameId)}}
+                            </td>
+                            <td>
+                                {{getRankTypeTxt(one.pointType)}}
+                            </td>
+                            <td>
+                                {{one.groupDatetime}}
+                            </td>
+                            <td>
+                                {{one.ctime|date:"yyyy/MM/dd HH:mm:ss" }}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="view(one)">详情</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

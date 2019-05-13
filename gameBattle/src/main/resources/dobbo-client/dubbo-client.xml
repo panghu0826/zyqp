@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="battleserver" />
+
+	<dubbo:registry address="zookeeper://${cluster.server.zk}" />
+
+	<dubbo:reference id="HallService"
+		interface="com.buding.hall.module.ws.HallPortalService" check="false"/>
+
+	<dubbo:reference id="UserDao"
+		interface="com.buding.hall.module.user.dao.UserDao" check="false"/>
+
+	<dubbo:reference id="UserRoomDao"
+		interface="com.buding.hall.module.vip.dao.UserRoomDao" check="false"/>
+
+	<dubbo:reference id="ChatDao"
+		interface="com.buding.hall.module.chat.dao.ChatDao" check="false"/>
+
+	<dubbo:reference id="FriendDao"
+		interface="com.buding.hall.module.friend.dao.FriendDao" check="false"/>
+
+	<dubbo:reference id="ClubDao"
+		interface="com.buding.hall.module.club.dao.ClubDao" check="false"/>
+
+	<dubbo:reference id="RobotDao"
+		interface="com.buding.hall.module.robot.dao.RobotDao" check="false"/>
+
+	<dubbo:reference id="TokenServer"
+		interface="com.buding.common.token.TokenServer" check="false"/>
+
+	<dubbo:reference id="ConfDao"
+		interface="com.buding.hall.module.conf.ConfDao" check="false"/>
+
+	<dubbo:reference id="MsgServicePortal"
+		interface="com.buding.hall.module.ws.MsgPortalService" check="false"/>
+
+	<dubbo:reference id="TaskServicePortal"
+		interface="com.buding.hall.module.ws.TaskPortalService" check="false"/>
+
+	<dubbo:reference id="RankServicePortal"
+		interface="com.buding.hall.module.ws.RankPortalService" check="false"/>
+</beans>  

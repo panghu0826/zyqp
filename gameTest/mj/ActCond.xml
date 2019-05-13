@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Domain package="game">
+	<ActionSet>
+	    <Action name="Init">
+			<Parameter name="serverIp" type="STRING" />
+			<Parameter name="serverPort" type="INTEGER" />
+		</Action>
+		<Action name="InitGame">
+		</Action>
+		<Action name="InitMsg">
+		</Action>
+	    <Action name="Login">
+			<Parameter name="userName" type="STRING" />
+			<Parameter name="password" type="STRING" />
+		</Action>
+		<Action name="MsgAuth">
+		</Action>
+		<Action name="GameAuth">
+		</Action>
+		
+		<Action name="Auth">
+		</Action>
+		
+		<Action name="Enroll">
+		</Action>
+		<Action name="Ready">
+		</Action>
+		<Action name="CHU">
+		</Action>
+		<Action name="Peng">
+		</Action>
+		<Action name="Chi">
+		</Action>
+		<Action name="CancelOper">
+		</Action>
+		
+		<Action name="Attack">
+			<Parameter name="target" type="ENTITY_ID" />
+		</Action>
+		<Action name="Move">
+			<Parameter name="target" type="ENTITY_ID" />
+		</Action>
+		<Action name="AttackMove">
+			<Parameter name="target" type="COORDINATE" />
+		</Action>
+		<Action name="ComputeClosestBasePosition" />
+		<Action name="ComputeCharacterPosition" />
+		<Action name="ComputeRandomClosePosition">
+			<Parameter name="initialPosition" type="COORDINATE" />
+		</Action>
+	</ActionSet>
+	<SensorSet>
+		<!-- Checks if the current unit is in a low danger situation -->
+		<Sensor name="LowDanger" type="BOOLEAN" />
+		<!-- Checks if the current unit is in a high danger situation -->
+		<Sensor name="HighDanger" type="BOOLEAN" />
+		<Sensor name="needLogin" type="BOOLEAN" />
+		<Sensor name="needAuth" type="BOOLEAN" />
+		<Sensor name="needEnroll" type="BOOLEAN" />
+		<Sensor name="needReady" type="BOOLEAN" />
+		<Sensor name="canPeng" type="BOOLEAN" />
+		<Sensor name="canChi" type="BOOLEAN" />
+		<Sensor name="canChu" type="BOOLEAN" />
+		<Sensor name="canHu" type="BOOLEAN" />
+		<Sensor name="needInit" type="BOOLEAN" />
+		<Sensor name="needInitMsg" type="BOOLEAN" />
+		<Sensor name="needInitGame" type="BOOLEAN" />
+		<Sensor name="needAuthMsg" type="BOOLEAN" />
+		<Sensor name="needAuthGame" type="BOOLEAN" />
+	</SensorSet>
+	<EntitySet>
+	</EntitySet>
+	<GoalSet>
+	</GoalSet>
+</Domain>

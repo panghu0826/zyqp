@@ -1,0 +1,210 @@
+[
+{
+	"note":"累计赢5局",
+	"taskId":"TotalWin5",
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":null,	
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢5局 50金币",
+	"gameId":"",
+	"initWinedCount":5,
+	"maxWinedCount":5,
+	"stepWinedCount":5,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":50
+		}
+	]
+},
+{
+	"note":"累计赢10局",
+	"taskId":"TotalWin10",
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalWin5",	
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢10局 50金币",
+	"gameId":"",
+	"initWinedCount":10,
+	"maxWinedCount":10,
+	"stepWinedCount":10,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":50
+		}
+	]
+},
+{
+	"note":"累计赢20局",
+	"taskId":"TotalWin20",
+	"preTaskId":"TotalWin10",	
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢20局 80金币",
+	"gameId":"",
+	"initWinedCount":20,
+	"maxWinedCount":20,
+	"stepWinedCount":10,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":80
+		}
+	]
+},
+{
+	"note":"累计赢30局",
+	"taskId":"TotalWin30",
+	"preTaskId":"TotalWin20",	
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢30局 80金币",
+	"gameId":"",
+	"initWinedCount":30,
+	"maxWinedCount":30,
+	"stepWinedCount":10,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":80
+		}
+	]
+},
+{
+	"note":"累计赢50局",
+	"taskId":"TotalWin50",
+	"preTaskId":"TotalWin30",	
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢50局 100金币",
+	"gameId":"",
+	"initWinedCount":50,
+	"maxWinedCount":50,
+	"stepWinedCount":50,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":100
+		}
+	]
+},
+{
+	"note":"累计赢90局",
+	"taskId":"TotalWin90",
+	"preTaskId":"TotalWin50",	
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢90局 100金币",
+	"gameId":"",
+	"initWinedCount":90,
+	"maxWinedCount":90,
+	"stepWinedCount":50,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":100
+		}
+	]
+},
+
+{
+	"note":"累计赢150局",
+	"taskId":"TotalWin150",
+	"preTaskId":"TotalWin90",
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢150局 100金币",
+	"gameId":"",
+	"initWinedCount":150,
+	"maxWinedCount":150,
+	"stepWinedCount":200,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":100
+		}
+	]
+},
+{
+	"note":"累计赢250局",
+	"taskId":"TotalWin250",
+	"preTaskId":"TotalWin150",
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢250局 100金币",
+	"gameId":"",
+	"initWinedCount":250,
+	"maxWinedCount":250,
+	"stepWinedCount":100,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":100
+		}
+	]
+},
+{
+	"note":"每累计赢200局",
+	"taskId":"TotalWinX",
+	"preTaskId":"TotalWin250",
+	"taskType":7,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计赢${requiredCount}局 150金币",
+	"gameId":"",
+	"initWinedCount":450,
+	"maxWinedCount":-1,
+	"stepWinedCount":200,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":150
+		}
+	]
+}
+]

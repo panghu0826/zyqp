@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tree>
+  <Node id="Node_0" name="Gaming" type="Root">
+    <Children>
+      <Node id="Node_1" type="DynamicPriorityList">
+        <Children>
+          <Node id="Node_2" name="Enroll" type="Action">
+            <Guard>
+              <Node id="Node_4" name="needEnroll" type="Condition" />
+            </Guard>
+          </Node>
+          <Node id="Node_3" name="Ready" type="Action">
+            <Guard>
+              <Node id="Node_4" name="needReady" type="Condition" />
+            </Guard>
+          </Node>
+          <Node id="Node_5" name="CHU" type="Action" />
+        </Children>
+      </Node>
+    </Children>
+  </Node>
+</Tree>
+

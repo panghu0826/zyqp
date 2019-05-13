@@ -1,0 +1,79 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>代理商列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增代理商</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>开始时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.startDate"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                                <td>
+                                    <label>结束时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.endDate"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <div class="row" style="font-size:20px;color:red">
+                        <div class="md-col-4">
+                            代理商总进货房卡数量：{{total.store}}
+                        </div>
+                        <div class="md-col-4">
+                            代理商总出货房卡数量：{{total.sell}}
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >日期时间</th>
+                            <th >进货房卡数量</th>
+                            <th >出售房卡数量</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.dealDate|date:"yyyy/MM/dd"}}
+                            </td>
+                            <td>
+                                {{one.store}}
+                            </td>
+                            <td>
+                                {{one.sell}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

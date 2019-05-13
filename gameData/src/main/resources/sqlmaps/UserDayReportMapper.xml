@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserDayReport">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserDayReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="online_minutes" jdbcType="INTEGER" property="onlineMinutes" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, online_minutes, day
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_day_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserDayReport" useGeneratedKeys="true">
+    insert into user_day_report (user_id, online_minutes, day
+      )
+    values (#{userId,jdbcType=INTEGER}, #{onlineMinutes,jdbcType=INTEGER}, #{day,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserDayReport">
+    update user_day_report
+    set user_id = #{userId,jdbcType=INTEGER},
+      online_minutes = #{onlineMinutes,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserRoomGameTrack">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserRoomGameTrack">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="game_time" jdbcType="TIMESTAMP" property="gameTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, room_id, game_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_room_game_track
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserRoomGameTrack" useGeneratedKeys="true">
+    insert into user_room_game_track (user_id, room_id, game_time
+      )
+    values (#{userId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{gameTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserRoomGameTrack">
+    update user_room_game_track
+    set user_id = #{userId,jdbcType=BIGINT},
+      room_id = #{roomId,jdbcType=BIGINT},
+      game_time = #{gameTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey">
+    DELETE FROM user_room_game_track where datediff(now(), game_time) &gt; 2
+  </delete>
+</mapper>

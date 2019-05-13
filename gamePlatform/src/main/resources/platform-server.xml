@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 开启自动扫描 autowire 配置 -->
+
+	<!--<context:component-scan base-package="com.yayo" />-->
+	<context:component-scan base-package="com.buding.msg" />
+	<context:component-scan base-package="com.buding.db"/>
+	<context:component-scan base-package="com.buding.token"/>
+	<context:component-scan base-package="com.buding.hall"/>
+	<context:component-scan base-package="com.buding.cluster"/>
+	<context:component-scan base-package="com.buding.rank"/>
+	<context:component-scan base-package="com.buding.task"/>
+
+	<context:property-placeholder location="classpath*:*.properties" />
+
+	<import resource="configuration.xml" />
+	<import resource="schedule.xml" />
+	<import resource="srv.xml" />
+	<import resource="db.xml" />
+	<!-- <import resource="rmi-client.xml" /> -->
+	<!-- <import resource="rmi-server.xml" /> -->
+	<import resource="dubbo-server/dubbo-server.xml" />
+ 	<import resource="dubbo-client/dubbo-client.xml" />
+	<import resource="admin-server.xml" />
+	<import resource="redis.xml" />
+
+	<bean id="configManager" class="com.buding.hall.config.ConfigManager">
+		<property name="gameConfigFolder">
+			<value>${resourceDir}/game</value>
+		</property>
+	    <property name="marqueeMsgConfig">
+			<value>${resourceDir}/msg/msg_marquee.json</value>
+		</property>
+		<property name="boxMsgConfig">
+			<value>${resourceDir}/msg/msg_box.json</value>
+		</property>
+		<property name="shopConfigFolder">
+			<value>${resourceDir}/shop</value>
+		</property>
+		<property name="taskConfigFolder">
+			<value>${resourceDir}/task</value>
+		</property>
+		<property name="propsConfigFolder">
+			<value>${resourceDir}/item</value>
+		</property>
+		<property name="exchangeConfigFolder">
+			<value>${resourceDir}/exchange</value>
+		</property>
+		<property name="rankConfigFolder">
+			<value>${resourceDir}/rank</value>
+		</property>
+		<property name="statusConfFolder">
+			<value>${resourceDir}/status</value>
+		</property>
+		<property name="gmPath">
+			<value>${resourceDir}/gm</value>
+		</property>
+		<property name="privateKeyFile">
+			<value>${resourceDir}/key/rsa_private_key.pem</value>
+		</property>
+		<property name="userinitTplPath">
+			<value>${resourceDir}/userinit/new_user.json</value>
+		</property>
+		<property name="lunPanConfigFolder">
+			<value>${resourceDir}/lunpan</value>
+		</property>
+		<property name="SignConfigFolder">
+			<value>${resourceDir}/sign</value>
+		</property>
+		<property name="discountConfigFolder">
+			<value>${resourceDir}/discount</value>
+		</property>
+	</bean>
+
+	<bean id="randomNameConfigManager" class="com.buding.common.randomName.RandomNameConfigManager">
+		<property name="nameConfigFolder">
+			<value>${resourceDir}/names</value>
+		</property>
+	</bean>
+
+	<bean id="randomNameService" class="com.buding.common.randomName.RandomNameService">
+	</bean>
+
+	<bean class="com.buding.common.token.TokenClient"></bean>
+	<bean class="com.buding.hall.module.user.helper.UserSecurityHelper"></bean>
+	<bean id="hallEventBus" class="com.buding.common.event.EventBusImpl"></bean>
+
+	<bean id="portalTest" class="com.buding.msg.service.impl.PortalTest">
+		<property name="marqueeMsgFile" value="${resourceDir}/msg/marquee_msg_demo.txt"></property>
+		<property name="boxMsgFile" value="${resourceDir}/msg/box_msg_demo.txt"></property>
+	</bean>
+
+	<bean id="webServer" class="com.buding.common.network.server.NettyServer">
+		<property name="port" value="${server.hall.port}"></property>
+		<property name="protocolInitalizer">
+			<bean class="com.buding.common.network.codec.NettyServerInitializer">
+				<property name="handlers">
+					<list>
+						<bean class="com.buding.hall.network.HallServerHandler"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="msgServer" class="com.buding.common.network.server.NettyServer">
+		<property name="port" value="${server.msg.port}"></property>
+		<property name="protocolInitalizer">
+			<bean class="com.buding.common.network.codec.NettyServerInitializer">
+				<property name="handlers">
+					<list>
+						<bean class="com.buding.msg.network.MsgServerHandler"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="rankServer" class="com.buding.common.network.server.NettyServer">
+		<property name="port" value="${server.rank.port}"></property>
+		<property name="protocolInitalizer">
+			<bean class="com.buding.common.network.codec.NettyServerInitializer">
+				<property name="handlers">
+					<list>
+						<bean class="com.buding.rank.network.RankServerHandler"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="taskServer" class="com.buding.common.network.server.NettyServer">
+		<property name="port" value="${server.task.port}"></property>
+		<property name="protocolInitalizer">
+			<bean class="com.buding.common.network.codec.NettyServerInitializer">
+				<property name="handlers">
+					<list>
+						<bean class="com.buding.task.network.TaskServerHandler"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="oldHallServer" class="com.buding.common.network.server.NettyServer">
+		<property name="port" value="${server.hall.old.port}"></property>
+		<property name="protocolInitalizer">
+			<bean class="com.buding.common.network.codec.NettyServerInitializerOld2">
+				<property name="handlers">
+					<list>
+						<bean class="com.buding.hall.network.OldHallServerHandler"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>

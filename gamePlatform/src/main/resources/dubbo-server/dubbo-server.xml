@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+	<!--<dubbo:application name="platform-provider" />-->
+
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
+	<dubbo:registry address="zookeeper://${cluster.server.zk}" />
+
+	<!-- 用dubbo协议在6668端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="${server.dubbo.port}" />
+
+	<!-- 声明需要暴露的服务接口 -->
+	<!-- <dubbo:service interface="com.buding.hall.module.user.service.UserService" 
+		ref="userService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.item.service.ItemService" 
+		ref="itemService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.award.service.AwardService" 
+		ref="awardService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.status.service.StatusService" 
+		ref="statusService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.shop.service.ShopService" 
+		ref="shopService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.cluster.service.ClusterService" 
+		ref="clusterExternalService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.rank.service.RankService" 
+		ref="userRankExternalService" protocol="dubbo" timeout="10000"/> -->
+	<!-- <dubbo:service interface="com.buding.hall.module.vip.service.UserRoomService" 
+		ref="userRoomService" protocol="dubbo" timeout="10000"/> -->
+
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service interface="com.buding.hall.module.ws.MsgPortalService"
+		ref="msgPortalService" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.ws.HallPortalService"
+		ref="HallPortalService" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.ws.TaskPortalService"
+		ref="TaskPortalService" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.ws.RankPortalService"
+		ref="RankPortalService" timeout="10000" />
+<!-- 	<dubbo:service interface="com.buding.hall.module.ws.HallPortalBroadcastService" -->
+<!-- 		ref="HallPortalService" timeout="10000" /> -->
+	
+
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service interface="com.buding.hall.module.user.dao.UserDao"
+		ref="userDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.item.dao.ItemDao"
+		ref="itemDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.user.dao.UserDataDao"
+		ref="userDataDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.task.dao.TaskDao"
+		ref="taskDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.robot.dao.RobotDao"
+		ref="robotDao" protocol="dubbo" timeout="20000" />
+	<dubbo:service interface="com.buding.hall.module.order.dao.UserOrderDao"
+		ref="userOrderDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.rank.dao.UserRankDao"
+		ref="userRankDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.rank.dao.RankAuditDao"
+		ref="rankAuditDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.msg.dao.MsgDao"
+		ref="msgDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.award.dao.AwardDao"
+		ref="awardDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.exchange.dao.ExchangeDao"
+		ref="exchangeDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.vip.dao.UserRoomDao"
+		ref="userRoomDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.conf.ConfDao"
+		ref="confDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.chat.dao.ChatDao"
+		ref="chatDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.currency.dao.CurrencyLogDao"
+		ref="currencyLogDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.friend.dao.FriendDao"
+		ref="friendDao" protocol="dubbo" timeout="10000" />
+	<dubbo:service interface="com.buding.hall.module.club.dao.ClubDao"
+		ref="clubDao" protocol="dubbo" timeout="10000" />
+
+
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:service interface="com.buding.common.token.TokenServer"
+		ref="tokenServer" protocol="dubbo" timeout="10000" />
+
+</beans> 

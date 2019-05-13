@@ -1,0 +1,107 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>权限设置</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="addOne()">新增</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <ul class="nav nav-tabs" ui-tabs="{beforeFn: 'changeTab'}">
+                        <li class="active"><a>角色</a></li>
+                        <li><a>标签</a></li>
+                    </ul>
+                    <div class="tabs active">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th width="40%">角色</th>
+                                <th width="40%">编号</th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="one in roleList">
+                                <td><span ng-if="!one.isEdit">{{one.name}}</span>
+                                    <span ng-if="one.isEdit"><input type="text" ng-model="one.name"/></span></td>
+                                <td><span ng-if="!one.isEdit">{{one.code}}</span>
+                                    <span ng-if="one.isEdit"><input type="text" ng-model="one.code"
+                                                                    ui-valid="r int"/></span></td>
+                                <td class="opts">
+                                    <button ng-if="!one.isEdit" class="btn btn-red" ng-click="one.isEdit = true">修改
+                                    </button>
+                                    <button ng-if="one.isEdit" class="btn" ng-click="save(one)">保存</button>
+                                    <button class="btn" ng-click="del(one)">删除</button>
+
+                                    <button ng-if="one.id" class="btn"
+                                            ng-click="showMenus(one);">修改菜单
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tabs">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th width="40%">角色</th>
+                                <th width="40%">编号</th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="one in labelList">
+                                <td><span ng-if="!one.isEdit">{{one.name}}</span>
+                                    <span ng-if="one.isEdit"><input type="text" ng-model="one.name"/></span></td>
+                                <td><span ng-if="!one.isEdit">{{one.code}}</span>
+                                    <span ng-if="one.isEdit"><input type="text" ng-model="one.code"
+                                                                    ui-valid="r int"/></span></td>
+                                <td class="opts">
+                                    <button ng-if="!one.isEdit" class="btn btn-red" ng-click="one.isEdit = true">修改
+                                    </button>
+                                    <button ng-if="one.isEdit" class="btn" ng-click="save(one)">保存</button>
+                                    <button class="btn" ng-click="del(one)">删除</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowMenus', title: '编辑角色权限菜单', dialogId: 'dialogRoleMenus', height: 400, lock: true, fixed: true, ext: {max: false}}">
+        <h5>{{tmp.targetOne.name}}</h5>
+        <table class="table table-bordered table-striped m_top6" style="width: 600px;">
+            <tr>
+                <th width="20%">Title</th>
+                <th width="20%">Icon</th>
+                <th width="20%">Page</th>
+                <th width="20%">子菜单</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="one in tmp.menuList">
+                <td><span ng-class="{'menu-sub': one.isSub}"><input class="input-short" type="text"
+                                                                    ng-model="one.title"/></span></td>
+                <td><input type="text" class="input-short" ng-model="one.icon"/></td>
+                <td><input type="text" class="input-short" ng-model="one.page"/></td>
+                <td>
+                    <input type="checkbox" ng-model="one.isSub"/>
+                    <span ng-show="one.isSub">
+                        参数：<input type="text" class="input-short" ng-model="one.params"/>
+                    </span>
+                </td>
+                <td class="opts">
+                    <button class="btn" ng-click="tmp.menuList.remove(one);">删除</button>
+                    <button ng-if="!one.isSub" class="btn" ng-click="menuPush(one);">新增</button>
+                </td>
+            </tr>
+        </table>
+        <button class="btn" ng-click="saveMenus()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowMenus = false">关闭</button>
+    </script>
+
+</div>

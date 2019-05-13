@@ -1,0 +1,114 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>游戏记录列表</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>玩家id：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.userId"/>
+                                </td>
+                                <td>
+                                    <label>操作大类：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.operMainType" ng-options="a.code as a.name for a in tmp.operMainType">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>操作子类：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.operSubType" ng-options="a.code as a.name for a in tmp.operSubType">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>操作日期：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.operTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">id</th>
+                            <th >玩家id</th>
+                            <th >玩家名称</th>
+                            <th >操作大类</th>
+                            <th >操作子类</th>
+                            <th >金币(房卡)变化前</th>
+                            <th >金币(房卡)变化后</th>
+                            <th >变化值</th>
+                            <th >操作描述</th>
+                            <th >操作时间</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.userId}}
+                            </td>
+                            <td>
+                                {{one.userName}}
+                            </td>
+                            <td>
+                                {{getOperMainType(one.operMainType)}}
+                            </td>
+                            <td>
+                                {{getOperSubType(one.operSubType)}}
+                            </td>
+                            <td>
+                                {{one.changeFrom}}
+                            </td>
+                            <td>
+                                {{one.changeTo}}
+                            </td>
+                            <td>
+                                {{one.changeVal}}
+                            </td>
+                            <td>
+                                {{one.operDesc}}
+                            </td>
+                            <td>
+                                {{one.operTime|date:"yyyy/MM/dd HH:mm:ss" }}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

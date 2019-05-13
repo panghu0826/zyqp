@@ -1,0 +1,91 @@
+package packet.nn;
+
+
+
+//游戏开始 operType=GAMESTART
+message NNGameOperStartSyn {
+    optional sint32 bankerPos = 1; //庄家位置,bankerPos<0: 未定庄家
+    repeated NNGameOperHandCardSyn playerHandCards = 2; //玩家手牌
+    optional bool reconnect = 3; //是否是断线重连 true是断线重连
+    optional sint32 juNum = 4; //第几把
+    optional sint32 qiangZhuangNum= 5; //抢庄倍数,qiangZhuangNum<=0,无抢庄倍数
+    optional sint32 seq = 100; //序列号,每一场游戏有一个唯一的序列号，方便错误跟踪
+}
+
+//同步某个的玩家手牌, operType=HANDCARDS
+message NNGameOperHandCardSyn {
+    required sint32 position = 1; //玩家位置
+    repeated sint32 handCards = 2; //手中的牌,如果是其他玩家(即不是当前玩家)或者不能看牌的牌,则列表里面存放的是-1而不是牌的真实值
+    optional sint32 socre= 3; //玩家自己的分数
+    optional sint32 xiazhuNum= 4; //筹码
+    optional string cardType = 5; //牌型
+    optional sint32 qiangZhuangNum = 6; //
+    optional bool   isWait= 8; //是否等待下一把
+}
+
+//同步行动者信息 operType=ACTSYN
+message NNGameOperActorSyn {
+    required sint32 position = 1; //玩家位置
+    required sint32 timeLeft = 2; //操作超时时间，比如：10，代表10秒内玩家不操作服务器将托管
+}
+
+//玩家操作同步operType=ACTIONSYN, 前端通过此包告诉后端玩家进行了什么操作，后端通过此包将操作告诉其它玩家
+message NNGameOperPlayerActionSyn {
+    required sint32 position = 1; //玩家位置
+    required sint32 action = 2; //操作编码
+    optional sint32 qiangZhuangNum = 3;//抢庄倍数
+    optional sint32 bankerPos = 4;//庄家位置
+    optional sint32 xiaZhuNum = 5;//下注筹码
+    optional string cardType = 6; //牌型
+    repeated sint32 handcard = 7; //手牌
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+//服务器提示玩家操作 operType=ACTNOTIFY
+message NNGameOperPlayerActionNotify {
+    required sint32 position = 1; //玩家位置
+    required sint32 actions = 2; //操作编码
+    repeated sint32 qiangZhuangNum = 3;//玩家抢庄倍数,0:没有倍数,经典抢庄,其余为抢庄倍数集合
+    repeated sint32 xiaZhuNum = 4;//可下注的筹码集合
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+message NNGameOperPlayerHuSyn {
+    required sint32 position = 1; //胡牌玩家位置
+    repeated NNGameOperPlayerSettle detail = 2;//每个玩家的情况
+    optional sint32 juNum = 3; //当前局数
+}
+
+message NNGameOperPlayerSettle {
+    required sint32 position = 1; //位置
+    optional sint32 playerId = 2; //ID
+    optional string playerName = 3; //昵称
+    repeated sint32 handcard = 4; //手牌
+    optional sint32 lastScore = 5; //上局得分
+    optional sint32 score = 6;//本局得分
+    optional sint32 allSocre = 7; //总分数
+    optional string cardType = 8; //牌型
+    optional sint32 isBanker = 9; //是否是庄家
+    optional sint32 result = 10; // 1 win 2 lose 3 even
+
+}
+
+message NNGameOperFinalSettleSyn {
+    optional sint32 roomId = 1;//房间ID
+    optional sint32 innings = 2;//总局数
+    repeated NNPlayerFinalResult detail = 3; //玩家信息
+}
+
+message NNPlayerFinalResult {
+    optional sint64 playerId = 1;//玩家ID
+    optional string playerName = 2;//玩家昵称
+    optional sint32 position = 3;//玩家位置
+    optional string headImage = 4;//玩家头像
+    optional sint32 allScore = 5;//玩家总分
+    optional sint32 winNum = 6;//玩家赢的局数
+    optional sint32 loseNum = 7;//玩家输的局数
+    optional bool   roomOwner = 8; //是否是否房主
+}
+
+
+

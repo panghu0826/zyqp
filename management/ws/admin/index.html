@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+    <title> 中娱棋牌运营管理平台 </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" href="assets/base.css"/>
+    <link rel="stylesheet" href="../m/tpl/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="../m/tpl/css/bootstrap-custom.css"/>
+    <link rel="stylesheet" href="../m/tpl/css/main.css"/>
+    <link id="themes" rel="stylesheet" type="text/css" href="../m/tpl/css/themes/blue/default.css">
+
+    <link rel="stylesheet" href="../m/ng-ext/css/all.css"/>
+    <link rel="stylesheet" href="../m/ng-ext/css/jquery-ui/jquery-ui-1.7.2.min.css"/>
+    <!--<link rel="stylesheet" href="../m/ng-ext/uploadifive/uploadifive.css"/>-->
+
+    <!--<link rel="stylesheet" type="text/css" href="/static/simditor/styles/simditor.css"/>-->
+
+    <!--<link rel="stylesheet" href="../m/ng-ext/uploadify/uploadify.css"/>-->
+    <!--ztree-->
+    <!--<link rel="stylesheet" href="../m/ztree_v3/css/zTreeStyle/zTreeStyle.css">-->
+    <style>
+        .opts button {
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .menu-sub {
+            padding-left: 20px;
+        }
+
+        .input-short {
+            width: 80px;
+        }
+
+        .sel-short {
+            width: 120px !important;
+        }
+
+        .emoji-list {
+            width: 720px;
+        }
+
+        .emoji-list li {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            margin: 2px;
+        }
+
+        .emoji-list li img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .user-headimgurl {
+            width: 32px;
+            height: 32px;
+        }
+
+        .report-list {
+            color: red;
+        }
+
+        .fb {
+            font-weight: bold;
+        }
+
+        #map-container {
+            position: absolute;
+            width: 600px;
+            height: 450px;
+            top: -2000px;
+            left: 50%;
+            margin-left: -300px;
+            border: 1px solid gray;
+            z-index: 10000 !important;
+        }
+
+        .simditor-body {
+            max-height: 300px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <div class="opt">
+        <span id="link-logout"><i class="icon icon-power-off"></i> </span>
+        <span><i class="icon icon-home"></i></span>
+			<span class="user-info">
+				<b class="user-name"></b>
+				<img class="user-headimgurl" src=""/>
+			</span>
+    </div>
+</div>
+
+<div id="sidebar"></div>
+
+<div id="main"></div>
+
+<div id="map-container"></div>
+
+<script id="menu-tpl" type="text/x-template">
+    <#list data.list as one>
+        <div class="menu <#if (one_index == 0)>first</#if>">
+            <div class="menu-title">
+                <i class="menu-nav icon ${one.icon}"></i>
+                <div class="menu-title-text">
+                    ${one.title}
+                    <i class="icon icon-plus"></i>
+                </div>
+            </div>
+
+            <ul class="menu-list">
+                <#list one.list as sub>
+                    <li><i class="icon icon-caret-right"></i><a href="#/page/${sub.page}" class="menu-leaf"
+                        <#if (sub.params)>data-params="${sub.params}"</#if>
+                        >${sub.title}</a></li>
+                </#list>
+            </ul>
+        </div>
+    </#list>
+</script>
+
+<script id="tpl-directive-user-role-label" type="text/x-template">
+    <h5>{{info.title}}</h5>
+    <ul class="nav nav-tabs" ui-tabs="{targetIndexModel: 'targetIndex'}">
+        <li class="active"><a>角色</a></li>
+        <li><a>标签</a></li>
+    </ul>
+    <div class="tabs active">
+        <ul>
+            <li ng-repeat="one in roleList" style="display: inline-block;">
+                <input type="checkbox" ng-model="one.isChecked"/>&nbsp;{{one.name}}
+            </li>
+        </ul>
+    </div>
+    <div class="tabs">
+        <ul>
+            <li ng-repeat="one in labelList" style="display: inline-block;">
+                <input type="checkbox" ng-model="one.isChecked"/>&nbsp;{{one.name}}
+            </li>
+        </ul>
+    </div>
+</script>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+    var appname = '/m';
+</script>
+<script src="../m/ng-ext/consts.js"></script>
+<script src="../m/ng-ext/all.js"></script>
+<script src="../m/ng-ext/ng.ext.js"></script>
+<script src="assets/LAB.min.js"></script>
+<script src="assets/director.min.js"></script>
+
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = "/m/ueditor/utf8-jsp/";
+</script>
+<!--<script type="text/javascript" charset="utf-8" src="/m/ueditor/utf8-jsp/ueditor.config.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8" src="/m/ueditor/utf8-jsp/ueditor.all.min.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8" src="/m/ueditor/utf8-jsp/lang/zh-cn/zh-cn.js"></script>-->
+<!---->
+<script type="text/javascript" src="/static/simditor/scripts/jquery.min.js"></script>
+<script>
+    // jquery多版本
+    console.log($().jquery);
+    var $jq = jQuery.noConflict(true);
+    console.log($().jquery);
+</script>
+
+<script type="text/javascript" src="/static/simditor/scripts/module.js"></script>
+<script type="text/javascript" src="/static/simditor/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="/static/simditor/scripts/uploader.js"></script>
+<!--<script type="text/javascript" src="/static/simditor/scripts/simditor.js"></script>-->
+
+<!--<script type="text/javascript" charset="utf-8" src="/static/emoji.js"></script>-->
+<!--<script type="text/javascript" charset="utf-8"-->
+        <!--src="http://api.map.baidu.com/api?v=2.0&ak=TMVarhiyAeUOyVdFyWAY1Kz7"></script>-->
+
+<script src="assets/base.js"></script>
+<!--<script src="assets/Table.js"></script>-->
+<!--<script src="assets/NetValueMgr.js"></script>-->
+
+<!--uploadifive-->
+<!--<script src="../m/ng-ext/uploadifive/jquery.uploadifive.min.js"></script>-->
+<!--<script src="../m/ng-ext/ng.ext.uploadifive.js"></script>-->
+<!--ztree-->
+<!--<script src="../m/ztree_v3/js/jquery.ztree.all-3.5.js"></script>-->
+<!--<script src="../m/ng-ext/ng.ext.ztree.js"></script>-->

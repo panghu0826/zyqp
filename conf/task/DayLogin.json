@@ -1,0 +1,30 @@
+{
+    "note": "每日登录送金币,红钻用户送更多",
+    "taskId": "DayLogin",
+    "taskType": 2,
+    "amount": 1,
+    "resetTime": 0,
+    "autoAward": false,
+    "preTaskId": null,
+    "clientType": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "taskGroup": 2,
+    "taskImg": "lord.png",
+    "title": "每日登录礼包 1500金币",
+    "awardItems": [
+        {
+            "itemId": "D011",
+            "count": 1500
+        }
+    ],
+    "redVipAwardItems": [
+        {
+            "itemId": "D011",
+            "count": 7000
+        }
+    ]
+}

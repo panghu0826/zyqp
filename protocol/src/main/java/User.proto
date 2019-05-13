@@ -1,0 +1,83 @@
+package packet.user;
+
+//登录大厅服务器
+message LoginRequest
+{
+	required string username = 1;
+	required string passward = 2;
+	required sint32 type = 3; //登录类型 1 游客  2 用户名密码 3微信
+	optional string version = 4; //客户端版本号
+	optional sint32 deviceFlag = 5; //设备号  1:ios 2:android 3:winphon  4:other
+	optional WeiXinUser wxUser = 6; //微信用户
+}
+
+//微信
+message WeiXinUser
+{
+	 required string openid = 1;
+	 required string unionid = 2;
+	 required string headimgurl = 3;
+	 required sint32 sex = 4;
+	 required string nickname = 5;
+}
+
+//重连大厅服务器
+message ReconnetLogin
+{
+	 required sint32 userId = 1;
+	 required string token = 2;
+}
+
+message LoginResponse
+{
+	optional sint32 userId = 1;
+	optional string token = 2;
+	optional string msgServerAddr = 3; //消息服务器地址，格式 ip:port
+	optional string gameServerAddr = 4; //游戏服务器地址，格式 ip:port
+	optional string hallServerAddr = 5; //消息服务器地址，格式 ip:port
+	optional string rankServerAddr = 6; //消息服务器地址，格式 ip:port
+	optional string taskServerAddr = 7; //消息服务器地址，格式 ip:port
+}
+
+//同步用户信息
+message UserInfoSyn {
+	optional sint32 userId = 1;
+	optional string nickName = 2;
+	optional string headImg = 3;
+	optional sint32 coin = 4;
+	optional sint32 fanka = 5;
+	optional sint32 continueWinCount = 6;
+	optional sint32 totalGameCount = 7;
+	optional double winRate = 8;
+	optional string ip = 9;
+	optional string maxFanType = 10;
+	repeated sint32 handcard = 11; //手牌
+	repeated sint32 downcard = 12; //吃碰杠
+	optional bool createMultiRoom = 13;//是否可以开多个房间
+	optional sint32 sex = 14;//性别 值为1时是男性，值为2时是女性，值为0时是未知
+	optional sint32 diamond = 15;//钻石
+	optional string unionid = 16;//微信的unionid
+}
+
+//登录其它服务器:游戏服、消息服、大厅断线重连
+message AuthRequest
+{
+	required sint32 userId = 1; //用户id
+	required string token = 2; //token
+	optional string version = 3; //客户端版本号
+}
+
+message AuthResponse
+{
+
+}
+
+message ModifyUserInfoRequest {
+	optional string headImg = 1; //头像
+	optional string nickName = 2; //昵称
+	optional sint32 sex = 3; //性别 值为1时是男性，值为2时是女性，值为0时是未知
+}
+//需要更新(登陆时验证)
+message NeedUpdate{
+
+}

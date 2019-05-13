@@ -1,0 +1,65 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>服务列表</h5>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >服务id</th>
+                            <th >服务类型</th>
+                            <th >所在容器</th>
+                            <th >在线人数</th>
+                            <th >容器状态</th>
+                            <th >组件状态</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.addr}}
+                            </td>
+                            <td>
+                                {{one.serverType}}
+                            </td>
+                            <td>
+                                {{one.instanceId}}
+                            </td>
+                            <td>
+                                {{one.onlineNum}}
+                            </td>
+                            <td>
+                                {{one.status}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="viewSrv(one)">组件状态</button>
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-if="one.status=='STOPED'" ng-click="start(one)">恢复服务</button>
+                                <button class="btn" ng-if="one.status=='RUNNING'" ng-click="stop(one)">停止服务</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowDetail', title: '增加房卡', dialogId: 'dialogDetail', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 600px;" ng-form="tmp.addForm">
+            <div>${tmp.srvDetail}</div>
+        </table>
+    </script>
+</div>

@@ -1,0 +1,60 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>玩法信息</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">俱乐部id</th>
+                            <th >赛场类型</th>
+                            <th >押注选择</th>
+                            <th >局数选择</th>
+                            <th >是否必闷</th>
+                            <!--<th >人数限制</th>-->
+                            <th >具体玩法</th>
+                            <th >封顶限制</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.clubWanfa.matchID}}
+                            </td>
+                            <td>
+                                {{one.clubWanfa.yazhu}}
+                            </td>
+                            <td>
+                                {{one.clubWanfa.juNum}}
+                            </td>
+                            <td>
+                                {{one.clubWanfa.biMen}}
+                            </td>
+                            <!--<td>-->
+                                <!--{{one.clubWanfa.playerNum}}-->
+                            <!--</td>-->
+                            <td>
+                                {{getclubWanfaString(one.clubWanfa.wanfa)}}
+                            </td>
+                            <td>
+                                {{one.clubWanfa.fengDing}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

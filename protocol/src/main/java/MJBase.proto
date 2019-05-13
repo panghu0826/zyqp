@@ -1,0 +1,66 @@
+package packet.mj;
+
+enum GameOperType{
+    GameOperStartSyn = 7001; //游戏开始
+	GameOperHandCardSyn = 7002;   //手牌
+	GameOperPublicInfoSyn = 7003; //公共信息
+	GameOperPlayerHuSyn = 7004; //公共信息
+	GameOperPlayerActionNotify = 7005; //通知玩家操作
+	GameOperActorSyn = 7006; //广播当前正在操作的玩家
+	GameOperPlayerActionSyn = 7007; //客户端请求服务器某个操作(吃、碰、听、出、吃听、碰听)，服务器向其他人同步玩家的这个操作也是用这个编码
+	GameOperBaoChangeSyn = 7008; //换宝 
+	GameOperReNofity = 7009; //重新提醒操作,调试用
+	GameOperFinalSettleSyn = 7010; //总结算
+
+	//===================================poker==========================================
+	DDZGameOperStartSyn = 8001; //游戏开始
+	DDZGameOperHandCardSyn = 8002;   //手牌
+	DDZGameOperPublicInfoSyn = 8003; //剩下的三张牌
+	DDZGameOperPlayerActionNotify = 8004; //通知玩家操作
+	DDZGameOperActorSyn = 8005; //广播当前正在操作的玩家
+	DDZGameOperPlayerActionSyn = 8006; //客户端请求服务器某个操作(出,过,抢地主,加倍等)，服务器向其他人同步玩家的这个操作也是用这个编码
+	DDZGameOperPlayerHuSyn = 8007;//单局结算
+	DDZGameOperFinalSettleSyn = 8008; //总结算
+
+	ZJHGameOperStartSyn = 8009; //游戏开始
+	ZJHGameOperHandCardSyn = 8010;   //手牌
+	ZJHGameOperPublicInfoSyn = 8011; //剩下的三张牌
+	ZJHGameOperPlayerActionNotify = 8012; //通知玩家操作
+	ZJHGameOperActorSyn = 8013; //广播当前正在操作的玩家
+	ZJHGameOperPlayerActionSyn = 8014; //客户端请求服务器某个操作(出,过,抢地主,加倍等)，服务器向其他人同步玩家的这个操作也是用这个编码
+	ZJHGameOperPlayerHuSyn = 8015;//单局结算
+	ZJHGameOperFinalSettleSyn = 8016; //总结算
+
+	JACKGameOperStartSyn = 8017; //游戏开始
+	JACKGameOperHandCardSyn = 8018;   //手牌
+	JACKGameOperPublicInfoSyn = 8019; //剩下的三张牌
+	JACKGameOperPlayerActionNotify = 8020; //通知玩家操作
+	JACKGameOperActorSyn = 8021; //广播当前正在操作的玩家
+	JACKGameOperPlayerActionSyn = 8022; //客户端请求服务器某个操作(出,过,抢地主,加倍等)，服务器向其他人同步玩家的这个操作也是用这个编码
+	JACKGameOperPlayerHuSyn = 8023;//单局结算
+	JACKGameOperFinalSettleSyn = 8024; //总结算
+
+	NNGameOperStartSyn = 8025; //游戏开始
+	NNGameOperHandCardSyn = 8026;   //手牌
+	NNGameOperPublicInfoSyn = 8027; //剩下的三张牌
+	NNGameOperPlayerActionNotify = 8028; //通知玩家操作
+	NNGameOperActorSyn = 8029; //广播当前正在操作的玩家
+	NNGameOperPlayerActionSyn = 8030; //客户端请求服务器某个操作(出,过,抢地主,加倍等)，服务器向其他人同步玩家的这个操作也是用这个编码
+	NNGameOperPlayerHuSyn = 8031;//单局结算
+	NNGameOperFinalSettleSyn = 8032; //总结算
+
+	ErBaGameOperStartSyn = 8033; //游戏开始
+	ErBaGameOperHandCardSyn = 8034;   //手牌
+	ErBaGameOperPublicInfoSyn = 8035; //剩下的三张牌
+	ErBaGameOperPlayerActionNotify = 8036; //通知玩家操作
+	ErBaGameOperActorSyn = 8037; //广播当前正在操作的玩家
+	ErBaGameOperPlayerActionSyn = 8038; //客户端请求服务器某个操作(出,过,抢地主,加倍等)，服务器向其他人同步玩家的这个操作也是用这个编码
+	ErBaGameOperPlayerHuSyn = 8039;//单局结算
+	ErBaGameOperFinalSettleSyn = 8040; //总结算
+}
+
+message GameOperation {
+	required GameOperType operType = 1; //业务类型
+	optional bytes content = 2;//业务数据,对应的是MJ.proto里面所有的GameOperXXX的数据结构之一
+	optional sint32 type = 3;//0:正常游戏，1:重连或重返游戏(客户端会清空之前的操作队列)
+}

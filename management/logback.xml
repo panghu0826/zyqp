@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="default"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/main.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>100</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="sqlCost"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/sql-cost.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>100</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="framework"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/framework.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>100</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 需要用于分析的日志 -->
+    <appender name="collect"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/collect.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>100</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="com.guosen.webx.d" level="DEBUG" additivity="false">
+        <appender-ref ref="sqlCost"/>
+    </logger>
+
+    <logger name="com.guosen.webx.beans" level="DEBUG" additivity="false">
+        <appender-ref ref="framework"/>
+    </logger>
+
+    <logger name="collect" level="INFO" additivity="false">
+        <appender-ref ref="collect"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="default"/>
+    
+        <appender-ref ref="STDOUT"/>
+
+    </root>
+</configuration>

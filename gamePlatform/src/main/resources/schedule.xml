@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!-- 工作的bean -->
+    <bean id="SignAndLunPan" class="com.buding.hall.module.schedule.SignAndLunPanSch"/>
+    <bean id="AwardSch" class="com.buding.hall.module.schedule.AwardSch"/>
+    <bean id="MarqueeSch" class="com.buding.hall.module.schedule.MarqueeSch"/>
+    <bean id="RankSch" class="com.buding.hall.module.schedule.RankSch"/>
+    <bean id="UserRoomSch" class="com.buding.hall.module.schedule.UserRoomSch"/>
+    <bean id="FuLiCountSch" class="com.buding.hall.module.schedule.FuLiCountSch"/>
+    <bean id="PayBackSch" class="com.ifp.wechat.util.FenXiaoUtil"/>
+    <!--<bean id="clubDao" class="com.buding.db.dao.ClubDaoImpl" />-->
+
+    <!-- job的配置开始 -->
+    <bean id="PrayStartJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="SignAndLunPan"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>start</value>
+        </property>
+    </bean>
+    <bean id="FuLiCountJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="FuLiCountSch"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>count</value>
+        </property>
+    </bean>
+
+    <bean id="PrayFinishJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="SignAndLunPan"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>finish</value>
+        </property>
+    </bean>
+
+    <bean id="PrayNotifyJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="SignAndLunPan"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>notifyStart</value>
+        </property>
+    </bean>
+
+    <bean id="DelAllMarquee" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="MarqueeSch"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>removeAllMarquee</value>
+        </property>
+    </bean>
+    <bean id="DelPrayAwardByDay" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="AwardSch"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>delPrayAwardByDay</value>
+        </property>
+    </bean>
+    <bean id="DoRankInSunDay" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="RankSch"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>doRankInSunDay</value>
+        </property>
+    </bean>
+    <bean id="DoRankInMonth" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="RankSch"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>doRankInMonth</value>
+        </property>
+    </bean>
+    <bean id="DelUserRoomByDay" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="UserRoomSch"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>delUserRoomByDay</value>
+        </property>
+    </bean>
+    <bean id="DelClubBadApplyByDay" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="clubDao"/>
+        </property>
+        <property name="targetMethod">  <!-- 要执行的方法名称 -->
+            <value>deleteClubBadApply</value>
+        </property>
+    </bean>
+    <bean id="payBack" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="PayBackSch"/>
+        </property>
+        <property name="targetMethod">
+            <value>payLoop</value>
+        </property>
+    </bean>
+
+    <!-- job的配置结束 -->
+
+    <!-- 调度的配置开始 -->
+    <bean id="PrayStartBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="PrayStartJob"></property>
+        <property name="cronExpression" value="0 0 20 * * ?"></property>
+    </bean>
+    <bean id="FuLiCountBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="FuLiCountJob"></property>
+        <property name="cronExpression" value="0 0 1 * * ?"></property>
+    </bean>
+    <bean id="PrayFinishBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="PrayFinishJob"></property>
+        <property name="cronExpression" value="10 10 20 * * ?"></property>
+    </bean>
+    <bean id="PrayNotifyBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="PrayNotifyJob"></property>
+        <property name="cronExpression" value="0 57 19 * * ?"></property>
+    </bean>
+    <bean id="DelAllMarqueeBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="DelAllMarquee"></property>
+        <property name="cronExpression" value="0 0 4 * * ?"></property>
+    </bean>
+    <bean id="DelPrayAwardByDayBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="DelPrayAwardByDay"></property>
+        <property name="cronExpression" value="0 0 4 * * ?"></property>
+    </bean>
+    <bean id="DelUserRoomByDayBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="DelUserRoomByDay"></property>
+        <property name="cronExpression" value="0 0 4 * * ?"></property>
+    </bean>
+    <bean id="DelClubBadApplyByDayBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="DelClubBadApplyByDay"></property>
+        <property name="cronExpression" value="0 0 4 * * ?"></property>
+    </bean>
+    <bean id="DoRankInSunDayBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="DoRankInSunDay"></property>
+        <property name="cronExpression" value="0 55 23 ? * SUN"></property>
+    </bean>
+    <bean id="DoRankInMonthBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="DoRankInMonth"></property>
+        <property name="cronExpression" value="0 55 23 L * ?"></property>
+    </bean>
+    <bean id="payBackBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="payBack"></property>
+        <property name="cronExpression" value="* * * * * ?"></property>
+    </bean>
+
+    <!-- 调度的配置结束 -->
+
+    <!-- 启动触发器的配置开始 -->
+    <bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <!--<ref bean="PrayStartBean"/>-->
+                <!--<ref bean="PrayFinishBean"/>-->
+                <!--<ref bean="PrayNotifyBean"/>-->
+                <ref bean="DelAllMarqueeBean"/>
+                <ref bean="DelUserRoomByDayBean"/>
+                <ref bean="DelPrayAwardByDayBean"/>
+                <ref bean="DoRankInSunDayBean"/>
+                <ref bean="payBackBean"/>
+                <ref bean="DelClubBadApplyByDayBean"/>
+                <!--<ref bean="FuLiCountBean"/>-->
+            </list>
+        </property>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.threadPool.threadCount">100</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 启动触发器的配置结束 -->
+</beans>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.RoomConf">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.RoomConf">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="room_type" jdbcType="VARCHAR" property="roomType" />
+    <result column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="base_score" jdbcType="INTEGER" property="baseScore" />
+    <result column="min_coin_limit" jdbcType="INTEGER" property="minCoinLimit" />
+    <result column="max_coin_limit" jdbcType="INTEGER" property="maxCoinLimit" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="match_class_full_name" jdbcType="VARCHAR" property="matchClassFullName" />
+    <result column="game_param_oper_time_out" jdbcType="INTEGER" property="gameParamOperTimeOut" />
+    <result column="game_param_peng_play_mills" jdbcType="INTEGER" property="gameParamPengPlayMills" />
+    <result column="game_param_chu_play_mills" jdbcType="INTEGER" property="gameParamChuPlayMills" />
+    <result column="game_param_chi_peng_play_mills" jdbcType="INTEGER" property="gameParamChiPengPlayMills" />
+    <result column="game_param_auto_oper_when_timeout" jdbcType="BIT" property="gameParamAutoOperWhenTimeout" />
+    <result column="game_param_think_mills_when_auto_oper" jdbcType="INTEGER" property="gameParamThinkMillsWhenAutoOper" />
+    <result column="seat_size_lower" jdbcType="INTEGER" property="seatSizeLower" />
+    <result column="seat_size_upper" jdbcType="INTEGER" property="seatSizeUpper" />
+    <result column="auto_start_game" jdbcType="BIT" property="autoStartGame" />
+    <result column="auto_change_desk" jdbcType="BIT" property="autoChangeDesk" />
+    <result column="game_class_full_name" jdbcType="VARCHAR" property="gameClassFullName" />
+    <result column="desk_class_full_name" jdbcType="VARCHAR" property="deskClassFullName" />
+    <result column="room_class_full_name" jdbcType="VARCHAR" property="roomClassFullName" />
+    <result column="support_robot" jdbcType="BIT" property="supportRobot" />
+    <result column="seconds_add_first_robot" jdbcType="INTEGER" property="secondsAddFirstRobot" />
+    <result column="add_robot_rate" jdbcType="DOUBLE" property="addRobotRate" />
+    <result column="auto_ready" jdbcType="BIT" property="autoReady" />
+    <result column="seconds_befor_kickout" jdbcType="INTEGER" property="secondsBeforKickout" />
+    <result column="srv_fee" jdbcType="INTEGER" property="srvFee" />
+    <result column="game_count_low" jdbcType="INTEGER" property="gameCountLow" />
+    <result column="game_count_high" jdbcType="INTEGER" property="gameCountHigh" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="conf_json" jdbcType="VARCHAR" property="confJson" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.buding.db.model.RoomConf">
+    <result column="fee" jdbcType="LONGVARCHAR" property="fee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, room_id, room_name, room_type, match_id, base_score, min_coin_limit, max_coin_limit, 
+    icon, match_class_full_name, game_param_oper_time_out, game_param_peng_play_mills, 
+    game_param_chu_play_mills, game_param_chi_peng_play_mills, game_param_auto_oper_when_timeout, 
+    game_param_think_mills_when_auto_oper, seat_size_lower, seat_size_upper, auto_start_game, 
+    auto_change_desk, game_class_full_name, desk_class_full_name, room_class_full_name, 
+    support_robot, seconds_add_first_robot, add_robot_rate, auto_ready, seconds_befor_kickout, 
+    srv_fee, game_count_low, game_count_high, status, conf_json
+  </sql>
+  <sql id="Blob_Column_List">
+    fee
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from room_conf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.RoomConf" useGeneratedKeys="true">
+    insert into room_conf (room_id, room_name, room_type, 
+      match_id, base_score, min_coin_limit, 
+      max_coin_limit, icon, match_class_full_name, 
+      game_param_oper_time_out, game_param_peng_play_mills, 
+      game_param_chu_play_mills, game_param_chi_peng_play_mills, 
+      game_param_auto_oper_when_timeout, game_param_think_mills_when_auto_oper, 
+      seat_size_lower, seat_size_upper, auto_start_game, 
+      auto_change_desk, game_class_full_name, desk_class_full_name, 
+      room_class_full_name, support_robot, seconds_add_first_robot, 
+      add_robot_rate, auto_ready, seconds_befor_kickout, 
+      srv_fee, game_count_low, game_count_high, 
+      status, conf_json, fee
+      )
+    values (#{roomId,jdbcType=VARCHAR}, #{roomName,jdbcType=VARCHAR}, #{roomType,jdbcType=VARCHAR}, 
+      #{matchId,jdbcType=VARCHAR}, #{baseScore,jdbcType=INTEGER}, #{minCoinLimit,jdbcType=INTEGER}, 
+      #{maxCoinLimit,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{matchClassFullName,jdbcType=VARCHAR}, 
+      #{gameParamOperTimeOut,jdbcType=INTEGER}, #{gameParamPengPlayMills,jdbcType=INTEGER}, 
+      #{gameParamChuPlayMills,jdbcType=INTEGER}, #{gameParamChiPengPlayMills,jdbcType=INTEGER}, 
+      #{gameParamAutoOperWhenTimeout,jdbcType=BIT}, #{gameParamThinkMillsWhenAutoOper,jdbcType=INTEGER}, 
+      #{seatSizeLower,jdbcType=INTEGER}, #{seatSizeUpper,jdbcType=INTEGER}, #{autoStartGame,jdbcType=BIT}, 
+      #{autoChangeDesk,jdbcType=BIT}, #{gameClassFullName,jdbcType=VARCHAR}, #{deskClassFullName,jdbcType=VARCHAR}, 
+      #{roomClassFullName,jdbcType=VARCHAR}, #{supportRobot,jdbcType=BIT}, #{secondsAddFirstRobot,jdbcType=INTEGER}, 
+      #{addRobotRate,jdbcType=DOUBLE}, #{autoReady,jdbcType=BIT}, #{secondsBeforKickout,jdbcType=INTEGER}, 
+      #{srvFee,jdbcType=INTEGER}, #{gameCountLow,jdbcType=INTEGER}, #{gameCountHigh,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{confJson,jdbcType=VARCHAR}, #{fee,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.buding.db.model.RoomConf">
+    update room_conf
+    set room_id = #{roomId,jdbcType=VARCHAR},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      room_type = #{roomType,jdbcType=VARCHAR},
+      match_id = #{matchId,jdbcType=VARCHAR},
+      base_score = #{baseScore,jdbcType=INTEGER},
+      min_coin_limit = #{minCoinLimit,jdbcType=INTEGER},
+      max_coin_limit = #{maxCoinLimit,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      match_class_full_name = #{matchClassFullName,jdbcType=VARCHAR},
+      game_param_oper_time_out = #{gameParamOperTimeOut,jdbcType=INTEGER},
+      game_param_peng_play_mills = #{gameParamPengPlayMills,jdbcType=INTEGER},
+      game_param_chu_play_mills = #{gameParamChuPlayMills,jdbcType=INTEGER},
+      game_param_chi_peng_play_mills = #{gameParamChiPengPlayMills,jdbcType=INTEGER},
+      game_param_auto_oper_when_timeout = #{gameParamAutoOperWhenTimeout,jdbcType=BIT},
+      game_param_think_mills_when_auto_oper = #{gameParamThinkMillsWhenAutoOper,jdbcType=INTEGER},
+      seat_size_lower = #{seatSizeLower,jdbcType=INTEGER},
+      seat_size_upper = #{seatSizeUpper,jdbcType=INTEGER},
+      auto_start_game = #{autoStartGame,jdbcType=BIT},
+      auto_change_desk = #{autoChangeDesk,jdbcType=BIT},
+      game_class_full_name = #{gameClassFullName,jdbcType=VARCHAR},
+      desk_class_full_name = #{deskClassFullName,jdbcType=VARCHAR},
+      room_class_full_name = #{roomClassFullName,jdbcType=VARCHAR},
+      support_robot = #{supportRobot,jdbcType=BIT},
+      seconds_add_first_robot = #{secondsAddFirstRobot,jdbcType=INTEGER},
+      add_robot_rate = #{addRobotRate,jdbcType=DOUBLE},
+      auto_ready = #{autoReady,jdbcType=BIT},
+      seconds_befor_kickout = #{secondsBeforKickout,jdbcType=INTEGER},
+      srv_fee = #{srvFee,jdbcType=INTEGER},
+      game_count_low = #{gameCountLow,jdbcType=INTEGER},
+      game_count_high = #{gameCountHigh,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      conf_json = #{confJson,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.RoomConf">
+    update room_conf
+    set room_id = #{roomId,jdbcType=VARCHAR},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      room_type = #{roomType,jdbcType=VARCHAR},
+      match_id = #{matchId,jdbcType=VARCHAR},
+      base_score = #{baseScore,jdbcType=INTEGER},
+      min_coin_limit = #{minCoinLimit,jdbcType=INTEGER},
+      max_coin_limit = #{maxCoinLimit,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      match_class_full_name = #{matchClassFullName,jdbcType=VARCHAR},
+      game_param_oper_time_out = #{gameParamOperTimeOut,jdbcType=INTEGER},
+      game_param_peng_play_mills = #{gameParamPengPlayMills,jdbcType=INTEGER},
+      game_param_chu_play_mills = #{gameParamChuPlayMills,jdbcType=INTEGER},
+      game_param_chi_peng_play_mills = #{gameParamChiPengPlayMills,jdbcType=INTEGER},
+      game_param_auto_oper_when_timeout = #{gameParamAutoOperWhenTimeout,jdbcType=BIT},
+      game_param_think_mills_when_auto_oper = #{gameParamThinkMillsWhenAutoOper,jdbcType=INTEGER},
+      seat_size_lower = #{seatSizeLower,jdbcType=INTEGER},
+      seat_size_upper = #{seatSizeUpper,jdbcType=INTEGER},
+      auto_start_game = #{autoStartGame,jdbcType=BIT},
+      auto_change_desk = #{autoChangeDesk,jdbcType=BIT},
+      game_class_full_name = #{gameClassFullName,jdbcType=VARCHAR},
+      desk_class_full_name = #{deskClassFullName,jdbcType=VARCHAR},
+      room_class_full_name = #{roomClassFullName,jdbcType=VARCHAR},
+      support_robot = #{supportRobot,jdbcType=BIT},
+      seconds_add_first_robot = #{secondsAddFirstRobot,jdbcType=INTEGER},
+      add_robot_rate = #{addRobotRate,jdbcType=DOUBLE},
+      auto_ready = #{autoReady,jdbcType=BIT},
+      seconds_befor_kickout = #{secondsBeforKickout,jdbcType=INTEGER},
+      srv_fee = #{srvFee,jdbcType=INTEGER},
+      game_count_low = #{gameCountLow,jdbcType=INTEGER},
+      game_count_high = #{gameCountHigh,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      conf_json = #{confJson,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

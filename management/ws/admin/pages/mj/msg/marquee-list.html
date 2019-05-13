@@ -1,0 +1,152 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>跑马灯列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增跑马灯</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >id</th>
+                            <th >内容</th>
+                            <th >客户端循环播放次数</th>
+                            <th >生效时间</th>
+                            <th >失效时间</th>
+                            <th >跑马灯类型</th>
+                            <th >服务器循环推送次数</th>
+                            <th >服务器循环推送时间间隔</th>
+                            <th >接收用户组</th>
+                            <th >登录立刻推送</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.msgContent}}
+                            </td>
+                            <td>
+                                {{one.loopPlayCount}}
+                            </td>
+                            <td>
+                                {{one.startTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                            <td>
+                                {{one.endTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                            <td>
+                                {{one.marqueeType == 1 ? "一次性推送" : "定时推送"}}
+                            </td>
+                            <td>
+                                {{one.loopPushCount}}
+                            </td>
+                            <td>
+                                {{one.loopPushInterval}}
+                            </td>
+                            <td>
+                                {{one.userGroup}}
+                            </td>
+                            <td>
+                                {{one.pushOnLogin? "是":"否"}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-if="one.status==1" ng-click="send(one)">手动推送</button>
+                                <button class="btn" ng-click="del(one)">删除</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowAdd', title: '新增代理商', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 900px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label>消息内容：</label></td>
+                <td><textarea ng-model="tmp.editOne.msgContent"  ui-valid="r" cols="90" rows="10"/></td>
+            </tr>
+            <tr>
+                <td><label>生效时间：</label></td>
+                <td>
+                    <input type="text" ng-if="tmp.editOne.startNow!=1" ng-model="tmp.editOne.startTime"
+                           ui-date="{dateFormat: 'yy-mm-dd', timeFormat: 'HH:mm:ss', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: true, showMinute: true}"
+                           ui-valid="datetime"/>
+                    (注意：若生效时间比当前时间早，则在保存消息时立刻推送一次)
+                </td>
+            </tr>
+            <tr>
+                <td><label>失效时间：</label></td>
+                <td>
+                    <input type="text" ng-model="tmp.editOne.endTime"
+                           ui-date="{dateFormat: 'yy-mm-dd', timeFormat: 'HH:mm:ss', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: true, showMinute: true}"
+                           ui-valid="datetime r"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>用户登录尝试推送：</label></td>
+                <td>
+                    <input type="checkbox" ng-model="tmp.editOne.pushOnLogin">
+                    (若勾选, 用户在消息生效时间和失效时间之间登录消息系统，会立刻收到该跑马灯消息.)
+                </td>
+            </tr>
+            <tr>
+                <td><label>跑马灯类型：</label></td>
+                <td>
+                    <select ng-model="tmp.editOne.marqueeType" ng-options="a.code as a.name for a in tmp.marqueeTypeList">
+                        <option value="" selected>--/--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>服务器循环推送次数：</label></td>
+                <td>
+                    <span ng-if="tmp.editOne.marqueeType==2"><input type="text" ng-model="tmp.editOne.loopPushCount" /></span>
+                    <span ng-if="tmp.editOne.marqueeType!=2">--</span>
+                    <span ng-if="tmp.editOne.marqueeType==2">(注意：若消息已失效，即使未达到最大推送次数，也不会再推送)</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>服务器循环推送时间间隔(最小间隔1分钟)：</label></td>
+                <td>
+                    <span ng-if="tmp.editOne.marqueeType==2"><input type="text" ng-model="tmp.editOne.loopPushInterval" />分钟</span>
+                    <span ng-if="tmp.editOne.marqueeType!=2">--</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>每次推送客户端循环播放次数：</label></td>
+                <!-- ng-disabled="tmp.editOne.id" -->
+                <td><input type="text" ng-model="tmp.editOne.loopPlayCount"/></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td><label>接收用户组：</label></td>-->
+                <!--<td>-->
+                    <!--<select ng-model="tmp.editOne.userGroup" ng-options="a.code as a.name for a in tmp.userGroupList">-->
+                        <!--<option value="" selected>&#45;&#45;/&#45;&#45;</option>-->
+                    <!--</select>-->
+                <!--</td>-->
+            <!--</tr>-->
+        </table>
+        <button class="btn btn-blue" ng-click="save()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowAdd = false">关闭</button>
+    </script>
+</div>

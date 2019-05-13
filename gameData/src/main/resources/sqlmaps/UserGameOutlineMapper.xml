@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserGameOutline">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserGameOutline">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="win_count" jdbcType="INTEGER" property="winCount" />
+    <result column="lose_count" jdbcType="INTEGER" property="loseCount" />
+    <result column="total_count" jdbcType="INTEGER" property="totalCount" />
+    <result column="continue_win_count" jdbcType="INTEGER" property="continueWinCount" />
+    <result column="max_fan_type" jdbcType="INTEGER" property="maxFanType" />
+    <result column="max_fan_desc" jdbcType="VARCHAR" property="maxFanDesc" />
+    <result column="max_fan_num" jdbcType="INTEGER" property="maxFanNum" />
+    <result column="max_fan_handcards" jdbcType="VARCHAR" property="maxFanHandcards" />
+    <result column="max_fan_downcards" jdbcType="VARCHAR" property="maxFanDowncards" />
+    <result column="last_game_time" jdbcType="TIMESTAMP" property="lastGameTime" />
+    <result column="last_game_match" jdbcType="VARCHAR" property="lastGameMatch" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, win_count, lose_count, total_count, continue_win_count, max_fan_type, max_fan_desc, 
+    max_fan_num, max_fan_handcards, max_fan_downcards, last_game_time, last_game_match
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_game_outline
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.buding.db.model.UserGameOutline">
+    insert into user_game_outline (id, win_count, lose_count, 
+      total_count, continue_win_count, max_fan_type, 
+      max_fan_desc, max_fan_num, max_fan_handcards, 
+      max_fan_downcards, last_game_time, last_game_match
+      )
+    values (#{id,jdbcType=INTEGER}, #{winCount,jdbcType=INTEGER}, #{loseCount,jdbcType=INTEGER}, 
+      #{totalCount,jdbcType=INTEGER}, #{continueWinCount,jdbcType=INTEGER}, #{maxFanType,jdbcType=INTEGER}, 
+      #{maxFanDesc,jdbcType=VARCHAR}, #{maxFanNum,jdbcType=INTEGER}, #{maxFanHandcards,jdbcType=VARCHAR}, 
+      #{maxFanDowncards,jdbcType=VARCHAR}, #{lastGameTime,jdbcType=TIMESTAMP}, #{lastGameMatch,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserGameOutline">
+    update user_game_outline
+    set win_count = #{winCount,jdbcType=INTEGER},
+      lose_count = #{loseCount,jdbcType=INTEGER},
+      total_count = #{totalCount,jdbcType=INTEGER},
+      continue_win_count = #{continueWinCount,jdbcType=INTEGER},
+      max_fan_type = #{maxFanType,jdbcType=INTEGER},
+      max_fan_desc = #{maxFanDesc,jdbcType=VARCHAR},
+      max_fan_num = #{maxFanNum,jdbcType=INTEGER},
+      max_fan_handcards = #{maxFanHandcards,jdbcType=VARCHAR},
+      max_fan_downcards = #{maxFanDowncards,jdbcType=VARCHAR},
+      last_game_time = #{lastGameTime,jdbcType=TIMESTAMP},
+      last_game_match = #{lastGameMatch,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

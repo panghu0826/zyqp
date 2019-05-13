@@ -1,0 +1,291 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>新增、修改{{tmp.contentLabel}}</h5>
+                    <!--
+                    <div class="actions">
+                        <button class="btn" ng-click="setRole('label', true)" ng-if="tmp.isAct">设置活动报名的用户权限</button>
+                        <button class="btn" ng-click="preview()" ng-if="one.id">预览</button>
+                    </div>
+                    -->
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped m_top6" ng-form="tmp.addActForm">
+                        <tr ui-layout-col="">
+                            <td style="width: 10%">牌型名称:</td>
+                            <td style="width:30%">
+                                <input type="text" ng-model="one.name">
+                            </td>
+                            <td style="width: 10%">
+
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr ui-layout-col="">
+                            <td style="width: 10%">
+                                <label><span>*</span>宝牌：</label>
+                            </td>
+                            <td>
+                                <!--<input type="text" ng-model="one.baopai" ng-disabled="isGray" ui-valid="r"-->
+                                <!--ui-editable="true"-->
+                                <!--ui-dropdown="{editable: false, valueField: 'code', labelField: 'label', list: 'remainCardlist', blankLabel: '&#45;&#45;/&#45;&#45;', heightStep: 10}"/>-->
+                                <!--<br/>-->
+                                {{one.baopai.name}}
+                                <button class="btn" ng-click="changeSingleCard(one,'baopai')">编辑</button>
+                            </td>
+                            <td style="width: 10%">
+
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>当前操作玩家：</label></td>
+                            <td>
+                                <select ng-model="one.curOperPosition">
+                                    <option value="0">1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                </select>
+                            </td>
+                            <td><label>当前摸到的牌：</label></td>
+                            <td>
+                                <!--<input type="text" ng-model="one.newCard" ng-disabled="isGray" ui-valid="r"-->
+                                       <!--ui-editable="true"-->
+                                       <!--ui-dropdown="{editable: false, valueField: 'code', labelField: 'label', list: 'remainCardlist', blankLabel: '&#45;&#45;/&#45;&#45;', heightStep: 10}"/>-->
+                                {{one.newCard.name}}
+                                <button class="btn" ng-click="changeSingleCard(one,'newCard')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>特色玩法：</label></td>
+                            <td colspan="3">
+                                <input type="checkbox" ng-model="one.wanfa.dandiao">单调夹
+                                &nbsp;
+                                <input type="checkbox" ng-model="one.wanfa.37">37夹
+                                &nbsp;
+                                <input type="checkbox" ng-model="one.wanfa.zhidui">支对胡
+                                &nbsp;
+                                <input type="checkbox" ng-model="one.wanfa.hzmtf">红中满天飞
+                                &nbsp;
+                                <input type="checkbox" ng-model="one.wanfa.gdf">刮大风
+                                &nbsp;
+                                <input type="checkbox" ng-model="one.wanfa.dailou">带漏胡
+                                &nbsp;
+                                <input type="checkbox" ng-model="one.wanfa.wjbh">无夹不胡
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>玩家1吃碰杠：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.player1.cardsDown track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player1,'cardsDown')">编辑</button>
+                            </td>
+                            <td>
+                                <label ><span>*</span>玩家1手牌：</label>
+                            </td>
+                            <td >
+                                <span ng-repeat="card in one.player1.cardsInHand track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player1,'cardsInHand')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>玩家2吃碰杠：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.player2.cardsDown track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player2,'cardsDown')">编辑</button>
+                            </td>
+                            <td>
+                                <label ><span>*</span>玩家2手牌：</label>
+                            </td>
+                            <td >
+                                <span ng-repeat="card in one.player2.cardsInHand track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player2,'cardsInHand')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>玩家3吃碰杠：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.player3.cardsDown track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player3,'cardsDown')">编辑</button>
+                            </td>
+                            <td>
+                                <label ><span>*</span>玩家3手牌：</label>
+                            </td>
+                            <td >
+                                <span ng-repeat="card in one.player3.cardsInHand track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player3,'cardsInHand')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>玩家4吃碰杠：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.player4.cardsDown track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player4,'cardsDown')">编辑</button>
+                            </td>
+                            <td>
+                                <label ><span>*</span>玩家4手牌：</label>
+                            </td>
+                            <td >
+                                <span ng-repeat="card in one.player4.cardsInHand track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player4,'cardsInHand')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>已打出：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.cardsDown track by $index">
+                                    {{card.name}}
+                                </span>
+                            </td>
+                            <td>
+                                <label ><span>*</span>未摸牌：</label>
+                            </td>
+                            <td >
+                                {{one.remainCardlistStr}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>玩家1已打出：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.player1.cardsBefore track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player1,'cardsBefore')">编辑</button>
+                            </td>
+                            <td>
+                                <label ><span>*</span>玩家2已打出：</label>
+                            </td>
+                            <td >
+                                <span ng-repeat="card in one.player2.cardsBefore track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player2,'cardsBefore')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>玩家3已打出：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.player3.cardsBefore track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player3,'cardsBefore')">编辑</button>
+                            </td>
+                            <td>
+                                <label ><span>*</span>玩家4已打出：</label>
+                            </td>
+                            <td >
+                                <span ng-repeat="card in one.player4.cardsBefore track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one.player4,'cardsBefore')">编辑</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label ><span>*</span>预设牌：</label>
+                            </td>
+                            <td>
+                                <span ng-repeat="card in one.preSetRemainCard track by $index">
+                                    {{card.name}}
+                                </span>
+                                <button class="btn" ng-click="changeMultiCard(one,'preSetRemainCard')">编辑</button>
+                            </td>
+                            <td>
+                            </td>
+                            <td >
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="margin-left: 30px;margin-bottom: 10px;">
+
+                        <b>正文</b>：
+                        <br/>
+                        <div  class="" style="position: relative;">
+
+                            <textarea id="contentUe" style="width:800px; height:300px;"></textarea>
+                        </div>
+
+                        <br/>
+                        <span>
+                            <button class="btn-primary" ng-click="save()">保存</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+
+    <script type="text/x-template" id="showSingleEditDialog"
+            ui-dialog="{showModel: 'ctrl.showSingleEditDialog', title: '选择牌型', dialogId: 'approveDialog', width: 400, height: 120, lock: true, fixed: true, ext: {max: false}}">
+        <div class="">选择牌型:</div>
+        <div style="margin: 10px;">
+            <input type="text" ng-model="ctrl.singleCard" ng-disabled="isGray" ui-valid="r"
+                   ui-editable="true"
+                   ui-dropdown="{editable: false, valueField: 'code', labelField: 'name', list: 'ctrl.cards', blankLabel: '--/--', heightStep: 10}"/>
+            <br/>
+        </div>
+        <button class="btn no-print" ng-click="saveSingleCardChange()">确认</button>
+        <button class="btn no-print" ng-click="ctrl.showSingleEditDialog=false">取消</button>
+    </script>
+
+    <script type="text/x-template" id="showMultiEditDialog"
+            ui-dialog="{showModel: 'ctrl.showMultiEditDialog', title: '编辑牌型', dialogId: 'approveDialog', width: 900, height: 900, lock: true, fixed: true, ext: {max: false}}">
+        <div class="">编辑牌型:</div>
+        <input type="text" ng-model="ctrl.multiCards" size="100" maxlength="100px"/>
+        <button class="btn no-print" ng-click="saveMultiCardChange()">确认</button>
+        <button class="btn no-print" ng-click="ctrl.showMultiEditDialog=false">取消</button>
+        <table class="table table-bordered table-striped m_top6" id="addArticleList">
+            <tbody>
+            <tr ng-repeat="one in ctrl.tmpRemainList track by $index">
+                <td>
+                    {{one.name}}
+                    <button class="btn no-print" ng-click="add2MultiTmp(one)">添加</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </script>
+
+</div>

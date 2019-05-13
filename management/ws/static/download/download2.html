@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新时空大庆麻将游戏下载</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="amazeui.min.css?41"/>
+    <link rel="stylesheet" href="index.css?48"/>
+    <link rel="stylesheet" href="weixin.css"/>
+    <style type="text/css">
+	.xz-img1 img{max-width:100%;}
+  #p1
+   {
+       position: absolute;
+	   width:100%;
+	   margin:0px 0px 0px 0px;
+	   z-index: 1;
+   }
+   #p2
+   {
+       position: fixed;
+	   width:100%;
+	   height:100%;
+	   top:0;
+	   right:0;
+	   bottom:0;
+	   left:0;
+       z-index: 2;
+   }
+   .addImage1
+   {
+     background:url(./equipmentType_1.png) no-repeat center;
+   }
+   .addImage2
+   {
+     background:url(./equipmentType_2.png) no-repeat center;
+   }
+   body
+   {
+    width:100%;
+	height:100%;
+    margin:0px 0px 0px 0px;
+   }
+ </style>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="amazeui.min.js"></script>
+
+    <script language='JavaScript'>
+   /****************加载页面处理****************************/
+   $(function(){
+	   var curBrowser = getBrowser();//判断浏览器类型
+	   var equipmentType = browserRedirect(); //判断打开设备类型  ：１安卓  2 苹果 3 客户端
+	   if(equipmentType==1)
+	   {
+		   if(curBrowser=="weixin")
+		   {
+			  $("#yd").attr("src","./equipmentType_1.png");
+		   }
+		   else
+		   {
+		    $("#p2").toggle("slow");
+		   }
+	   }
+	   else if(equipmentType==2)
+	   {
+		   if(curBrowser=="weixin")
+		   {
+		       $("#yd").attr("src","./equipmentType_2.png");
+		   }
+		  else
+		   {
+		    $("#p2").toggle("slow");
+		   }
+	   }
+	   else
+	   {
+	   }
+   });
+
+     /****************点击Android应用下载时******************/
+     $(function(){
+
+    	 $("#downIosBtn").click(function(){
+   		  var curBrowser = getBrowser();//判断浏览器类型
+   		  var equipmentType = browserRedirect();  //判断打开设备类型  ：１安卓  2 苹果 3客户端
+   		  if(curBrowser == "weixin" && equipmentType==2)
+   		  {$("#p2").toggle("slow");
+   		  }
+   		  else
+   		  {
+   		     // location.href='itms-services://?action=download-manifest&url=https://git.oschina.net/hongbaoxm/hbxm/raw/master/rpg_property.plist';
+			location.href='https://itunes.apple.com/cn/app/da-qing-ma-jiang-shou-kuan/id1121047923?mt=8'
+   		  }
+   		});
+
+	   $("#downAndroidBtn").click(function(){
+		   var curBrowser = getBrowser();
+		   var equipmentType = browserRedirect();  //判断打开设备类型  ：１安卓  2 苹果 3 客户端
+		  if(curBrowser == "weixin" && equipmentType==1)
+		  {
+			   $("#p2").toggle("slow");
+		  }
+		  else
+		  {
+				var params = "0-dqmj";
+		    	location.href = 'http://www.daqingxinshikong.com/WebServer/download.do?agentID='+params;
+		    	//location.href = 'http://www.daqingxinshikong.com/WebServer/file/download.do';
+		  }
+	   });
+
+	   $("#p2").click(function(){
+		   $("#p2").toggle("slow");
+	   });
+
+     });
+   /**********************************/
+
+   function getBrowser()
+   {
+	  if(is_weixin() == true)
+	  {
+	        return "weixin";
+	  }
+	  else if(navigator.userAgent.indexOf("MSIE") > 0)
+      {
+           return "MSIE";  //ie浏览器
+      }
+
+	  else if(isFirefox=navigator.userAgent.indexOf("Firefox") > 0)
+      {
+           return "Firefox";  //Firefox浏览器
+      }
+
+	  else  if(isSafari=navigator.userAgent.indexOf("Safari") > 0)
+      {
+           return "Safari";  //Safari浏览器
+      }
+
+	  else if(isCamino=navigator.userAgent.indexOf("Camino") > 0)
+      {
+           return "Camino";  //Camino浏览器
+      }
+
+	  else if(isMozilla=navigator.userAgent.indexOf("Gecko/") > 0)
+      {
+           return "Gecko";
+      }
+   }
+
+    function is_weixin() //判断微信浏览器
+    {
+	   	var ua = window.navigator.userAgent.toLowerCase();
+	   	if(ua.match(/MicroMessenger/i)=="micromessenger")
+	   	{
+	   		return true;
+	    }
+	   	else
+	   	{
+	   		return false;
+	   	}
+    }
+
+    function browserRedirect() //判断运用打开设备
+    {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if(bIsAndroid) //安卓
+        {
+          return 1;
+        }
+        else if(bIsIphoneOs)//ios
+        {
+          return 2;
+        }
+        else  //PC客户端
+        {
+           return 3;
+        }
+    }
+
+</script>
+
+</head>
+
+<body id="body" style="background:url(./bg.jpg)">
+<div id="p3" class="hbxz" data-am-scrollspy="{animation:'slide-top', repeat: false}" data-am-scrollspy="{animation:'slide-top', repeat: false}" id="guide" style="display:none;">
+    <img src="./xz_img1.jpg" width="100%" />
+</div>
+
+<div id="p1" class="xz-img1" data-am-scrollspy="{animation:'slide-top', repeat: false}" data-am-scrollspy="{animation:'slide-top', repeat: false}">
+    <div class="xz-img1" data-am-scrollspy="{animation:'slide-top', repeat: false}" data-am-scrollspy="{animation:'slide-top', repeat: false}">
+			<span class="xz-span-img">
+		   	 <img src="./img_ic.png" alt="" >
+		    </span>
+
+        <div class="xz-div">
+            <span class="xz-div-span1"><img src="./img_yhb.png" alt=""/></span>
+            <span class="xz-div-span2">版本号1.01</span>
+        </div>
+    </div>
+    <div class="xz-btn" data-am-scrollspy="{animation:'slide-top', repeat: false}" data-am-scrollspy="{animation:'slide-top', repeat: false}">
+        <!--
+            <a href="jiaocheng.html" target="_blank" class="xz-btn-az"><img src="./resource/assets/image/az.png" width="70%" alt=""/></a> -->
+
+        <p><b style="color:red;">备注：</b><b>根据手机操作系统下载相应的游戏安装包!</b></p>
+        <a id="downAndroidBtn"  class="xz-btn-ios"><img src="./img_az.png" width="90%" alt="下载Android大庆麻将"/></a>
+        <a id="downIosBtn"  class="xz-btn-az"><img src="./img_ios.png" width="90%" alt="下载IOS大庆麻将"/></a>
+
+    </div>
+
+    <div class="xz-bx" data-am-scrollspy="{animation:'slide-top', repeat: false}" data-am-scrollspy="{animation:'slide-top', repeat: false}">
+        <p>版本信息</p>
+        <div class="xz-bx-box ">
+            <p>1.新时空大庆麻将！新玩法开牌炸，群主开房功能，朋友边语音边打牌，二人PK牌技！跨越地域，跨越时间，新时空与您同行！</p>
+            <p>2.招商客服微信：xinshikongDQMJ</p>
+            <p>3.电话：04557881666   04557121666</p>
+            <p>4.游戏开发商电话:15726679388</p>
+            <p>5.所有版本权归属北京万线科技发展有限责任公司，违者必究！</p>
+        </div>
+    </div>
+    <div class="xz-btn" >
+    </div>
+</div>
+<div id="p2">
+    <img id="yd" width="100%" height="100%"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[
+{
+	"id":"GAME_COUNT_RANK_IN_WEEK",
+	"name":'开局榜',
+	"pointType":4, 
+	"circleType": 3
+},
+{
+	"id":"G_LZDDZ_RANK",
+	"name":'财富榜', 
+	"pointType":2, 
+	"circleType": 4
+}
+]

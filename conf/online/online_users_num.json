@@ -1,0 +1,214 @@
+[
+    {
+        "gameId": "G_SRDDZ",
+        "rankNum": [
+            {
+                "startTime": "01:00:00",
+                "endTime": "07:00:00",
+                "randomNumStart": "12",
+                "randomNumEnd": "21"
+            },
+            {
+                "startTime": "07:00:00",
+                "endTime": "09:00:00",
+                "randomNumStart": "21",
+                "randomNumEnd": "58"
+            },
+            {
+                "startTime": "09:00:00",
+                "endTime": "12:00:00",
+                "randomNumStart": "58",
+                "randomNumEnd": "79"
+            },
+            {
+                "startTime": "12:00:00",
+                "endTime": "14:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "115"
+            },
+            {
+                "startTime": "14:00:00",
+                "endTime": "18:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "115"
+            },
+            {
+                "startTime": "18:00:00",
+                "endTime": "23:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "115"
+            },
+            {
+                "startTime": "23:00:00",
+                "endTime": "23:59:59",
+                "randomNumStart": "58",
+                "randomNumEnd": "79"
+            },
+            {
+                "startTime": "00:00:00",
+                "endTime": "01:00:00",
+                "randomNumStart": "21",
+                "randomNumEnd": "58"
+            }
+        ]
+    },
+    {
+        "gameId": "G_SRDDZ_RANK",
+        "rankNum": [
+            {
+                "startTime": "01:00:00",
+                "endTime": "07:00:00",
+                "randomNumStart": "21",
+                "randomNumEnd": "28"
+            },
+            {
+                "startTime": "07:00:00",
+                "endTime": "09:00:00",
+                "randomNumStart": "28",
+                "randomNumEnd": "35"
+            },
+            {
+                "startTime": "09:00:00",
+                "endTime": "12:00:00",
+                "randomNumStart": "35",
+                "randomNumEnd": "53"
+            },
+            {
+                "startTime": "12:00:00",
+                "endTime": "14:00:00",
+                "randomNumStart": "65",
+                "randomNumEnd": "78"
+            },
+            {
+                "startTime": "14:00:00",
+                "endTime": "18:00:00",
+                "randomNumStart": "53",
+                "randomNumEnd": "65"
+            },
+            {
+                "startTime": "18:00:00",
+                "endTime": "23:00:00",
+                "randomNumStart": "228",
+                "randomNumEnd": "257"
+            },
+            {
+                "startTime": "23:00:00",
+                "endTime": "23:59:59",
+                "randomNumStart": "162",
+                "randomNumEnd": "180"
+            },
+            {
+                "startTime": "00:00:00",
+                "endTime": "01:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "120"
+            }
+        ]
+    },
+    {
+        "gameId": "G_LZDDZ",
+        "rankNum": [
+            {
+                "startTime": "01:00:00",
+                "endTime": "07:00:00",
+                "randomNumStart": "12",
+                "randomNumEnd": "21"
+            },
+            {
+                "startTime": "07:00:00",
+                "endTime": "09:00:00",
+                "randomNumStart": "21",
+                "randomNumEnd": "58"
+            },
+            {
+                "startTime": "09:00:00",
+                "endTime": "12:00:00",
+                "randomNumStart": "58",
+                "randomNumEnd": "79"
+            },
+            {
+                "startTime": "12:00:00",
+                "endTime": "14:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "115"
+            },
+            {
+                "startTime": "14:00:00",
+                "endTime": "18:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "115"
+            },
+            {
+                "startTime": "18:00:00",
+                "endTime": "23:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "115"
+            },
+            {
+                "startTime": "23:00:00",
+                "endTime": "23:59:59",
+                "randomNumStart": "79",
+                "randomNumEnd": "58"
+            },
+            {
+                "startTime": "00:00:00",
+                "endTime": "01:00:00",
+                "randomNumStart": "21",
+                "randomNumEnd": "58"
+            }
+        ]
+    },
+    {
+        "gameId": "G_LZDDZ_RANK",
+        "rankNum": [
+            {
+                "startTime": "01:00:00",
+                "endTime": "07:00:00",
+                "randomNumStart": "21",
+                "randomNumEnd": "28"
+            },
+            {
+                "startTime": "07:00:00",
+                "endTime": "09:00:00",
+                "randomNumStart": "28",
+                "randomNumEnd": "35"
+            },
+            {
+                "startTime": "09:00:00",
+                "endTime": "12:00:00",
+                "randomNumStart": "35",
+                "randomNumEnd": "53"
+            },
+            {
+                "startTime": "12:00:00",
+                "endTime": "14:00:00",
+                "randomNumStart": "65",
+                "randomNumEnd": "78"
+            },
+            {
+                "startTime": "14:00:00",
+                "endTime": "18:00:00",
+                "randomNumStart": "53",
+                "randomNumEnd": "65"
+            },
+            {
+                "startTime": "18:00:00",
+                "endTime": "23:00:00",
+                "randomNumStart": "228",
+                "randomNumEnd": "257"
+            },
+            {
+                "startTime": "23:00:00",
+                "endTime": "23:59:59",
+                "randomNumStart": "162",
+                "randomNumEnd": "180"
+            },
+            {
+                "startTime": "00:00:00",
+                "endTime": "01:00:00",
+                "randomNumStart": "79",
+                "randomNumEnd": "120"
+            }
+        ]
+    }
+]

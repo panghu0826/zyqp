@@ -1,0 +1,147 @@
+package packet.ddz;
+
+
+
+//游戏开始 operType=GAMESTART
+message DDZGameOperStartSyn {
+    optional sint32 bankerPos = 1; //庄家位置
+    required sint32 serviceGold = 2; //台费
+    repeated DDZGameOperHandCardSyn playerHandCards = 3; //玩家手牌
+    optional sint32 quanNum = 4; //当前圈数
+    optional sint32 seq = 5; //序列号,每一场游戏有一个唯一的序列号，方便错误跟踪
+    optional bool reconnect = 6; //是否是断线重连 true是断线重连
+    repeated sint32 cardLeft = 7; //剩余牌
+    optional sint32 multiple = 8; //当前桌子的倍数
+    optional sint32 lunNum = 9; //比赛场第几轮
+    repeated sint32 lastActionCard = 10; //上一个行动的牌
+    optional sint32 lastActionPosition = 11; //上一个行动的玩家位置
+    repeated DDZGameCardInDesk cardInDesk = 12;//桌子上的牌
+    repeated sint32 DiPai = 14;//三张底牌
+    optional sint32 robNum = 15;//抢地主的分数
+    repeated DDZPlayerCard playerCardLeft = 16; //玩家剩余牌数,是否加倍等情况
+    optional sint32 rangPaiNum = 17; //让牌数(二人斗地主)
+}
+
+message DDZPlayerCard {
+    required sint32 position = 1; //玩家位置
+    required sint32 cardNum = 2;
+    required sint32 jiaBei = 3;//1不加倍,2加倍
+}
+
+//同步某个的玩家手牌, operType=HANDCARDS
+message DDZGameOperHandCardSyn {
+    required sint32 position = 1; //玩家位置
+    repeated sint32 handCards = 2; //手中的牌,如果是其他玩家(即不是当前玩家),则列表里面存放的是-1而不是牌的真实值
+    repeated sint32 cardsBefore = 3; //打出的牌
+    optional sint32 cardNum = 4; //玩家剩余牌数
+    optional sint32 socre= 5; //玩家自己的分数
+    optional sint32 needFenCha = 6; //是否需要分叉,重连时候用,0/不传:不需要,1:需要
+
+}
+
+message DDZGameOperPublicInfoSyn {
+    repeated sint32 cardLeft = 1; //地主牌
+}
+
+//同步行动者信息 operType=ACTSYN
+message DDZGameOperActorSyn {
+    required sint32 position = 1; //玩家位置
+    required sint32 timeLeft = 2; //操作超时时间，比如：10，代表10秒内玩家不操作服务器将托管
+}
+
+//玩家操作同步operType=ACTIONSYN, 前端通过此包告诉后端玩家进行了什么操作，后端通过此包将操作告诉其它玩家
+message DDZGameOperPlayerActionSyn {
+    required sint32 position = 1; //玩家位置
+    required sint32 action = 2; //操作编码 (0x1:出) (0x2:过) (0x4:抢地主) (0x8:加倍)
+    repeated sint32 cardValue = 3;//出牌
+    optional sint32 robNum = 4;//抢地主的分数
+    optional sint32 jiabei = 5;//能不能加倍
+    optional sint32 canOut = 6;//出牌的类型 1代表随便出 2代表能出 3表示不能出(没有牌大过上家) 4表示当前牌型不符合(重新出牌)
+    optional sint32 cardType = 7;//牌型 飞机 连队 王炸 还是什么
+    optional sint32 cardNum = 8; //玩家剩余牌数
+    repeated DDZGameCardInDesk cardInDesk = 9;//桌子上的牌
+    optional sint32 rangPaiNum = 10; //让牌数(二人斗地主)
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+message DDZGameCardInDesk{
+    required sint32 position = 1; //玩家位置
+    repeated sint32 cardValue = 2;//牌值
+}
+
+//服务器提示玩家操作 operType=ACTNOTIFY
+message DDZGameOperPlayerActionNotify {
+    required sint32 position = 1; //玩家位置
+    required sint32 actions = 2; // 可选操作列表(位与):(0x1:出) (0x2:过) (0x4:抢地主) (0x8:加倍)
+    repeated sint32 robNum = 3; //抢地主能喊的分数
+    optional sint32 double = 4;//能不能加倍
+    optional sint32 lastActionPosition = 5; //上一个行动的玩家位置
+    optional sint32 lastActionCardType = 6; //上一个玩家的牌型
+    repeated sint32 lastPeopleCards = 7;//上一个玩家的牌
+    repeated DDZGameOperPrompt promptCards = 8;//提示可以出的牌
+    optional sint32 canOut = 9; //能不能出 1代表随便出 2代表能出 3表示不能出(没有牌大过上家) 4表示当前牌型不符合(重新出牌)
+    repeated DDZGameOperOver otherCard = 10; //其他两家的牌用于结算时推送其他玩家的手牌
+    optional sint32 spring = 11; // 1代表春天 2代表反春 0表示啥也不是
+
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+message DDZGameOperOver {
+    required sint32 position = 1; //玩家位置
+    repeated sint32 cards = 2;
+}
+
+//那些牌可以出
+message DDZGameOperPrompt {
+    repeated sint32 cards = 1;
+}
+
+message DDZGameOperPlayerHuSyn {
+    required sint32 position = 1; //胡牌玩家位置
+    optional sint32 friedKing = 2; //王炸次数
+    optional sint32 bomb = 3; //炸弹次数
+    repeated DDZGameOperPlayerSettle detail = 4;//每个玩家的情况
+    optional sint32 spring = 5;  //春天次数
+    optional sint32 endPoints = 6;//底分
+    optional sint32 innings = 7; //当前局数
+    repeated sint32 diPai = 8; //三张底牌
+}
+
+message DDZGameOperPlayerSettle {
+    required sint32 position = 1; //位置
+    optional sint32 playerId = 2; //ID
+    optional string playerName = 3; //昵称
+    repeated sint32 handcard = 4; //手牌
+    optional sint32 isDouble = 5; //是否加倍 0不加倍 1为加倍
+    optional sint32 multiple = 6;//总倍数
+    optional sint32 socre = 7; //分数
+    optional sint32 allSocre = 8; //总分数
+    optional sint32 isDiZhu = 9; //是否地主 0表示不是 1表示地主
+    optional sint32 result = 10; // 1 win 2 lose 3 even
+
+}
+
+message DDZGameOperFinalSettleSyn {
+    optional sint32 roomId = 1;//房间ID
+    optional sint32 innings = 2;//总局数
+    repeated DDZPlayerFinalResult detail = 3; //玩家信息
+}
+
+message DDZPlayerFinalResult {
+    optional sint64 playerId = 1;//玩家ID
+    optional string playerName = 2;//玩家昵称
+    optional sint32 position = 3;//玩家位置
+    optional string headImage = 4;//玩家头像
+    optional sint32 allScore = 5;//玩家总分
+    optional sint32 winInnings = 6;//玩家赢的局数
+
+    optional bool roomOwner = 12; //是否是否房主
+}
+
+//斗地主清除桌面牌
+message DDZClearCardInDesk{
+
+}
+
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="ServerBgTaskLoop" class="com.buding.common.loop.ServerLoop"></bean>
+    
+	<bean id="battleService" class="com.buding.battle.logic.ws.BattleServiceImpl" />
+	<bean id="clusterLeadElectService" class="com.buding.common.cluster.service.ClusterLeadElectService">
+	    <property name="zkServer" value="${cluster.server.zk}" />
+	    <property name="leadType" value="${cluster.container.type}"/>
+	    <property name="serverInstance" value="${cluster.container.inst}"/>
+	</bean>
+	<bean id="containerCluster" class="com.buding.common.cluster.service.ContainerCluster">
+	    <property name="zkServer" value="${cluster.server.zk}" />
+	    <property name="containerType" value="${cluster.container.type}"/>
+	</bean>	
+	<bean class="com.buding.common.server.ServerConfig">
+	    <property name="instanceId" value="${cluster.container.inst}"></property>
+	    <property name="serverMap">
+	        <map>
+	            <entry key="battle">
+	                <bean class="com.buding.common.cluster.model.ServerModel">
+	                    <property name="addr" value="${cluster.container.ip}:${server.battle.port}"></property>
+	                    <property name="serverType" value="battle"></property>
+	                    <property name="dubboAddr" value="${cluster.container.ip}:${server.dubbo.port}"></property>
+	                    <property name="instanceId" value="${cluster.container.inst}"></property>
+	                </bean>
+	            </entry>
+	        </map>
+	    </property>
+	</bean>
+	<bean class="com.buding.common.cluster.service.ServerManager"/>
+	<bean name="battleClusterServer" class="com.buding.battle.logic.module.cluster.BattleClusterServer"></bean>
+	
+</beans>

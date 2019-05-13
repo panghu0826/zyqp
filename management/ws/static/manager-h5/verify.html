@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>藏金阁</title>
+	
+	<link rel="stylesheet" href="css/base.css">
+	<script type="text/javascript">
+	/**
+	 * [autoSize 屏幕等比例适配]
+	 * @return {[type]} [description]
+	 */
+	!(function(){
+		var doc = document;
+		var win = window;
+		var arg = arguments;
+		var docEl = doc.documentElement,
+		resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
+			// if (window._ua.platform=='windows' || window._ua.platform=='ios') {
+			// 	docEl.style.fontSize = 100 + 'px';
+			// } else {
+			// 	var clientWidth = docEl.clientWidth;
+			// 	if (!clientWidth) return;
+			// 	docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
+			// }
+		};
+		if (!doc.addEventListener) return;
+		win.addEventListener(resizeEvt, recalc, false);
+		doc.addEventListener('DOMContentLoaded', recalc, false);
+		if(!arg.callee.init) {
+			arg.callee.init = 1;
+			window.onresize = arg.callee();		
+		}
+	})();
+	</script>
+	<style type="text/css">
+	@charset "utf-8";
+	body,h1,h2,h3,h4,h5,h6,p,form {margin: 0}
+	body {
+	    font-family: "Microsoft YaHei","宋体",arial,verdana,sans-serif;
+	    font-size: 0.14rem;
+	    color: #777;
+	    background-color: #F5F5F5
+	}
+	h1,h2,h3,h4,h5,h6 {line-height: 100%}
+	ul {margin: 0;padding: 0;list-style: none}
+	a {text-decoration: none;outline: 0;}
+	a:focus {outline: 0}
+	img {border: 0}
+	table {border-collapse: collapse}
+	input,select,textarea {
+	    outline: 0;margin: 0;
+	    font-family: "Microsoft YaHei","宋体",arial,verdana,sans-serif
+	}
+	.red {color: #F56868;}
+	
+
+	.main {
+		padding: 0.17rem 0.1rem;
+		margin: 0.18rem 0 0.14rem;
+		background-color: #fff;
+		border-top: 1px solid #E5E5E5;
+	}
+	.main h1{
+		color: #F24545;
+		margin-bottom: 0.1rem;
+		font-weight: 300;
+		font-size: 0.14rem;
+	}
+	.main .title {
+		color: #000;
+		margin-bottom: 0.06rem;
+	}
+	.main .time {
+		color: #64686B;
+		margin-bottom: 0.06rem;
+		font-size: 0.10rem;
+	}
+	.main .content {
+		padding: 0.1rem 0.04rem;
+		background-color: #F9F9F9;
+		color: #63686B;
+		font-size: 0.14rem;
+		line-height: 0.18rem;
+		margin-bottom: 0.1rem;
+	}
+	.main .content img {
+		margin-top: 0.08rem;
+	}
+	.main img {
+		
+	}
+	.tableWrap{
+		overflow: auto;
+		width: 100%;
+		padding-bottom: 0.07rem;
+	}
+	table {
+		word-break:keep-all;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	}
+	table td{
+		text-align: center;
+		font-size: 0.12rem;
+		padding: 0.04rem;
+		word-wrap: break-word;
+	}
+	table thead td{
+		border: 1px solid #fff;
+		background-color: #214561;
+		color: #fff;
+	}
+	table tbody td {
+		border: 1px solid #eee;
+		background-color: #fff;
+	}
+	.main .tit {
+		position: relative;
+		margin-bottom: 0.1rem;
+		padding-left: 0.1rem;
+		color:#000;
+	}
+	.main .tit:after {
+		position: absolute;
+		left: 0;top:50%;
+		content: "";
+		width: 0;
+		height: 0;
+		border: 0.07rem solid transparent;
+		border-left-color: #F44545;
+		margin-top: -0.07rem;
+	}
+	.main .tit2 {
+		padding-left: 0.04rem;
+		color: #333;
+		margin-bottom: 0.04rem;
+	}
+	.main .tit2 span{
+		font-size: 0.10rem;
+		color: #959595;
+	}
+
+	.footer {
+		padding: 0.38rem 0.1rem;
+		background-color: #fff;
+	}
+	.declare {
+		position: relative;
+		font-size: 0.10rem;
+		text-align: center;
+		border: 1px solid #F6F6F6;
+		padding: 0.3rem 0.15rem 0.2rem;
+		margin-bottom: 0.1rem;
+		line-height: 0.18rem;
+	}
+	.declare .tit{
+		position: absolute;
+		top: -0.15rem;
+		left: 50%;
+		width: 1rem;
+		height: 0.3rem;line-height: 0.3rem;
+		margin-left: -0.5rem;
+		background-color: #F5F5F5;
+	}
+	.declare .txt{
+		margin-bottom: 0.06rem;
+	}
+	.cop {
+		font-size: 0.10rem;
+		text-align: center;
+	}
+	.line {
+		height: 0.14rem;
+		background-color: #F9F9F9;
+		margin: 0.1rem 0;
+	}
+	</style>
+</head>
+<body>
+
+	
+	<div class="main">
+		<h1>【产品名】</h1>
+		<div class="title">这里是一句话标题这里是一句话标题</div>
+		
+		<div class="time">更新于2016/5/30</div>
+		<div class="content">
+			这里是一些前情提要，可以说一点人性化、概括性的东东。这里是一些前情提要，可以说一点人性化、概括性的东东。这里是一些前情提要，可以说一点人性化、概括性的东东。
+			<img src="img/img1.jpg" width="100%">
+		</div>
+		
+
+		<div class="line"></div>
+		<div class="tit">组合调仓</div>
+		<div class="tableWrap">
+			<table>
+				<thead>
+				  <tr>
+						<td width="10%">股票名称</td>
+						<td width="10%">股票代码</td>
+						<td width="10%">方向</td>
+						<td width="10%">当日仓位变动</td>
+						<td width="10%">现持有仓位</td>
+						<td width="10%">成效价</td>
+						<td width="10%">调仓时间</td>
+						<td width="10%">策略类型</td>
+						<td width="10%">操作逻辑</td>
+						<td width="10%">总盈亏</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td class="red">中国国贸</td>
+						<td>100001.SH</td>
+						<td>卖出</td>
+						<td class="red">-5.00%</td>
+						<td>0%</td>
+						<td class="red">20.30</td>
+						<td>10:15</td>
+						<td >趋势选股</td>
+						<td>趋势信号卖出指令</td>
+						<td class="red">-5.00%</td>
+					</tr>
+					<tr>
+						<td class="red">中国国贸</td>
+						<td>100001.SH</td>
+						<td>卖出</td>
+						<td class="red">-5.00%</td>
+						<td>0%</td>
+						<td class="red">20.30</td>
+						<td>10:15</td>
+						<td>趋势选股</td>
+						<td>趋势信号卖出指令</td>
+					<td class="red">-5.00%</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	
+
+		<div class="line"></div>
+		<div class="tit">组合净值</div>
+		<div class="tit2">收益走势 <span>(创建于2016/6/30)</span></div>
+		<img src="img/img2.jpg" width="100%">
+		<div class="tableWrap">
+			<table>
+				<thead>
+				  <tr>
+						<td width="15%">日期</td>
+						<td width="10%">净值</td>
+						<td width="15%">当日涨跌幅</td>
+						<td width="10%">总收益</td>
+						<td width="10%">总仓位</td>
+						<td width="15%">当日仓位变动</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>2016/5/27</td>
+						<td class="red">0.9985</td>
+						<td class="red">0.197%</td>
+						<td class="red">-0.15%</td>
+						<td>5%</td>
+						<td>-15%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+		
+		<div class="line"></div>
+		<div class="tit">组合持仓</div>
+		<div class="tableWrap">
+			<table>
+				<thead>
+				   <tr>
+						<td width="12%">股票名称</td>
+						<td width="12%">股票代码</td>
+						<td width="10%">仓位</td>
+						<td width="12%">收盘价</td>
+						<td width="12%">当日涨跌幅</td>
+						<td width="12%">总盈亏</td>
+						<td width="12%">持仓成本</td>
+						<td width="12%">买入日期</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td class="red">彩虹股份</td>
+						<td>600101.SH</td>
+						<td class="red">5%</td>
+						<td>12.30</td>
+						<td class="red">7.5%</td>
+						<td class="red">10.20%</td>
+						<td>11.18</td>
+						<td>2016/5/2</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="declare">
+			<div class="tit">全文完</div>
+			<div class="txt">以上内容由国信证券泰九营业部对冲基金研究中心提供。</div>
+			
+			免责申明：投资建议仅供参考。投资者应结合自己的投资目标和财务状况自行判断是否采用本文所载内容和信息并自行承担风险。投资有风险，入市需谨慎！	
+		</div>
+
+		<div class="cop">Copyright © 1998-2015 国信证券股份有限公司 版权所有 [粤ICP备10066668号 广东省通信管理局]</div>
+	</div>
+	
+	<script type="text/javascript">
+	function loadJs(src, callback) {
+		var doc = document.getElementsByTagName("head")[0];
+		var script = document.createElement("script");
+		script.src = src;
+		script.onload = script.onreadystatechange = function() {
+
+			if(!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+				//console.log("JS is loaded!--" + src);
+				if(callback) {callback();}
+				script.onload = script.onreadystatechange = null;
+			}
+		}
+		doc.appendChild(script);
+	}
+	function ajax(url,callback) {
+		var xmlhttp = null;
+		if(window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			    if(callback) {
+			        callback(xmlhttp.responseText);
+			    }
+			}
+		}
+		xmlhttp.open("GET",url,true);
+		xmlhttp.send(null);
+	}
+	window.onload = function() {
+		//统计PV
+	}
+	</script>
+</body>
+</html>

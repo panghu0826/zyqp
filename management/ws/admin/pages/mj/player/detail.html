@@ -1,0 +1,102 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>玩家详情</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <td>玩家id</td>
+                            <td>{{user.id}}</td>
+                            <td>用户帐号</td>
+                            <td>{{user.userName}}</td>
+                        </tr>
+                        <tr>
+                            <td>用户昵称</td>
+                            <td>{{user.nickname}}</td>
+                            <td>注册时间</td>
+                            <td>{{user.ctime|date:"yyyy/MM/dd HH:mm:ss"}}</td>
+                        </tr>
+                        <tr>
+                            <td>金币</td>
+                            <td>
+                                <input type="text" ng-model="user.coin">
+                                <input type="button" value="修改" ng-click="setCoin(user, user.coin)">
+                            </td>
+                            <td>钻石</td>
+                            <td>
+                                <input type="text" ng-model="user.diamond">
+                                <input type="button" value="修改" ng-click="setDiamond(user, user.diamond)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>最后登录</td>
+                            <td>{{user.lastLogin|date:"yyyy/MM/dd HH:mm:ss"}}</td>
+                            <td>最后离线</td>
+                            <td>{{user.lastOffline|date:"yyyy/MM/dd HH:mm:ss"}}</td>
+                        </tr>
+                        <tr>
+                            <td>连续登录天数</td>
+                            <td>{{user.continueLogin}}</td>
+                            <td>机器码</td>
+                            <td>{{user.deviceId}}</td>
+                        </tr>
+                        <tr>
+                            <td>QQ openId</td>
+                            <td>{{user.qqopenid}}</td>
+                            <td>wx openId</td>
+                            <td>{{user.wxopenid}}</td>
+                        </tr>
+                        <tr>
+                            <td>重置密码</td>
+                            <td>
+                                <input type="text" ng-model="tmp.passwd">
+                                <input type="button" value="重置密码" ng-click="resetPwd(user, tmp.passwd)">
+                            </td>
+                            <td>清理卡桌</td>
+                            <td>
+                                <input type="button" value="清理" ng-click="clearDesk(user)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>玩家类别</td>
+                            <td>
+                                {{getUserTypeTxt(user.userType)}}
+                                <!--<select ng-model="one.userType" ng-options="a.code as a.name for a in ctrl.userType" >-->
+                                    <!--<option value="">不限</option>-->
+                                <!--</select>-->
+                                <!--<input type="button" value="修改" ng-click="changeUserType(one)">-->
+                            </td>
+                            <td>手机号码</td>
+                            <td>
+                                {{user.bindedMobile}}
+                                <input type="button" ng-if="user.bindedMobile" value="解除绑定" ng-click="unbindPhone()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>是否授权</td>
+                            <td>
+                                <span ng-if="isAuth(user)">是</span>
+                                <span ng-if="!isAuth(user)">否</span>
+                            </td>
+                            <td></td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

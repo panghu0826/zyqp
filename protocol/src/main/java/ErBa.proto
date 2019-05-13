@@ -1,0 +1,140 @@
+package packet.erba;
+
+//游戏开始 operType=GAMESTART
+message ErBaGameOperStartSyn {
+    optional sint32 bankerId = 1; //庄家id
+    repeated ErBaGameOperHandCardSyn playerHandCards = 2; //玩家手牌
+    optional bool reconnect = 3; //是否是断线重连 true是断线重连
+    optional sint32 juNum = 4; //第几把
+    repeated TraditionalErBaSiMenInfo siMenInfo = 6; //四门手牌,筹码情况
+    optional sint32 seq = 100; //序列号,每一场游戏有一个唯一的序列号，方便错误跟踪
+}
+
+//同步某个的玩家手牌, operType=HANDCARDS
+message ErBaGameOperHandCardSyn {
+    required sint32 playerId = 1; //玩家ID
+    repeated sint32 handCards = 2; //手中的牌,如果是其他玩家(即不是当前玩家),则列表里面存放的是-1而不是牌的真实值
+    optional sint32 socre= 3; //玩家自己的分数
+    optional sint32 xiaZhu= 4; //筹码
+    optional sint32 cardNum= 7; //玩家牌值
+    optional sint32 cardType= 8; //玩家牌型,对子,二八,散排
+    repeated TraditionalErBaUserYaZhu traditionXiaZhu = 9; //传统28下注情况
+}
+
+message ErBaGameOperPublicInfoSyn {
+    optional sint32 deskState = 1;//桌子状态
+    repeated ErBaGameDeskData data = 2;
+}
+
+//同步行动者信息 operType=ACTSYN
+message ErBaGameOperActorSyn {
+    required sint32 playerId = 1; //玩家位置
+    required sint32 timeLeft = 2; //操作超时时间，比如：10，代表10秒内玩家不操作服务器将托管
+}
+
+message ErBaGameDeskData {
+    required sint32 playerId = 1; //玩家位置
+    required bool isXiaZhu = 2; //是否下注
+}
+
+//玩家操作同步operType=ACTIONSYN, 前端通过此包告诉后端玩家进行了什么操作，后端通过此包将操作告诉其它玩家
+message ErBaGameOperPlayerActionSyn {
+    required sint32 playerId = 1; //玩家位置
+    required sint32 action = 2; //操作编码 (0x1:出) (0x2:过) (0x4:抢地主) (0x8:加倍)
+    optional sint32 cardValue = 3; //看牌
+    optional sint32 cardValuePos = 4; //看牌时的牌位置,第一张传0,第二章传1
+    optional sint32 chouMa = 5; //下注筹码大小
+    optional sint32 cardNum = 6; //牌值
+    optional sint32 cardType = 7; //牌类型
+    repeated sint32 cardsInHand = 8; //当前操作人手牌
+    repeated ErBaGameOperHandCardSyn playerHandCards = 9; //玩家手牌
+    repeated TraditionalErBaSiMenInfo siMenInfo = 10; //四门手牌,筹码情况
+    optional sint32 siMen = 11; // 四门类型,0:庄家,1:天门,2:过门,3:亢门
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+message TraditionalErBaUserYaZhu {
+    required sint32 playerId = 1; //玩家位置
+    optional sint32 siMenType = 2; // 四门类型 ,0:庄家,1:天门,2:过门,3:亢门
+    optional sint32 chouMa = 3; // 下注筹码大小
+}
+
+message TraditionalErBaSiMenInfo {
+    optional sint32 siMenType = 1; //四门类型 ,0:庄家,1:天门,2:过门,3:亢门
+    optional sint32 chouMa = 2; //下注筹码大小
+    repeated sint32 cardsInHand = 3; // 牌
+}
+
+//玩家操作时其他玩家数据
+//message ErBaGameOperPlayerData {
+//    required sint32 position = 1;
+//    repeated sint32 cardsInHand = 2;
+//    optional sint32 cardNum = 3; //牌值
+//    optional sint32 cardType = 4; //牌类型
+//}
+
+//服务器提示玩家操作 operType=ACTNOTIFY
+message ErBaGameOperPlayerActionNotify {
+    required sint32 playerId = 1; //玩家位置
+    required sint32 actions = 2; // 可选操作列表(位与)
+    repeated sint32 xiaZhu = 3;//玩家下注集合
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+message ErBaGameOperPlayerHuSyn {
+    required sint32 playerId = 1; //胡牌玩家位置
+    required sint32 erBaGameType = 2; //1: 经典28,2:疯狂28,3:传统28
+    required bool settleType = 3; //是否正常结算
+    repeated ErBaGameOperPlayerSettle detail = 4;//每个玩家的情况
+    repeated ErBaGameSiMenSettle siMenDetail = 5;//四门情况
+    optional sint32 juNum = 6; //当前局数
+}
+
+message ErBaGameSiMenSettle {
+    required sint32 siMenType = 1; //四门类型 ,0:庄家,1:天门,2:过门,3:亢门
+    repeated sint32 handcard = 2; //手牌
+    optional sint32 score = 3;//本局得分
+    optional sint32 allSocre = 4; //总分数
+    optional sint32 cardNum = 5; //牌值
+    optional sint32 cardType = 6; //牌类型
+}
+
+message ErBaGameOperPlayerSettle {
+    optional sint32 playerId = 2; //ID
+    optional string playerName = 3; //昵称
+    repeated sint32 handcard = 4; //手牌
+    optional sint32 lastScore = 5; //上局得分
+    optional sint32 score = 6;//本局得分
+    optional sint32 allSocre = 7; //总分数
+    optional sint32 cardNum = 8; //牌值
+    optional sint32 cardType = 9; //牌类型
+    optional sint32 isBanker = 10; //是否是庄家
+    optional sint32 siMenType = 11; //四门类型 ,0:庄家,1:天门,2:过门,3:亢门
+    optional sint32 result = 12; // 1 win 2 lose 3 even
+}
+
+message ErBaGameOperFinalSettleSyn {
+    optional sint32 roomId = 1;//房间ID
+    optional sint32 innings = 2;//总局数
+    repeated ErBaPlayerFinalResult detail = 3; //玩家信息
+}
+
+message ErBaPlayerFinalResult {
+    optional sint64 playerId = 1;//玩家ID
+    optional string playerName = 2;//玩家昵称
+    optional string headImage = 4;//玩家头像
+    optional sint32 allScore = 5;//玩家总分
+    optional sint32 maxScore = 6;//单局最高得分
+    optional sint32 maxCardType = 7;//最大牌型
+    optional sint32 winNum = 8;//玩家赢的局数
+    optional sint32 loseNum = 9;//玩家输的局数
+    optional bool   roomOwner = 10; //是否是否房主
+    optional sint32 duiHongZhongNum = 11;//对红中数量
+    optional sint32 duiZiNum = 12;//对子数量
+    optional sint32 erBaNum = 13;//28数量
+    optional sint32 sanPai89Num = 14;//散排8.9数量
+
+}
+
+
+

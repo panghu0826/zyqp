@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.ClubUser">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.ClubUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="club_id" jdbcType="BIGINT" property="clubId" />
+    <result column="club_member_id" jdbcType="INTEGER" property="clubMemberId" />
+    <result column="club_member_type" jdbcType="INTEGER" property="clubMemberType" />
+    <result column="club_member_score" jdbcType="INTEGER" property="clubMemberScore" />
+    <result column="club_member_name" jdbcType="VARCHAR" property="clubMemberName" />
+    <result column="club_member_img" jdbcType="VARCHAR" property="clubMemberImg" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    club_id,
+    club_member_id,
+    club_member_type,
+    club_member_score,
+    ctime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+      'false' as QUERYID,
+      a.id,
+      a.club_id,
+      a.club_member_id,
+      a.club_member_type,
+      a.club_member_score,
+      a.ctime,
+      b.nickname as club_member_name,
+      b.head_img as club_member_img
+    FROM
+      t_club_user a,
+      user b
+    WHERE
+      a.member_id = b.id
+    AND
+      a.id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.ClubUser" useGeneratedKeys="true">
+    INSERT INTO
+      t_club_user (
+        club_id,
+        club_member_id,
+        club_member_type,
+        club_member_score,
+        ctime)
+    VALUES (
+      #{clubId,jdbcType=BIGINT},
+      #{clubMemberId,jdbcType=INTEGER},
+      #{clubMemberType,jdbcType=INTEGER},
+      #{clubMemberScore,jdbcType=INTEGER},
+      #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.ClubUser">
+    UPDATE
+      t_club_user
+    SET
+      club_id = #{clubId,jdbcType=BIGINT},
+      club_member_id = #{clubMemberId,jdbcType=INTEGER},
+      club_member_type = #{clubMemberType,jdbcType=INTEGER},
+      club_member_score = #{clubMemberScore,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM
+      t_club_user
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </delete>
+</mapper>

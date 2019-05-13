@@ -1,0 +1,258 @@
+[
+{
+	"note":"第5局领200",
+	"taskId":"TotalPlay5",
+	"taskType":8,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":null,	
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满5局 200金币",
+	
+	"initWinedCount":5,
+	"maxWinedCount":5,
+	"stepWinedCount":5,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":200
+		}
+	]
+},
+{
+	"note":"第10局领200",
+	"taskId":"TotalPlay10",
+	"taskType":8,
+	"amount":5,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay5",	
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满10局 200金币",
+	
+	"initWinedCount":10,
+	"maxWinedCount":10,
+	"stepWinedCount":5,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":200
+		}
+	]
+},
+{
+	"note":"第20局领250",
+	"taskId":"TotalPlay20",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay10",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满20局 250金币",
+	
+	"initWinedCount":20,
+	"maxWinedCount":20,
+	"stepWinedCount":10,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":250
+		}
+	]
+},
+{
+	"note":"第30局领250",
+	"taskId":"TotalPlay30",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay20",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满30局 250金币",
+	
+	"initWinedCount":30,
+	"maxWinedCount":30,
+	"stepWinedCount":10,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":250
+		}
+	]
+},
+{
+	"note":"第50局领300",
+	"taskId":"TotalPlay50",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay30",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满50局 300金币",
+	
+	"initWinedCount":50,
+	"maxWinedCount":50,
+	"stepWinedCount":20,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":300
+		}
+	]
+},
+{
+	"note":"第70局领300",
+	"taskId":"TotalPlay70",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay50",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满70局 300金币",
+	
+	"initWinedCount":70,
+	"maxWinedCount":70,
+	"stepWinedCount":20,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":300
+		}
+	]
+},
+{
+	"note":"第100局领350",
+	"taskId":"TotalPlay100",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay70",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满100局 350金币",
+	
+	"initWinedCount":100,
+	"maxWinedCount":100,
+	"stepWinedCount":200,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":350
+		}
+	]
+},
+
+{
+	"note":"第150局领400",
+	"taskId":"TotalPlay150",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay100",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满150局 400金币",
+	
+	"initWinedCount":150,
+	"maxWinedCount":150,
+	"stepWinedCount":50,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":400
+		}
+	]
+},
+{
+	"note":"第200局领400",
+	"taskId":"TotalPlay200",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay150",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满200局 400金币",
+	
+	"initWinedCount":200,
+	"maxWinedCount":200,
+	"stepWinedCount":50,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":400
+		}
+	]
+},
+{
+	"note":"第300局领450",
+	"taskId":"TotalPlay300",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay200",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满300局 450金币",
+	
+	"initWinedCount":300,
+	"maxWinedCount":300,
+	"stepWinedCount":50,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":450
+		}
+	]
+},
+
+
+{
+	"note":"每打满200局赢500",
+	"taskId":"TotalPlayX",
+	"taskType":8,
+	"amount":1,
+	"resetTime":-1,
+	"autoAward":false,
+	"preTaskId":"TotalPlay300",
+	"clientType":[1,2,3,4],
+	"taskGroup":1,
+	"taskImg":"lord.png",
+	"title":"累计打满${requiredCount}局 500金币",
+	
+	"initWinedCount":500,
+	"maxWinedCount":9999999999999,
+	"stepWinedCount":200,
+	"awardItems":[
+		{
+			"itemId":"D011",
+			"count":500
+		}
+	]
+}
+]

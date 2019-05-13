@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="redisCacheClient" class="com.buding.common.cache.RedisCacheClient">
+		<property name="serializer">
+			<bean class="com.buding.common.serialize.json.JsonSerializer"></bean>
+		</property>
+	</bean>
+	<bean id="redisClient" class="com.buding.common.cache.RedisClientImpl"></bean>
+	<bean id="redisDataSource" class="com.buding.common.cache.RedisDataSourceImpl"></bean>
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+<!-- 		<property name="maxActive" value="50" /> -->
+		<property name="maxIdle" value="8" />
+<!-- 		<property name="maxWait" value="1000" /> -->
+<!-- 		<property name="testOnBorrow" value="true" /> -->
+<!-- 		<property name="testOnReturn" value="true" /> -->
+		<!-- <property name="testWhileIdle" value="true"/> -->
+	</bean>
+
+	<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool" scope="singleton">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1">
+			<list>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+				    <constructor-arg index="0" value="${cluster.server.redis}/${server.redis.dbindex}"/>
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>

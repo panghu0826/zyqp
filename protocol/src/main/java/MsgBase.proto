@@ -1,0 +1,171 @@
+package packet.msgbase;
+enum PacketType
+{
+	Dump = 1;	   //存快照，调试用
+	 
+	//**********帐号相关*********//
+	HEARTBEAT = 1001;   //心跳包
+	LoginRequest = 1002;      //登录
+	AuthRequest = 1003;	   //会话认证
+	GlobalMsgSyn = 1004;	   //全局信息提示
+	VistorRegisterRequest = 1005; //游客注册
+	VistorRegisterResponse = 1006; 
+	RegisterRequest = 1007; //普通帐号注册
+	RegisterResponse = 1008;
+	UserInfoSyn = 1009; //用户属性发生变化
+	ModifyUserInfoRequest = 1010; //修改用户信息
+	ReconnetLogin = 1011; //修改用户信息
+	NeedBindInviteCode = 1012; //登录时未绑定上级推送用户绑定邀请码
+	SubmitInviteCodeRequest = 1013; //提交邀请码请求
+	SubmitInviteCodeResponse = 1014; //提交邀请码回复
+	NeedUpdate = 1015; //需要更新(登陆时验证)
+
+	//**********游戏相关*********//
+	EnrollRequest = 2001;	   //报名
+	ReadyRequest = 2002; 	   //准备游戏
+	ChangeDeskRequest = 2003; //换桌
+	KickOutSyn = 2004;       //强制下线, 同一个帐号不能多处登录、房主踢人
+	ChatRequest = 2005;       //聊天
+	Back2HallRequest = 2006; //返回大厅
+	PlayerGamingSyn = 2007; //推送当前玩家正在游戏的消息
+	PlayerSitSyn = 2008; //有玩家进入桌子
+	AwayGameRequest = 2009; //离开房间
+	PlayerAwaySyn = 2010; //有玩家离开桌子
+	PlayerComebackSyn = 2011; //玩家回来
+	PlayerOfflineSyn = 2012; //有玩家掉线
+	PlayerReconnectSyn = 2013; //有玩家重连		
+	ExitGameRequest = 2014; //退出游戏
+	PlayerExitSyn = 2015;//有玩家退出游戏
+	ReadySyn = 2016; //告知客户端某玩家已经准备好
+	GameStartSyn = 2017; //告知客户端游戏已开始
+	CreateVipRoomRequest = 2018; //创建vip房间
+	EnterVipRoomRequest = 2019; //加入vip房间
+	KickPlayerRequest = 2020; //vip房间踢人
+	VipRoomListReuqest = 2021; //请求拉取vip房间列表
+	VipRoomListSyn = 2022; //推送vip房间列表
+	DismissVipRoomRequest = 2023; //解散vip房间	
+	GameChatMsgRequest = 2024; //聊天信息
+	GameChatMsgSyn = 2025;
+	HangupRequest = 2026;
+	HangupSyn = 2027;
+	CancelHangupRequest = 2028;
+	DeskDestorySyn = 2029;
+	LogoutSyn = 2030;
+	DissmissVoteSyn = 2031;
+	PlayerGamingSynInquire = 2032; //查询是否有进行中的游戏
+	BackGameRequest = 2033; //返回游戏
+	MultiMatchEnrollRequest = 2034; //比赛场报名
+	ExitMultiMatchRequest = 2035;//比赛场退出
+	DissmissMultiMatch = 2036;//解散比赛场比赛
+	MultiMatchStartNotify = 2037;//比赛场一轮开始(服务端单向推送)
+	WaitNextMatchStart = 2038;//比赛场玩家打完一轮中所有局数的等待界面(服务端单向推送)
+	FinishMultiMatch = 2039;//比赛场比赛结束
+	MultiMatchRankSyn = 2040;//同步排行榜信息
+	MultiMatchPlayerNum = 2041;//比赛场玩家人数
+	MultiMatchEnrollSynWithLogin = 2042;//玩家登录检测比赛场报名情况
+	SignSynRequest = 2043;//同步签到消息(用户打开面板显示)
+	SignSynResponse = 2044;//同步签到消息(用户打开面板显示)
+	SignRequest = 2045;//签到
+	SignResponse = 2046;//签到回复
+	ActivityStartNotify = 2047;//活动开始提示
+	PrayRequest = 2048;//祈福请求
+	PrayResponse = 2049;//祈福回复
+	SymplecticRunnerRequest = 2050;//轮盘
+	SymplecticRunnerResponse = 2051;//轮盘回复
+	ShouChongSyn = 2052;//是否有首冲
+	ActivityFinishNotify = 2053;//活动结束提示
+	VideoRequest = 2054;//请求回放
+	VideoResponse = 2055;//回复回放
+	DDZClearCardInDesk = 2056;//斗地主清除桌面牌,已废弃
+	StartGameRequest = 2057;//扎金花开始游戏
+	DissmissVoteResponse = 2058;//回复解散
+	PlayerSitRequst = 2059;//玩家坐下
+	PlayerExitPosNotExitRoomRequst = 2060;//玩家离开座位不离开房间
+	PlayerExitPosNotExitRoomResponse = 2061;//玩家离开座位不离开房间
+	VipRoomPlayerRequest = 2062;//查看房间玩家
+	VipRoomPlayerResponse = 2063;//查看房间玩家
+	ClubInfoReq = 2064;//俱乐部Req(打开俱乐部面板或者切换到俱乐部面板)
+	ClubInfoRsp = 2065;//俱乐部Rsp(打开俱乐部面板或者切换到俱乐部面板)
+	ClubSyn = 2066;//俱乐部成员对象(积分操作,权限操作都推送此消息)
+	ClubMemberReq = 2067;//俱乐部成员列表Req
+	ClubMemberRsp = 2068;//俱乐部成员列表Rsp
+	ClubMemberSyn = 2069;//俱乐部成员对象(积分操作,权限操作都推送此消息)
+	ClubRoomListReq = 2070;//俱乐部房间列表Req
+	ClubRoomListRsp = 2071;//俱乐部房间列表Rsp
+	ClubConfigReq = 2072;//俱乐部设置Req
+	ClubConfigSyn = 2073;//聊天列表Rsp
+	ApplyInfoRsp = 2074;//聊天内容Req
+	ApplyInfo = 2075;//聊天内容Rsp
+	ChatListReq = 2076;//聊天列表Req
+	ChatListRsp = 2077;//聊天列表Rsp
+	ChatListSyn = 2078;//聊天列表同步
+	ChatContentReq = 2079;//聊天内容Req
+	ChatContentRsp = 2080;//聊天内容Rsp
+	ChatContentSyn = 2081;//聊天内容同步
+	FriendListReq = 2082;//联系人列表Req
+	FriendListRsp = 2083;//联系人列表Rsp
+	FriendSyn = 2084;//联系人同步
+	FriendSearchReq = 2085;//搜索好友Req
+	FriendSearchRsp = 2086;//搜索好友Rsp
+	ApplyReq = 2087;//申请好友/俱乐部Req
+	ApplyResultReq = 2088;//申请结果Req
+	ClubAuthorityManageReq = 2089;//俱乐部成员权限管理
+    ClubClose = 2090;//关闭俱乐部面板
+    DissmissVoteRequest = 2091;//请求解散
+    ClubRoomModelSyn = 2092;//俱乐部房间列表Syn
+	ClubScoreInfoReq = 2093;//积分详情查询req
+	ClubScoreInfoRsp = 2094;//积分详情查询rsp
+	RemarkSyn = 2095;//修改备注
+	UpdateRemarkReq = 2096;//备注请求req
+	UpdateRemarkRsp = 2097;//备注请求rsp
+	ViewGuanZhanReq = 2098;//观战列表请求
+	ViewGuanZhanResp = 2099;//观战列表回复
+	PlayerEnterSyn = 2100;//玩家进入
+
+	//**********游戏逻辑相关*********//
+	GameOperation = 3001; //游戏模块前后端通讯专用数据包
+	
+	//**********消息相关*********//
+	ReadMailMsgRequest = 4001; //标记消息为已读	
+	MarqueeMsgSyn = 4002; //推送跑马灯消息	
+	NewMailMsgSyn = 4005;
+	ReceiveMailAttachRequest = 4006;
+	ActAndNoticeMsgSyn = 4008;//活动与公告
+	quickReciveAward = 4009;//一键领取邮件
+	quickRemoveMail = 4010;//一键删除邮件
+	quickOperResponse = 4011;//一键领取与一键删除邮件回复
+
+	//**********战绩相关*********//
+	RoomResultRequest = 5001; //战绩列表
+	RoomResultResponse = 5002; //战绩列表
+		
+	//**********商城相关*********//
+	GenOrderRequest = 6001; //生成订单
+	GenOrderResponse = 6002; //生成订单
+	ConfirmOrderRequest = 6003; //提交支付结果
+	ConfirmOrderReqsponse = 6004; //提交支付结果
+	MallProductRequest = 6005; //请求商品列表
+	MallProductResponse = 6006; //返回商品列表
+	IPABuyItemComplete = 6007;//苹果支付完成
+	PocketPay = 6008;//零钱支付
+
+	//**********排行榜*********//
+	RankRequest = 7001; //排行榜
+	RankSyn = 7002; //排行榜数据返回
+	
+	//**********配置相关************//
+	RoomConfigRequest = 8001;
+	RoomConfigResponse = 8002;
+	ServerChangeSyn = 8003;
+
+	GameMsgSyn = 8004;////游戏消息同步-推送
+}
+ 
+//消息头固定4个字节 
+message PacketBase    //
+{  
+    required PacketType packetType = 1;	//协议编号 
+    optional sint32 code = 2;		//错误码 0 表示成功
+    optional string msg = 3;		//错误信息
+    optional bytes data = 4;                     
+}

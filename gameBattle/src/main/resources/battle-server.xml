@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 开启自动扫描 autowire 配置 -->
+	<!-- <context:component-scan base-package="com.yayo" /> -->
+	<context:component-scan base-package="com.buding" />
+	<context:property-placeholder location="classpath*:*.properties" />
+
+	<import resource="configuration.xml" />
+	<import resource="schedule.xml" />
+	<import resource="admin-server.xml" />
+	<import resource="srv.xml" />
+	<import resource="redis.xml"/>
+	<import resource="dobbo-client/dubbo-client.xml" />
+	<import resource="dubbo-server/dubbo-server.xml" />
+
+	<!-- <bean class="com.buding.hall.logic.util.IDUtil" /> -->
+	<bean class="com.buding.common.schedule.WorkerPool" />
+
+	<bean id="configManager" class="com.buding.hall.config.ConfigManager">
+		<property name="matchConfigFolder">
+			<value>${resourceDir}/match</value>
+		</property>
+		<property name="shopConfigFolder">
+			<value>${resourceDir}/shop</value>
+		</property>
+		<property name="propsConfigFolder">
+			<value>${resourceDir}/item</value>
+		</property>
+		<property name="gameConfigFolder">
+			<value>${resourceDir}/game</value>
+		</property>
+		<property name="msgTplPath">
+			<value>${resourceDir}/msg/msg_tpl.properties</value>
+		</property>
+		<property name="privateKeyFile">
+			<value>${resourceDir}/key/rsa_private_key.pem</value>
+		</property>
+	</bean>
+
+	<bean id="randomNameConfigManager" class="com.buding.common.randomName.RandomNameConfigManager">
+		<property name="nameConfigFolder">
+			<value>${resourceDir}/names</value>
+		</property>
+	</bean>
+
+	<bean id="randomNameService" class="com.buding.common.randomName.RandomNameService">
+	</bean>
+
+	<bean id="battleServer" class="com.buding.common.network.server.NettyServer">
+		<property name="port" value="${server.battle.port}"></property>
+		<property name="protocolInitalizer">
+			<bean class="com.buding.common.network.codec.NettyServerInitializer">
+				<property name="handlers">
+					<list>
+						<bean class="com.buding.battle.logic.network.BattleServerHandler"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean class="com.buding.common.token.TokenClient"></bean>
+	<bean class="com.buding.hall.module.user.helper.UserSecurityHelper"></bean>
+</beans>

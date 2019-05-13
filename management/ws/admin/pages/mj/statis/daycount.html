@@ -1,0 +1,107 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>每日开局统计</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+					<div style="font-size:20px;color:red;text-align:center">
+						付费数据统计
+					</div>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <td>当日付费玩家数</td>
+                            <td>当日付费总额（元）</td>
+                            <td>arpu（元）</td>
+                            <td>付费率</td>
+                        </tr>                        
+                        <tr>
+                            <td>{{data.payData.payUserCount}}</td>
+                            <td>{{data.payData.payMoney}}</td>
+                            <td>{{data.payData.arpu}}</td>
+                            <td>--</td>
+                        </tr>                        
+                    </table>
+
+					<div style="font-size:20px;color:red;text-align:center">
+						登录-留存数据统计
+					</div>
+					<table class="table table-bordered table-striped">
+                        <tr>
+                            <td>注册人数</td>
+                            <td>去重登录人数</td>
+                            <td>次日留存数(率)</td>
+                            <td>三日留存数(率)</td>
+							<td>七日留存数(率)</td>
+                        </tr>                        
+                        <tr>
+                            <td>{{data.surviveData.registerCount}}</td>
+                            <td>{{data.surviveData.loginCount}}</td>
+                            <td>{{data.surviveData.oneDayNewSurvive}}({{data.surviveData.oneDaySurviveRate}}%)</td>
+                            <td>{{data.surviveData.threeDayNewSurvive}}({{data.surviveData.threeDaySurviveRate}}%)</td>
+                            <td>{{data.surviveData.sevenDayNewSurvive}}({{data.surviveData.sevenDaySurviveRate}}%)</td>
+                        </tr>                        
+                    </table>
+
+					<div style="font-size:20px;color:red;text-align:center">
+						玩家在线数据统计
+					</div>
+					<table class="table table-bordered table-striped">
+						<tr>
+                            <td>平均在线时长（分钟）</td>
+                            <td>在线时长小于5m</td>
+                            <td>在线时长5m~30m</td>
+                            <td>在线时长30m~1h</td>
+							<td>在线时长1h~2h</td>
+							<td>在线时长2h~5h</td>
+							<td>在线时长大于5h</td>
+                        </tr>      
+                        <tr>
+                            <td>{{data.onlineData.avgOnlineMinute}}</td>
+                            <td>{{data.onlineData.userCountLess5Min}}</td>
+                            <td>{{data.onlineData.userCountLess30Min}}</td>
+                            <td>{{data.onlineData.userCountLess60Min}}</td>
+                            <td>{{data.onlineData.userCountLess120Min}}</td>
+                            <td>{{data.onlineData.userCountLess300Min}}</td>
+                            <td>{{data.onlineData.userCountMoreThan300Min}}</td>
+                        </tr>                        
+                    </table>
+
+					<div style="font-size:20px;color:red;text-align:center">
+						道具付费购买统计
+					</div>
+					<table class="table table-bordered table-striped">
+                        <tr>
+                            <td>道具ID</td>
+                            <td>道具名</td>
+                            <td>购买价格（元）</td>
+                            <td>当日购买数量</td>
+							<td>购买小计(元)</td>				
+                        </tr>                        
+                        <tr ng-repeat="one in data.itemBuyList">
+                            <td>{{one.productId}}</td>
+                            <td>{{one.productName}}</td>
+                            <td>{{one.price}}</td>
+                            <td>{{one.totalCount}}</td>
+                            <td>{{one.totalMoney}}</td>							
+                        </tr>                        
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

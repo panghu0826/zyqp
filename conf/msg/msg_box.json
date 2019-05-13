@@ -1,0 +1,148 @@
+[
+{
+	"msgType":"DM01",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"${groupName}阶段奖",
+   	"img":"${imgFile}",  
+   	"contentTpl":"恭喜您！在${date}${groupName}-${time}阶段奖中，获得全国第${rank}名！奖品为${awardDesc}！真是太厉害了,分享到朋友圈炫耀一下吧！",
+    "params":{
+   	  	"exchangeId":"${exchangeId}", 
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+{
+	"msgType":"DM02",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"${groupName}阶段奖",
+   	"img":"",   	
+   	"contentTpl":"您在${date}${groupName}-${time}阶段奖中，获得全国第${rank}名！继续努力吧！",
+    "params":{
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+	
+{
+	"msgType":"DM03",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"${groupName}比赛结果",
+   	"img":"${imgFile}",   	
+   	"contentTpl":"恭喜您！在${date}${groupName}—${time}比赛结束时，获得全国第${rank}名！奖品为${awardDesc}！真是太厉害了,分享到朋友圈炫耀一下吧！",
+    "params":{
+   	  	"exchangeId":"${exchangeId}", 
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+	
+{
+	"msgType":"DM04",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"${gameName}比赛结果",
+   	"img":"",   	
+   	"contentTpl":"您在${date}${groupName}—${time}比赛结束时，获得全国第${rank}名！继续努力吧！",
+    "params":{
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+	
+{
+	"msgType":"DM05",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"购买成功",
+   	"img":"",   	
+   	"contentTpl":"尊敬的用户您好！您于${date} ${time}购买的${itemName}×${itemCount}已成功！请注意查看！",
+    "params":{
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+	
+{
+	"msgType":"DM06",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"奖品兑换成功",
+   	"img":"",   	
+   	"contentTpl":"尊敬的用户您好！你于${date} ${time}兑换的${itemName}×${itemCount}已成功！请注意查看！",
+    "params":{
+   	  	"exchangeId":"${exchangeId}", 
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+	
+{
+	"msgType":"SX001",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"奖品兑换成功",
+   	"img":"",   	
+   	"contentTpl":"恭喜您，${date} ${time}用${expandItemCount}${expandItemName}兑换${exchangeName}成功！奖品已发送，祝您游戏愉快。",
+    "params":{ 
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	},
+	
+{
+	"msgType":"SX002",
+	"pos":[1,2,3,4,5,6,7,8],
+    "popup": false,
+    "priority":1,
+    "lifeTime":604800,
+	"clientType":[1,2,3,4],
+	"title":"奖品兑换成功",
+   	"img":"",   	
+   	"contentTpl":"奖品兑换已提交，稍后将有工作人员与您联系，请保持手机畅通！祝您游戏愉快",
+    "params":{
+   	  	"shareTitle":"布丁斗地主", 
+   	  	"shareContent":"国内首款微信斗地主，无需下载app,在微信就能玩。还能邀请好友对战，更有500元现金红包等着你！", 
+   	  	"shareLink":"http://ddz.budinggames.com", 
+   	  	"shareImg":"http://www.budinggames.com/weixin/ddz_icon.jpg" 
+   	  }
+	}
+	
+]

@@ -1,0 +1,112 @@
+[
+{
+    "comment": "大庆麻将2人vip场",
+    "matchID": "G_DQMJ_MATCH_2VIP",
+    "gameID": "G_DQMJ",
+	"matchClassFullName":"com.buding.battle.logic.module.match.VipMatch",
+    "conditionInfo": {
+        "comment": "这是房间信息,roomArray有不同底分来区分房间, enterCondition是入场条件,deskConf是桌子人数和自动开赛的设置",
+        "version": 1,
+		"enterCondition": {
+			"minCoinLimit": 0,
+			"maxCoinLimit": -1,
+			"currencyType":2
+		},
+		"deskConf": {
+			"gameOperTimeOut":-1,
+			"seatSizeLower": 2,
+			"seatSizeUpper": 2,
+			"autoStartGame": true,
+			"autoChangeDesk": false,
+			"gameClassFullName": "com.buding.mj.DQMJServer",
+			"deskClassFullName": "com.buding.battle.logic.module.desk.bo.VipDesk",
+			"supportRobot":false,
+			"secondsAddFirstRobot": 3,
+			"addRobotRate": 2,
+			"autoReady":true,
+			"secondsBeforKickout":30
+		},
+        "roomArray": [
+            {
+                "comment": "roomName用于打印区分,basepoint为底分,roomId是房间配置id必须全局唯一, 这是是否需要添加人数限制",
+                "roomName": "大庆麻将-vip场-房主包场",
+                "roomId" : "31008",
+                "basePoint": 10,
+                "low": -1,
+                "high": -1,
+                "fee": [
+					{
+						"itemId":'A001',
+						"itemCount":4,
+						"gameCount":4
+					},
+					{
+						"itemId":'A001',
+						"itemCount":8,
+						"gameCount":8
+					}
+				],
+				"currencyType":2,			
+                "startType":1,
+                "vistorFree":true,
+                "roomClassFullName":"com.buding.battle.logic.module.room.bo.VipRoom"
+            }
+        ]
+    }
+},
+{
+    "comment": "大庆麻将4人vip场",
+    "matchID": "G_DQMJ_MATCH_4VIP",
+    "gameID": "G_DQMJ",
+	"matchClassFullName":"com.buding.battle.logic.module.match.VipMatch",
+    "conditionInfo": {
+        "comment": "这是房间信息,roomArray有不同底分来区分房间, enterCondition是入场条件,deskConf是桌子人数和自动开赛的设置",
+        "version": 1,
+		"enterCondition": {
+			"minCoinLimit": 0,
+			"maxCoinLimit": -1,
+			"currencyType":2
+		},
+		"deskConf": {
+			"gameOperTimeOut":-1,
+			"seatSizeLower": 4,
+			"seatSizeUpper": 4,
+			"autoStartGame": true,
+			"autoChangeDesk": false,
+			"gameClassFullName": "com.buding.mj.DQMJServer",
+			"deskClassFullName": "com.buding.battle.logic.module.desk.bo.VipDesk",
+			"supportRobot":false,
+			"secondsAddFirstRobot": 3,
+			"addRobotRate": 2,
+			"autoReady":true,
+			"secondsBeforKickout":30
+		},
+        "roomArray": [
+            {
+                "comment": "roomName用于打印区分,basepoint为底分,roomId是房间配置id必须全局唯一, 这是是否需要添加人数限制",
+                "roomName": "大庆麻将-vip场-房主包场",
+                "roomId" : "31009",
+                "basePoint": 10,
+                "low": -1,
+                "high": -1,
+                "fee": [
+					{
+						"itemId":'A001',
+						"itemCount":4,
+						"gameCount":4
+					},
+					{
+						"itemId":'A001',
+						"itemCount":8,
+						"gameCount":8
+					}
+				],
+				"currencyType":2,
+                "startType":1,
+                "vistorFree":true,
+                "roomClassFullName":"com.buding.battle.logic.module.room.bo.VipRoom"
+            }
+        ]
+    }
+}
+]

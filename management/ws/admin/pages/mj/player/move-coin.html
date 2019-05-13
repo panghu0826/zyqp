@@ -1,0 +1,42 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>转送金币</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped" style="width:500px;">
+                        <tr>
+                           <td>赠送玩家id</td>
+                            <td><input type="text" ng-model="tmp.fromUser" ></td>
+                        </tr>
+                        <tr>
+                            <td>接收玩家id</td>
+                            <td><input type="text" ng-model="tmp.toUser" ></td>
+                        </tr>
+                        <tr>
+                            <td>金额</td>
+                            <td><input type="text" ng-model="tmp.coin" ></td>
+                        </tr>
+                    </table>
+                    <div>{{tmp.msg}}</div>
+                    <div><input type="button" value="提交" ng-click="doMoveCoin()"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

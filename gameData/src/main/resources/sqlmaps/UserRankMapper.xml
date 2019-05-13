@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserRank">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserRank">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="audit_id" jdbcType="BIGINT" property="auditId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="rank_point" jdbcType="INTEGER" property="rankPoint" />
+    <result column="rank" jdbcType="INTEGER" property="rank" />
+    <result column="award_status" jdbcType="BIT" property="awardStatus" />
+    <result column="vip_type" jdbcType="INTEGER" property="vipType" />
+    <result column="award_desc" jdbcType="VARCHAR" property="awardDesc" />
+    <result column="awards" jdbcType="VARCHAR" property="awards" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+    <result column="game_id" jdbcType="VARCHAR" property="gameId" />
+    <result column="rank_grp_time" jdbcType="BIGINT" property="rankGrpTime" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, audit_id, user_id, user_name, rank_point, rank, award_status, vip_type, award_desc, 
+    awards, group_id,game_id, rank_grp_time, mtime, ctime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_rank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserRank" useGeneratedKeys="true">
+    insert into user_rank (audit_id, user_id, user_name, 
+      rank_point, rank, award_status, 
+      vip_type, award_desc, awards, 
+      group_id,game_id, rank_grp_time, mtime,
+      ctime)
+    values (#{auditId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{rankPoint,jdbcType=INTEGER}, #{rank,jdbcType=INTEGER}, #{awardStatus,jdbcType=BIT}, 
+      #{vipType,jdbcType=INTEGER}, #{awardDesc,jdbcType=VARCHAR}, #{awards,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=VARCHAR},#{gameId,jdbcType=VARCHAR}, #{rankGrpTime,jdbcType=BIGINT}, #{mtime,jdbcType=TIMESTAMP},
+      #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserRank">
+    update user_rank
+    set audit_id = #{auditId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      rank_point = #{rankPoint,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=INTEGER},
+      award_status = #{awardStatus,jdbcType=BIT},
+      vip_type = #{vipType,jdbcType=INTEGER},
+      award_desc = #{awardDesc,jdbcType=VARCHAR},
+      awards = #{awards,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=VARCHAR},
+      game_id = #{gameId,jdbcType=VARCHAR},
+      rank_grp_time = #{rankGrpTime,jdbcType=BIGINT},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

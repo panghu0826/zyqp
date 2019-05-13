@@ -1,0 +1,47 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>系统基本配置</h5>
+                    <div class="actions">
+                        <button class="btn btn-blue" ng-click="ll.push({isEdit: true})">新增</button>
+                        <button class="btn btn-blue" ng-click="save('fromDb')">使用最新的数据库副本</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="20%">Key</th>
+                            <th width="70%">Value</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                <span ng-if="!one.isEdit">{{one.key}}</span>
+                                <span ng-if="one.isEdit"><input type="text" ng-model="one.key"/></span>
+                            </td>
+                            <td>
+                                <span ng-if="!one.isEdit">{{one.value}}</span>
+                                <span ng-if="one.isEdit"><input type="text" ng-model="one.value"/></span>
+                            </td>
+                            <td class="opts">
+                                <button ng-if="!one.isEdit" class="btn btn-red" ng-click="one.isEdit = true">修改</button>
+                                <button ng-if="one.isEdit" class="btn btn-red" ng-click="one.isEdit = false">取消</button>
+                                <button class="btn btn-red" ng-click="ll.remove(one)">-</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <button class="btn btn-red" ng-click="save()">保存更新</button>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+</div>

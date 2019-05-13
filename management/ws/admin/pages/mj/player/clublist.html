@@ -1,0 +1,108 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>玩家列表</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>俱乐部id/昵称/</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.name"/>
+                                </td>
+                                <td>
+                                    <label>创建时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.registerStartTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                    -
+                                    <input type="text" ng-model="query.registerEndTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">俱乐部id</th>
+                            <th >名字</th>
+                            <th >公告</th>
+                            <th >开房模式</th>
+                            <th >准入分数(积分场)</th>
+                            <th >可负分</th>
+                            <th >抽水分数</th>
+                            <th >抽水人数</th>
+                            <th >抽水比例</th>
+                            <th >创建时间</th>
+                            <th width="20%">查看</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.clubName}}
+                            </td>
+                            <td>
+                                {{one.clubNotice}}
+                            </td>
+                            <td>
+                                {{getclubCreateRoomType(one.createRoomMode)}}
+                            </td>
+                            <td>
+                                {{one.enterScore}}
+                            </td>
+                            <td>
+                                {{getcanFuFenType(one.canFufen)}}
+                            </td>
+                            <td>
+                                {{one.choushuiScore}}
+                            </td>
+                            <td>
+                                {{one.choushuiNum}}
+                            </td>
+                            <td>
+                                {{one.zengsongNum}}
+                            </td>
+                            <td>
+                                {{one.ctime|date:"yyyy/MM/dd HH:mm:ss" }}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="viewMember(one)">查看成员</button>
+                                <button class="btn" ng-click="viewWanfa(one)">查看玩法</button>
+                                <button class="btn" ng-click="viewApply(one)">查看申请列表</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

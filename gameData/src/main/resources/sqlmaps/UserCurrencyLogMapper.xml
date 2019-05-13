@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserCurrencyLog">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserCurrencyLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="oper_main_type" jdbcType="VARCHAR" property="operMainType" />
+    <result column="oper_sub_type" jdbcType="VARCHAR" property="operSubType" />
+    <result column="change_from" jdbcType="VARCHAR" property="changeFrom" />
+    <result column="change_to" jdbcType="VARCHAR" property="changeTo" />
+    <result column="change_val" jdbcType="VARCHAR" property="changeVal" />
+    <result column="oper_desc" jdbcType="VARCHAR" property="operDesc" />
+    <result column="oper_time" jdbcType="TIMESTAMP" property="operTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, oper_main_type, oper_sub_type, change_from, change_to, change_val, oper_desc, 
+    oper_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_currency_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserCurrencyLog" useGeneratedKeys="true">
+    insert into user_currency_log (user_id, oper_main_type, oper_sub_type, 
+      change_from, change_to, change_val, 
+      oper_desc, oper_time)
+    values (#{userId,jdbcType=INTEGER}, #{operMainType,jdbcType=VARCHAR}, #{operSubType,jdbcType=VARCHAR}, 
+      #{changeFrom,jdbcType=VARCHAR}, #{changeTo,jdbcType=VARCHAR}, #{changeVal,jdbcType=VARCHAR}, 
+      #{operDesc,jdbcType=VARCHAR}, #{operTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserCurrencyLog">
+    update user_currency_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      oper_main_type = #{operMainType,jdbcType=VARCHAR},
+      oper_sub_type = #{operSubType,jdbcType=VARCHAR},
+      change_from = #{changeFrom,jdbcType=VARCHAR},
+      change_to = #{changeTo,jdbcType=VARCHAR},
+      change_val = #{changeVal,jdbcType=VARCHAR},
+      oper_desc = #{operDesc,jdbcType=VARCHAR},
+      oper_time = #{operTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

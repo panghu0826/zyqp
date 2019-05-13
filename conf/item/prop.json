@@ -1,0 +1,22 @@
+[
+{
+	"itemId":"D001",
+	"itemType":5,
+	"itemName":"金币X1",
+	"description":"",
+	"argument":1,
+	"accumulate":1,
+	"autoUse":1,
+	"effectiveTime":0
+},
+{
+	"itemId":"A001",
+	"itemType":15,
+	"itemName":"钻石X1",
+	"description":"",
+	"argument":1,
+	"accumulate":1,
+	"autoUse":0,
+	"effectiveTime":0
+}
+]

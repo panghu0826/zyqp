@@ -1,0 +1,77 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>钻石统计(杰克)</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>注册时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.startTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                    -
+                                    <input type="text" ng-model="query.endTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                                <td>
+                                    <label>房间：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.matchId" ng-options="a.code as a.name for a in tmp.matchIdList">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <div class="row" style="font-size:20px;color:red">
+                        <div class="md-col-4">
+                            当前累计消耗：{{allNum}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >日期(打完第二把扣除钻石)</th>
+                            <th >消耗钻石数</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.gameDay }}
+                            </td>
+                            <td>
+                                {{one.diamondCount }}
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

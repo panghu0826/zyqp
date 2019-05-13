@@ -1,0 +1,116 @@
+package packet.zjh;
+
+
+
+//游戏开始 operType=GAMESTART
+message ZJHGameOperStartSyn {
+    optional sint32 bankerPos = 1; //庄家位置
+    repeated ZJHGameOperHandCardSyn playerHandCards = 2; //玩家手牌
+    optional bool reconnect = 3; //是否是断线重连 true是断线重连
+    optional sint32 lunNum = 4; //第几轮
+    optional sint32 juNum = 5; //第几把
+    optional sint32 zongZhu = 6; //总注
+    optional sint32 seq = 100; //序列号,每一场游戏有一个唯一的序列号，方便错误跟踪
+}
+
+//同步某个的玩家手牌, operType=HANDCARDS
+message ZJHGameOperHandCardSyn {
+    required sint32 position = 1; //玩家位置
+    repeated sint32 handCards = 2; //手中的牌,如果是其他玩家(即不是当前玩家),则列表里面存放的是-1而不是牌的真实值
+    optional sint32 socre= 5; //玩家自己的分数
+    optional sint32 chouMa= 6; //筹码
+    optional bool isQiPai= 7; //是否弃牌
+    optional bool isWait= 8; //是否等待下一把
+    optional bool isKanPai= 9; //是否看牌
+    optional bool canKanPai = 10; //是否可以看牌
+    optional sint32 playerDanZhu = 11; //玩家单注
+}
+
+message ZJHGameOperPublicInfoSyn {
+    repeated sint32 cardLeft = 1; //地主牌
+}
+
+//同步行动者信息 operType=ACTSYN
+message ZJHGameOperActorSyn {
+    required sint32 position = 1; //玩家位置
+    required sint32 timeLeft = 2; //操作超时时间，比如：10，代表10秒内玩家不操作服务器将托管
+}
+
+//玩家操作同步operType=ACTIONSYN, 前端通过此包告诉后端玩家进行了什么操作，后端通过此包将操作告诉其它玩家
+message ZJHGameOperPlayerActionSyn {
+    required sint32 position = 1; //玩家位置
+    required sint32 action = 2; //操作编码 (0x1:出) (0x2:过) (0x4:抢地主) (0x8:加倍)
+    repeated sint32 cardValue = 3;//出牌
+    optional sint32 chouMa = 4;//加注或者跟注的筹码大小
+    optional sint32 biPaiPos = 5;//被比牌人的座位号
+    optional sint32 winnerPos = 6;//比牌时赢得人座位号
+    optional sint32 playerZongZhu = 7;//玩家总共下了多少筹码
+    optional sint32 playerDanZhu = 8;//玩家单注
+    optional sint32 deskZongZhu = 9;//桌子总注
+    optional sint32 lunNum = 10; //第几轮
+    optional sint32 cardType = 11; //牌型
+    repeated ZJHGameOperPlayerData playerData = 12; //玩家数据
+    repeated sint32 biPaiCardValue = 13;//被比牌人的手牌
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+//玩家操作时各个玩家数据
+message ZJHGameOperPlayerData {
+    required sint32 position = 1;
+    required sint32 playerDanZhu = 2;
+}
+
+//服务器提示玩家操作 operType=ACTNOTIFY
+message ZJHGameOperPlayerActionNotify {
+    required sint32 position = 1; //玩家位置
+    required sint32 actions = 2; // 可选操作列表(位与):(0x1:出) (0x2:过) (0x4:抢地主) (0x8:加倍)
+    repeated sint32 jiaZhuNum = 12;//可加注的筹码集合
+    repeated sint32 biPaiPos = 13;//可被比牌人的座位集合
+    optional sint32 genZhu = 14;//跟注的筹码大小
+    optional sint32 seq = 100; //序列号,调试用
+}
+
+message ZJHGameOperPlayerHuSyn {
+    required sint32 position = 1; //胡牌玩家位置
+    repeated ZJHGameOperPlayerSettle detail = 2;//每个玩家的情况
+    optional sint32 juNum = 3; //当前局数
+}
+
+message ZJHGameOperPlayerSettle {
+    required sint32 position = 1; //位置
+    optional sint32 playerId = 2; //ID
+    optional string playerName = 3; //昵称
+    repeated sint32 handcard = 4; //手牌
+    optional sint32 lastScore = 5; //上局得分
+    optional sint32 score = 6;//本局得分
+    optional sint32 allSocre = 7; //总分数
+    optional sint32 xiQian = 8; //喜钱
+    optional bool   isQiPai = 9; //是否弃牌
+    optional bool   isKanPai = 10; //是否看牌
+    optional sint32 cardType = 11; //牌型
+    optional sint32 isBanker = 12; //是否是庄家
+    optional sint32 result = 13; // 1 win 2 lose 3 even
+
+}
+
+message ZJHGameOperFinalSettleSyn {
+    optional sint32 roomId = 1;//房间ID
+    optional sint32 innings = 2;//总局数
+    repeated ZJHPlayerFinalResult detail = 3; //玩家信息
+}
+
+message ZJHPlayerFinalResult {
+    optional sint64 playerId = 1;//玩家ID
+    optional string playerName = 2;//玩家昵称
+    optional sint32 position = 3;//玩家位置
+    optional string headImage = 4;//玩家头像
+    optional sint32 allScore = 5;//玩家总分
+    optional sint32 maxScore = 6;//单局最高得分
+    optional sint32 maxCardType = 7;//最大牌型
+    optional sint32 winNum = 8;//玩家赢的局数
+    optional sint32 loseNum = 9;//玩家输的局数
+    optional bool   roomOwner = 10; //是否是否房主
+}
+
+
+

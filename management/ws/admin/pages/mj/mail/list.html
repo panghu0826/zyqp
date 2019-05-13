@@ -1,0 +1,143 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>邮件列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增邮件</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >id</th>
+                            <th >接收类型</th>
+                            <th >接收人id</th>
+                            <th >发送人id</th>
+                            <th >发送人姓名</th>
+                            <th >标题</th>
+                            <th >内容</th>
+                            <th >创建时间</th>
+                            <th >失效时间</th>
+                            <th >附件内容</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{getTargetType(one.targetType)}}
+                            </td>
+                            <td>
+                                {{one.targetId}}
+                            </td>
+                            <td>
+                                {{one.senderId}}
+                            </td>
+                            <td>
+                                {{one.senderName}}
+                            </td>
+                            <td>
+                                {{one.title}}
+                            </td>
+                            <td>
+                                {{one.msg}}
+                            </td>
+                            <td>
+                                {{one.startDateTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                            <td>
+                                {{one.stopDateTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                            <td>
+                                {{one.itemId}}:{{one.itemCount}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="del(one)">删除</button>
+                                <button class="btn" ng-click="send(one)">立刻推送</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowAdd', title: '新增邮件', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 900px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label>邮件标题：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.title" size="60"/></td>
+            </tr>
+            <tr >
+                <td><label>邮件内容：</label></td>
+                <td><textarea ng-model="tmp.editOne.msg"  ui-valid="r" cols="90" rows="10"/></td>
+            </tr>
+            <tr>
+                <td><label>失效时间：</label></td>
+                <td>
+                    <input type="text" ng-model="tmp.editOne.stopDateTime"
+                           ui-date="{dateFormat: 'yy-mm-dd', timeFormat: 'HH:mm:ss', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: true, showMinute: true}"
+                           ui-valid="datetime r"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>接收类型：</label></td>
+                <td>
+                    <select ng-model="tmp.editOne.targetType" ng-options="a.code as a.name for a in tmp.targetTypeList">
+                        <option value="" selected>--/--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><span ng-if="tmp.editOne.targetType==1">接收人id：</span></label>
+                    <label><span ng-if="tmp.editOne.targetType==3">分组类型：</span></label>
+                </td>
+                <td>
+                    <span ng-if="tmp.editOne.targetType==1">
+                        <input type="text" ng-model="tmp.editOne.targetId" />
+                    </span>
+                    <span ng-if="tmp.editOne.targetType==3">
+                        <select ng-model="tmp.editOne.targetId" ng-options="a.code as a.name for a in tmp.userGroupList">
+                            <option value="" selected>--/--</option>
+                        </select>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>附件类型：</label></td>
+                <!-- ng-disabled="tmp.editOne.id" -->
+                <td>
+                    <select ng-model="tmp.editOne.itemId" ng-options="a.code as a.name for a in tmp.itemList">
+                        <option value="" selected>--/--</option>
+                    </select>
+                    (注意:如果没有附件则不选择)
+                </td>
+            </tr>
+            <tr>
+                <td><label>道具数量：</label></td>
+                <td>
+                    <input type="input" ng-model="tmp.editOne.itemCount">
+                    (注意:如果没有附件则不输入)
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-blue" ng-click="save()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowAdd = false">关闭</button>
+    </script>
+</div>

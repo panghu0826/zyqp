@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <title>真爱粉红包大转盘</title>
+    <style type="text/css">
+        html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;vertical-align:baseline;outline:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;}
+        html{font-size: 10px;height:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust: 100%;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+        body{background: #f7f6f8;color: #bcbcbc;font-size: 14px;line-height:1;font-family:"微软雅黑",Helvetica,Arial,Tahoma,sans-serif;-webkit-user-select:none;width: 100%;overflow-x: hidden;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:moz-none;user-select:none;}
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+        ol,ul{list-style:none}
+        blockquote,q{quotes:none}
+        blockquote:before,blockquote:after,q:before,q:after{content:none}
+        table{border-collapse:collapse;border-spacing:0}
+        img{max-width:100%;border:0;vertical-align:middle;-ms-interpolation-mode:bicubic;}
+        a{text-decoration:none;}
+        a:focus,a:hover,a:active,a:visited,input{outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0)}
+        .btn:active,.btn:visited{ color: #fff;}
+        input,button{vertical-align:middle;border: 1px solid #95b8e7;font-family:Helvetica,​Arial,​Tahoma,​sans-serif;}
+        .clearfix:before,
+        .clearfix:after {
+            content: " ";
+            display: table;
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        *:focus {outline:none;}
+        *{word-break:break-all; word-wrap:break-word;}
+        .lottery-wrap{ width: 100%; background: url("images/vote_bg.jpg") no-repeat; background-size: 100% 100%;}
+        .game-wrap{ width: 90%; background: url("images/game_bg.png") no-repeat; background-size: 100% 100%; padding: 20px; position: absolute; top:20%; left: 5%; z-index: 8;}
+        .game-wrap table{ border: none; width: 100%; height: 100%;}
+        .game-wrap table td{ height: 33%; width:33%;}
+        .game-wrap table td span{ display: block; height: 100%; width: 100%; background-size: 95% 95%;}
+        table .y5 span{ background: url("images/5y.png") no-repeat center;}
+        table .y5.hold span{ background: url("images/5y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y4 span{ background: url("images/4y.png") no-repeat center;}
+        table .y4.hold span{ background: url("images/4y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y3 span{ background: url("images/3y.png") no-repeat center;}
+        table .y3.hold span{ background: url("images/3y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y2 span{ background: url("images/2y.png") no-repeat center;}
+        table .y2.hold span{ background: url("images/2y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y1 span{ background: url("images/1y.png") no-repeat center;}
+        table .y1.hold span{ background: url("images/1y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .gx span{ background: url("images/gx.png") no-repeat center;}
+        table .gx.hold span{ background: url("images/gx_on.png") no-repeat center; background-size: 95% 95%;}
+        table .more span{ background: url("images/more.png") no-repeat center;}
+        table .more.hold span{ background: url("images/more_on.png") no-repeat center; background-size: 95% 95%;}
+        table .sj span{ background: url("images/sj.png") no-repeat center;}
+        table .sj.hold span{ background: url("images/sj_on.png") no-repeat center; background-size: 95% 95%;}
+        table .start span{ background: url("images/start.png") no-repeat center;}
+        /*table .start:active span{background: url("images/start_on.png") no-repeat center; background-size: 95% 95%;}*/
+        table .start.on span{ background: url("images/start_on.png") no-repeat center; background-size: 95% 95%;}
+
+        .game-wrap .game-yes{ width: 100%; height: 100%; background: url("images/game-yes.png") no-repeat center; background-size: 100% 100%; display: none;}
+        .game-wrap .game-over{ width: 100%; height: 100%;background: url("images/game-over.png") no-repeat center; background-size: 100% 100%; display: none;}
+
+
+        .pop_wrap .pop_body{padding-bottom:1px; border-radius: 20px; border: 4px solid #000;}
+        .full_wrap{ display: none; position:fixed; _position:absolute; z-index:99; top: 0; left: 0; background-color:#000;}
+        .pop_wrap{ width: 80%; z-index: 999; position:fixed; top: 40%; left: 50%; margin-left: -40%;}
+        .pop_wrap .bottom p{color: #333;font-size: 14px;font-weight: bold;line-height: 1.5em; padding: 43px 20px 20px 20px;}
+        .pop_body{ background-color: #fff;}
+        .close_btn{ display: block; background: url("images/isee3.png") no-repeat; width: 150px; height: 41px; line-height: 41px; color: #fff; font-size: 16px; text-align: center; margin: 14px auto; }
+        .close_btn:active{ background-position: 0 -50px;}
+        .title{ background: url("images/title.png") no-repeat center bottom; background-size: 100%; width: 100%; position: absolute; top: 0; z-index: 9;}
+        .mation{background: url("images/mation.png") no-repeat center top; background-size: 100%; position: absolute; bottom: 0; width: 100%; z-index: 7;}
+        .close-img{ background: url("images/cancle.png") no-repeat; width: 33px; height: 30px; position: absolute; top: 10px; right: 10px; background-size: 100% 100%;}
+        .lottery_list{ height: 40px; width: 80%; margin: 0 auto; position: fixed; bottom:4px; background-color: #f4cf5e; border-radius: 12px; z-index: 999; left: 10%;}
+        .scroll_name { height: 40px; width: 100%; overflow: hidden; position: relative; }
+        .scroll_name ul { position: absolute; width: 100%;}
+        .scroll_name li { height: 100%; line-height: 100%; padding: 2px 6px; color: #000;}
+        .scroll_name li img {  width: 36px; height: 36px; border-radius:18px;}
+        .scroll_name li strong{ font-weight: normal; display:inline-block; width: 100px; padding-left: 12px; overflow: hidden; white-space:nowrap; text-overflow:ellipsis; vertical-align: middle;}
+        .scroll_name li span{ padding-left: 4px; display:inline-block; vertical-align: middle;}
+    </style>
+</head>
+<body>
+<!--{$nickname}
+<img src="{$headimgurl}" style="width: 300px; height: 300px;" />-->
+<!--抽奖开始-->
+<div class="lottery-wrap">
+    <div class="title"></div>
+    <div class="game-wrap">
+        <table id="gameTable">
+            <tbody>
+            <tr>
+                <td class="y5"><span></span></td>
+                <td class="gx"><span></span></td>
+                <td class="y1"><span></span></td>
+            </tr>
+            <tr>
+                <td class="y4"><span></span></td>
+                <td class="start" id="gameBtn"><span></span></td>
+                <td class="y2"><span></span></td>
+            </tr>
+            <tr>
+                <td class="y3"><span></span></td>
+                <td class="more"><span></span></td>
+                <td class="sj"><span></span></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+        <div class="game-yes"></div>
+        <div class="game-over"></div>
+    </div>
+    <div class="mation"></div>
+    <div class="lottery_list">
+        <div id="scrollable" class="scroll_name">
+            <ul>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="display: none;">
+    <img src="images/5y_on.png" />
+    <img src="images/4y_on.png" />
+    <img src="images/3y_on.png" />
+    <img src="images/2y_on.png" />
+    <img src="images/1y_on.png" />
+    <img src="images/gx_on.png" />
+    <img src="images/more_on.png" />
+    <img src="images/start_on.png" />
+</div>
+<!--抽奖结束-->
+
+
+<div class="full_wrap">
+</div>
+<div class="pop_wrap" id="choujiang_jg" style="display:none;">
+    <span class="close-img"></span>
+    <div class="pop_body">
+        <div class="bottom">
+            <p></p>
+            <a class="close_btn" href="javascript:void(0)"></a>
+        </div>
+    </div>
+</div>
+<script src="../m/ng-ext/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/vote.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var ww = $(window).width();
+        var wh = $(window).height();
+        $(".lottery-wrap").css({"height":wh});
+        $(".game-wrap").css({"height":ww*0.9});
+        var gameTable= $("#gameTable");
+        var gameYes= $(".game-yes");
+        var gameOver= $(".game-over");
+        var gameWrap = $(".game-wrap");
+        var title = $(".title");
+        var titleH = gameWrap.offset().top+20;
+        title.height(titleH);
+        $(".mation").height(wh-gameTable.height()-title.height()+22);
+        //判断是否抽奖过
+        $.get("is-today-already-play.json"+"?"+(+new Date()),function(json){
+//				    json = JSON.parse(json);
+            if(!json.flag){
+                gameTable.show();
+                gameYes.hide();
+                gameOver.hide();
+                gameWrap.css("padding","20px");
+                gameTable.wen_plug_award2({
+                    star:"#gameBtn",
+                    data_url:"get-chance.json",
+                    star_fn:function(elm){
+                        elm.addClass("on");
+                        setTimeout(function(){elm.removeClass("on");},200);
+                    },
+                    end_fn:function(obj,cjdata){
+                        $(".full_wrap").css({
+                            "width":$(document).width(),
+                            "height":$(document).height(),
+                            "display":"block",
+                            "opacity":"0.3"
+                        });
+                        $("#choujiang_jg").find("p").text(cjdata.txt);
+                        $("#choujiang_jg").css({"display":"block"});
+                    }
+                })
+            }else{
+                fnGameYes();
+            }
+            //中奖列表
+            var list = json.winningList,str="";
+            for(var i = 0,len = list.length;i < len;i++){
+               str += '<li><img src="'+list[i].headimgurl+'" /><strong>'+list[i].nickname+'</strong><span>抽中'+list[i].amount+'元红包</span></li>';
+            }
+            $("#scrollable ul").append(str);
+            //名单滚动
+            if($("#scrollable li").length > 1){
+                $("#scrollable").Scroll({ line: 1, speed: 30, timer: 60});
+            }
+        });
+        function fnGameYes(){
+            gameWrap.css("padding","0");
+            gameTable.hide();
+            gameYes.show();
+            gameOver.hide();
+        }
+        //关闭提交成功
+        $("#choujiang_jg").delegate(".close_btn,.close-img","click",function(){
+            $(".full_wrap").css({"display":"none"});
+            $(this).parents(".pop_wrap").css({"display":"none"});
+            fnGameYes();
+        });
+    });
+</script>
+</body>
+</html>

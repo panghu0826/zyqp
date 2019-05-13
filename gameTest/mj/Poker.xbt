@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tree>
+  <Node id="Node_0" name="Poker" type="Root">
+    <Children>
+          <Node id="Node_1" type="DynamicPriorityList">
+            <Children>
+              <Node id="Node_5" name="Init" type="Action">
+                <Guard>
+                  <Node id="Node_6" name="needInit" type="Condition" />
+                </Guard>
+                <Parameters>
+                  <Parameter name="serverIp" fromcontext="true">serverIp</Parameter>
+                  <Parameter name="serverPort" fromcontext="true">serverPort</Parameter>
+                </Parameters>
+              </Node>
+              <Node id="Node_3" type="SubtreeLookup">
+                <Guard>
+                  <Node id="Node_6" name="needAuth" type="Condition" />
+                </Guard>
+                <Parameters>
+                  <Parameter name="subtreeName" fromcontext="false">Login</Parameter>
+                </Parameters>
+              </Node>
+              <Node id="Node_6" type="SubtreeLookup">
+                <Parameters>
+                  <Parameter name="subtreeName" fromcontext="false">Gaming</Parameter>
+                </Parameters>
+              </Node>
+            </Children>
+          </Node>
+        </Children>
+  </Node>
+</Tree>
+

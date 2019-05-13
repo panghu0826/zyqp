@@ -1,0 +1,1 @@
+start java -classpath .;./target/lib/*;./target/* com.buding.ptest.PTestStarter

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+    <properties>
+        <property name="DESK_LOG_HOME">/home/work/log/desk</property>
+        <property name="DESK_FILE_NAME">desklog</property>
+        <property name="ERROR_PATH">/home/work/log/battle</property>
+    </properties>
+    <Appenders>
+        <!--控制台日志-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %F%L - ##%msg%n" />
+        </Console>
+
+        <!--错误级别日志汇总-->
+        <RollingFile name="RollingFileError" fileName="${ERROR_PATH}/error.log"
+                     filePattern="${ERROR_PATH}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="1 GB"/>
+            </Policies>
+        </RollingFile>
+
+        <!--桌子日志-->
+        <RollingRandomAccessFile name="desklog"
+                                 fileName="${DESK_LOG_HOME}/${DESK_FILE_NAME}.log"
+                                 filePattern="${DESK_LOG_HOME}/$${date:yyyy-MM-dd}/${DESK_FILE_NAME}-%d{yyyy-MM-dd}-%i.log"
+                                 immediateFlush="false">
+            <PatternLayout>
+                 <Pattern>%d %p %c{1.} [%t] %m %ex%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+                <SizeBasedTriggeringPolicy size="1 GB" />
+            </Policies>
+            <DefaultRolloverStrategy max="30" />
+        </RollingRandomAccessFile>
+
+        <!--<RandomAccessFile name="desklog" fileName="${DESK_FILE_NAME}" immediateFlush="false" >-->
+            <!--<PatternLayout>-->
+                <!--<Pattern>%d %p %c{1.} [%t] %m %ex%n</Pattern>-->
+            <!--</PatternLayout>-->
+        <!--</RandomAccessFile>-->
+    </Appenders>
+
+    <Loggers>
+        <Logger name="DESKLOG" level="info" additivity="true" includeLocation="true">
+            <AppenderRef ref="desklog" />
+        </Logger>
+        
+        <logger name="com.ibatis" additivity="true" level="info">
+            <AppenderRef ref="Console" />
+        </logger>
+        <logger name="java.sql.Connection" additivity="true" level="info">
+            <AppenderRef ref="Console" />
+        </logger>
+        <logger name="java.sql.Statement" additivity="true" level="info">
+            <AppenderRef ref="Console" />
+        </logger>
+        <logger name="java.sql.PreparedStatement" additivity="true" level="info">
+            <AppenderRef ref="Console" />
+        </logger>
+        <logger name="java.sql.ResultSet" additivity="true" level="info">
+            <AppenderRef ref="Console" />
+        </logger>
+        <logger name="com.alibaba.dubbo" additivity="true" level="error">
+            <AppenderRef ref="Console" />
+        </logger>
+
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFileError" />
+        </Root>
+    </Loggers>
+</Configuration>

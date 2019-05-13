@@ -1,0 +1,41 @@
+<table class="table table-bordered table-striped ng-ui-table-tree">
+	<#if (data.opts.choose)>
+	<thead class="ext-tree-choose-header">
+	<tr>
+		<th>
+		<span class="leaf-control expand collapse level0"></span>
+		<input type="checkbox" class="ext-tree-choose-all" />
+		</th>
+		<#list data.columns as column>
+		<th<#if (column.width)> width="${column.width}"</#if>>
+		${column.label}
+		</th>
+		</#list>
+	</tr>
+	</thead>
+	</#if>
+
+	<tbody>
+	<#list data.list as one>
+	<tr class="ext-tree-choose-item" data-index="${one_index}" data-level="${one.level}">
+		<td>
+		<span class="leaf-control expand collapse level${one.level} <#if (one.leaf)>leaf</#if>"></span>
+		<#if (data.opts.choose)>
+		<input type="checkbox"<#if (one.isChecked)> checked="true"</#if> class="ext-tree-choose-one" />
+		</#if>
+		<#if (data.opts.fn)>
+		<a href="javascript:void();" class="ext-tree-link">${one.label}</a>
+		<#else>
+		<label>${one.label}</label>
+		</#if>
+		</td>
+
+		<#list data.columns as column>
+		<td>
+		${one[column.name]}
+		</td>
+		</#list>
+	</tr>
+	</#list>
+	</tbody>
+</table>

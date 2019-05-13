@@ -1,0 +1,54 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>成员列表</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">俱乐部id</th>
+                            <th >玩家id</th>
+                            <th >玩家名字</th>
+                            <th >玩家类型</th>
+                            <th >玩家积分</th>
+                            <th >加入时间</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.clubId}}
+                            </td>
+                            <td>
+                                {{one.clubMemberId}}
+                            </td>
+                            <td>
+                                {{one.clubMemberName}}
+                            </td>
+                            <td>
+                                {{getclubMemberType(one.clubMemberType)}}
+                            </td>
+                            <td>
+                                {{one.clubMemberScore}}
+                            </td>
+                            <td>
+                                {{one.ctime|date:"yyyy/MM/dd HH:mm:ss" }}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

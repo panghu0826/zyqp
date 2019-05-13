@@ -1,0 +1,408 @@
+package packet.game;
+
+//本文件存放游戏通用协议，跟麻将无关哦
+
+//新建房间
+message CreateVipRoomRequest {
+	required string gameId = 1; //游戏id
+	required string matchId = 2; //赛场id
+	required sint32 quanNum = 3; //圈数
+	required int32 wangfa = 4; //(0x01:开牌炸)  (0x02:支对)  (0x04:37夹) (0x08:单调夹) (0x10:带大风) (0x20:红中满天飞) (0x40:带漏的) (0x80:不夹不胡)
+	required sint32 vipRoomType = 5; // (2:2人房间) (4:4人房间)
+	optional int32 limitMax = 6; // 封顶分数
+	optional int32 yaZhu = 7; // (炸金花/jack)押注选择(一分场,二分场,五分场,自由场,下满注)
+	optional int32 menNum = 8; //(扎金花)闷几圈
+	required sint64 clubId = 9; //俱乐部id,-1:不是俱乐部房间
+	required sint32 clubRoomType = 10; //俱乐部房间类型 -1:不是俱乐部房间,0:普通场,1:积分场
+	optional sint32 qiangZhuangNum = 11; //牛牛抢庄倍数,经典抢庄传0
+	optional string niuFanStr = 12; //牛番
+	optional int32 erBaGameType = 13; // 1: 经典28,2:疯狂28,3:传统28
+}
+
+
+message PlayerModel {
+	required int32 position = 1; //位置
+	required string nickName = 2; //昵称
+	required int32 playerId = 3; //id
+	required int32 coin = 4; //金币数
+	required int32 state = 5;//状态 0 取消准备，1准备
+	required int32 online = 6;//状态 0 离线，1在线 
+}
+
+//解散房间
+message DismissVipRoomRequest {
+	required string code = 1; //桌子编号
+}
+
+//vip房间玩家列表
+message VipRoomPlayersRequest {
+	required string code = 1; //桌子编号
+}
+
+//踢人
+message KickPlayerRequest {
+   optional string code = 1; //桌子编号
+   optional sint32 playerId = 2; //玩家id
+}
+
+//报名游戏
+message EnrollRequest {
+	optional string gameId = 1; //游戏id
+	optional string matchId = 2; //赛场id
+	repeated int32 cards = 3;//初始手牌，调试用
+	optional string roomCode = 4; //加入房间时用到
+}
+
+//玩家登录检测比赛场报名情况
+message MultiMatchEnrollSynWithLogin {
+	required string gameId = 1; //游戏id
+	required string matchId = 2; //赛场id
+	required sint32 type = 3;//报名情况,0:已报名,1:轮空
+}
+
+//比赛场报名游戏
+message MultiMatchEnrollRequest {
+	optional string gameId = 1; //游戏id,G_DQMJ
+	optional string matchId = 2; //赛场id,G_DQMJ_MATCH_MULTI
+	optional string roomCode = 4; //房间号,31011
+}
+
+//比赛场退出
+message ExitMultiMatchRequest{
+	optional string gameId = 1; //游戏id,G_DQMJ
+	optional string matchId = 2; //赛场id,G_DQMJ_MATCH_MULTI
+	optional string roomCode = 3; //房间号,31011
+	optional sint32 playerId = 4;//玩家id
+}
+
+//比赛场退出回复
+message ExitMultiMatchResponse{
+
+}
+
+//比赛场开始后报名人数不足(4人),解散比赛
+message DissmissMultiMatch{
+
+}
+
+//比赛场一轮开始(服务端单向推送)
+message MultiMatchStartNotify{
+	required sint32 lunNum = 1;//第几轮
+	required sint32 type = 2;//玩家类型(0:轮空的,1:进行比赛的,2:淘汰的)
+	required sint32 rankNum = 3;//玩家当前排名
+	repeated DeskPalyer deskPlayer = 5;//每个桌子上的玩家
+}
+//比赛程进行游戏的比赛玩家(4人)
+message DeskPalyer{
+	required sint32 playerId = 1;//玩家ID
+	required string nickName = 2;//玩家昵称
+	required sint32 playerScore = 3;//玩家积分
+	required string imgUrl = 4;//玩家微信头像url
+}
+
+//同步排行榜消息
+message MultiMatchRankSyn{
+	repeated PlayerScoreInMatch scores = 1;//本轮玩家积分列表
+}
+
+//比赛场玩家积分
+message PlayerScoreInMatch{
+	required sint32 playerId = 1;//玩家ID
+	required string playerName = 2;//玩家昵称
+	required string playerImgUrl = 3;//玩家微信头像URL
+	required sint32 playerScore = 4;//玩家积分
+	required sint32 rankNum = 5;//玩家排名
+}
+
+//比赛场玩家打完一轮中所有局数的等待界面(服务端单向推送)
+message WaitNextMatchStart{
+
+}
+
+//比赛场比赛结束
+message FinishMultiMatch{
+	required sint32 rankNum = 1;//玩家排名
+	required sint32 rankNumAward = 2;//玩家排名奖励
+	required sint32 awardType = 3;//玩家排名奖励类型0,钻石,1金币,2,实物
+}
+
+//比赛场比赛人数
+message MultiMatchPlayerNum{
+	required sint32 matchid = 1;//赛场id,1,1分钟快速赛
+	required sint32 playerNum = 2;//玩家人数
+}
+
+//空包, 报名成功后通过PlayerGamingSyn推送消息
+message EnrollResponse {
+	required string gameId = 1;
+}
+
+//推送当前玩家正在游戏的消息, 报名成功或断线重连会推送此包
+message PlayerGamingSyn {
+	required string gameId = 1;
+	required string matchId = 2;
+	required string roomId = 3;
+	required string deskId = 4;
+	required int32 wanfa = 5; //玩法
+	optional sint32 roomType = 6; //房间类型  1:2人麻将 2：4人麻将
+	optional sint32 totalQuan = 7; //总圈数
+	optional sint32 limitMax = 8; //封顶分数
+	optional int32 yaZhu = 9; // (炸金花)押注选择(一分场,二分场,五分场,自由场)
+	optional int32 menNum = 10; //(扎金花)闷几圈
+	optional int32 ownerId = 11; //(扎金花)房主ID
+	optional sint64 clubId = 12; //俱乐部id,-1:不是俱乐部房间
+	optional sint32 clubRoomType = 13; //俱乐部房间类型 -1:不是俱乐部房间,0:普通场,1:积分场
+	optional sint32 clubRoomEnterScore = 14; //俱乐部房间为积分场时有值,否则为-1,为准入分数
+	optional sint32 clubRoomChouShuiScore = 15; //俱乐部房间为积分场时有值,否则为-1,为抽水分数(赢得分数达到这个分数开始抽水)
+	optional sint32 clubRoomCanFuFen = 16; //俱乐部房间为积分场时是否可以负分,-1不是积分场,1不可以,2可以
+	optional sint32 clubRoomChouShuiNum = 17; //俱乐部房间为积分场时赢家抽水数量,-1,不是积分场,100,所有赢家
+	optional sint32 clubRoomZengSongNum = 18; //俱乐部房间为积分场时赢家抽水比例,-1,不是积分场,1为1%,2为2%,以此类推
+	optional sint32 qiangZhuangNum = 19; //牛牛抢庄倍数,经典抢庄传0
+	optional string niuFanStr = 20; //牛番选择
+	optional sint32 erBaGameType = 21; //二八的游戏类型
+}
+
+//推送玩家进入桌子消息，报名成功/别的玩家进入桌子 会向当前玩家推送本消息
+message PlayerSitSyn {
+	required int32 position = 1; //位置
+	required string nickName = 2; //昵称
+	required int32 playerId = 3; //id
+	required int32 coin = 4; //金币数
+	required int32 state = 5;//状态 0 取消准备，1准备
+	required int32 online = 6;//状态 0 离线，1在线
+	optional string headImg = 7; //头像
+	optional sint32 sex = 8; //性别
+	optional sint32 score = 9; //积分
+	optional int32 away = 10; //1 离开 0非离开
+	optional sint32 fanka = 11;
+	optional sint32 continueWinCount = 12;
+	optional sint32 totalGameCount = 13;
+	optional double winRate = 14;
+	optional string ip = 15;
+	optional string maxFanType = 16;
+	repeated sint32 handcard = 17; //手牌
+	repeated sint32 downcard = 18; //吃碰杠
+	optional sint32 diamond = 19; //钻石
+	optional string deskId = 20; //桌子id
+}
+
+//推送玩家进入桌子消息，报名成功/别的玩家进入桌子 会向当前玩家推送本消息
+message PlayerEnterSyn {
+	required int32 position = 1; //位置
+	required string nickName = 2; //昵称
+	required int32 playerId = 3; //id
+	required int32 coin = 4; //金币数
+	required int32 state = 5;//状态 0 取消准备，1准备
+	required int32 online = 6;//状态 0 离线，1在线
+	optional string headImg = 7; //头像
+	optional sint32 sex = 8; //性别
+	optional sint32 score = 9; //积分
+	optional int32 away = 10; //1 离开 0非离开
+	optional sint32 fanka = 11;
+	optional sint32 continueWinCount = 12;
+	optional sint32 totalGameCount = 13;
+	optional double winRate = 14;
+	optional string ip = 15;
+	optional string maxFanType = 16;
+	repeated sint32 handcard = 17; //手牌
+	repeated sint32 downcard = 18; //吃碰杠
+	optional sint32 diamond = 19; //钻石
+	optional string deskId = 20; //桌子id
+}
+
+//推送玩家离开桌子消息
+message PlayerAwaySyn {
+	required sint32 playerId = 1; //玩家id
+}
+
+//推送玩家掉线消息
+message PlayerOfflineSyn {
+   required sint32 playerId = 1; //玩家id
+}
+
+//推送玩家回来消息
+message PlayerComebackSyn {
+   required sint32 playerId = 1; //玩家id
+}
+
+//推送玩家重连消息
+message PlayerReconnectSyn {
+   required sint32 playerId = 1; //玩家id
+}
+
+//推送玩家退出大厅消息
+message PlayerExitSyn {
+   required sint32 playerId = 1; //玩家id
+}
+
+//message ReadyReponse{
+//	required int32 position = 1; //位置
+//	required int32 state = 2;//状态 0 取消准备，1准备
+//}
+
+//同步玩家的准备状态
+message ReadySyn{
+	//required int32 position = 1; //位置
+	required sint32 playerId = 1; //玩家id
+	required int32 state = 2;//状态 0 取消准备，1准备
+}
+
+//换桌
+message ChangeDeskRequest {
+	required int32 playerId = 1; //id
+}
+
+message ChangeDeskResponse {
+
+}
+
+//游戏开始
+message GameStartSyn {
+   required string deskId = 1;//开赛的桌子id
+}
+
+//游戏消息同步-推送
+message GameMsgSyn {
+	required int32 flag = 1; //0 前往赛场 1返回大厅,领取救济金 2充值
+    required string gameId = 2; //忽略此字段
+    optional string matchId = 3; //游戏场,比如high_match（高分场）, 在flag=0时该字段有效
+    optional string msg = 4; //弹窗消息，比如:你的分数已经高于本场条件,是否前往高级场? 当flag为1时为领取金币数量
+}
+
+message GameChatMsgRequest {
+   optional bytes content = 1;
+   optional int32 contentType = 2; //类型 1 文字 2图片 3语音
+   optional string deskId = 3; //桌子id
+}
+
+//游戏聊天消息
+message GameChatMsgSyn {
+	optional string deskId = 1;
+	optional int32 position = 2;
+	optional bytes data = 3;
+	optional int32 contentType = 4; //类型 1 文字 2图片 3语音
+}
+
+message HangupSyn {
+	optional int32 position = 1; //位置
+	optional int32 status = 2; // 1 托管  2 正常
+}
+
+//桌子解散
+message DeskDestorySyn {
+	optional string deskId = 1;
+}
+
+message DissmissVoteRequest {
+	optional int32 position = 1;
+	optional bool agree = 2; //是否同意
+	optional string deskId = 3; //桌子id
+}
+
+message DissmissVoteResponse {
+	optional int32 applyOpsition = 1;//申请人位置
+	optional int32 leftTimeMillis = 2;//剩余毫秒数
+	repeated DissmissStatus dissmissStatus = 3;
+}
+
+message DissmissStatus{
+	optional int32 position = 1;
+	optional bool agree = 2; //是否同意
+}
+
+message PlayerGamingSynInquire {
+	optional bool isGaming = 1; //是否在游戏中
+}
+
+
+//开始游戏
+message StartGameRequest {
+
+	optional string roomCode = 1; //房间号
+}
+message HangupRequest {
+	optional string deskId = 1; //桌子id
+}
+
+message CancelHangupRequest {
+	optional string deskId = 1; //桌子id
+}
+
+message AwayGameRequest {
+	optional string deskId = 1; //桌子id
+}
+
+message ExitGameRequest {
+	optional string deskId = 1; //桌子id
+}
+
+message PlayerSitRequst {
+	optional string deskId = 1; //桌子id
+	optional sint32 deskPos = 2; //桌子位置
+}
+
+
+message PlayerExitPosNotExitRoomRequst {
+	optional string deskId = 1; //桌子id
+	optional sint32 deskPos = 2; //桌子位置
+}
+
+message PlayerExitPosNotExitRoomResponse {
+	optional string deskId = 1; //桌子id
+	optional sint32 deskPos = 2; //桌子位置
+	optional sint32 playerId = 3; //桌子位置
+}
+
+
+//更新vip房间列表
+message VipRoomListSyn {
+	repeated VipRoomModel roomList = 1;
+}
+
+message VipRoomModel {
+	required sint32 roomType = 1; //房间类型,0:俱乐部普通场,1:俱乐部积分场,-1,大厅场(在大厅创建的个人房间)
+	required string deskId = 2; //桌子编号
+	required sint32 curJuNum = 3; //局数
+	required sint32 juNum = 4; //总局数
+	required int32 wanfa = 5; //玩法
+	required sint32 playerCount = 6; //当前在玩人数
+	required string gameId = 7;//游戏ID
+	required sint64 clubId = 8; //俱乐部ID
+	required string matchId = 9; //赛场ID
+	required int32 limitMax = 10; //封顶分数
+}
+
+//玩家切换到大厅请求房间列表
+message VipRoomListRequest {
+
+}
+
+message VipRoomPlayerRequest {
+	required string deskId = 1; //桌子编号
+}
+
+message VipRoomPlayerResponse {
+	required string deskId = 1; //桌子编号
+	required string curJuNum = 2; //当前局数
+	required sint32 juNum = 3; //总局数
+	required sint32 wanfa = 4; //玩法
+	repeated DeskPalyer playerList = 5;
+    required string gameId = 6;
+}
+
+//查看观战
+message ViewGuanZhanReq {
+	required string deskId = 1; //桌子编号
+}
+
+//查看观战
+message ViewGuanZhanResp {
+	required string deskId = 1; //桌子编号
+	repeated GuanZhanPlayer playerList= 2;
+}
+
+message GuanZhanPlayer {
+	required string playerName = 1; //当前局数
+	required sint32 playerId = 2; //总局数
+	required string playerImg = 3; //玩法
+}

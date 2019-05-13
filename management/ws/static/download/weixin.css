@@ -1,0 +1,96 @@
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+body{ background:#ebeaea;}
+.m_bt20{ margin-bottom:20px; }
+
+
+.get {color: #fff; text-align:center; padding-top:30px;}
+
+.am-fanhui{ position:absolute;width:14%;top:3%; z-index:999; left:2%; }
+.am-fanhui a{ display:block;}
+
+
+.hbgl{ width:100%; overflow:hidden; padding:10px;}
+.hbgl_ul{ overflow:hidden;}
+.hbgl_ul li{ width:100%;color:#fff; padding:18px; background:url(../weixin/p2.jpg) 0 0 no-repeat; background-size:100% 100%; overflow:hidden;}
+.hbgl_ul li a{ display:block;text-indent:2%;  color:#fff;text-align:left; font-size:28px; float:left; width:70%;}
+
+
+.hbgl_img{ width:100%; padding:10px; text-align:right;}
+
+.hbgl_fl{ float:left; display:inline-block; width:12%;}
+.hbgl_fl img,.hbgl_fr img{ padding-top:4%;}
+.hbgl_fr{ float:right;display:inline-block; width:12%;}
+
+
+.nnwf{ width:100%; padding:30px; padding-top:20px;}
+.nnwf p{ margin-bottom:0;}
+.nnwf h2{ margin-top:0;}
+.nnwf .m_bt20{ margin-bottom:20px; }
+
+
+.login{ width:100%; padding:30px;}
+.login_p{ color:#666;}
+.login_txt{ height:36px; line-height:36px; width:72%;}
+.login_btn{ display:inline-block; width:100%; overflow:hidden;height:90px;background:url(../weixin/login.png) 0 0 no-repeat; background-size:100%;border:none;}
+p.login_p1{ text-align:right; margin-bottom:0;}
+p.login_p1 a{ color:#F00; text-decoration:underline;}
+
+
+.hbxz{ padding:30px; width:100%;}
+
+
+.cz_top{ width:100%; background:url(../weixin/cz_bg.jpg) 0 0 repeat-x; overflow:hidden; text-align:center;}
+.cz_top img{ padding:20px; padding-top:25px;}
+.cz_box{ width:100%; background:#4c85b2; overflow:hidden; padding:20px;}
+.cz_box .cz_box_fl{ float:left; display:inline-block; width:25%;}
+.cz_box .cz_box_fr{ float:right; width:70%; display:inline-block;  overflow:hidden;}
+.cz_box .cz_box_fr .cz_box_p1{ font-size:22px; color:#fff; margin-bottom:10px;}
+.cz_box .cz_box_fr span{ color:#fff; font-size:18px;}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 360px) {
+	
+  .am-fanhui{ position:absolute;width:14%;top:3%; z-index:999; left:2%; }
+  .hbgl_ul li a{ font-size:22px;}
+  .login_txt{ width:65%;}
+  
+  .am-div-list li .am-fr .am-list-ylq{ margin-top:0px; display:inline-block; width:100%;}
+   .am-div-list li .am-fr {padding-top:0px;}
+   .am-div-list li span.am-fl{ font-size:12px;}
+   .am-div-list li{ padding-top:5px !important;  }
+}
+
+@media screen and (min-width: 361px) {
+
+	.am-fanhui{ position:absolute;width:14%;top:3%; z-index:999; left:2%; }
+	.hbgl_ul li a{ font-size:28px;}
+	.login_txt{ width:72%;}
+	
+	.am-div-list li span.am-fl{ font-size:1.6rem;}
+	.am-div-list li .am-fr {padding-top:5px;}
+}
+
+
+.am-div-list{max-width:1000px; margin:auto; padding:20px; border:0; padding-bottom:0;}
+.am-div-list li{ width:100%; overflow:hidden; padding:0px 0 15px 0 !important; background:#ebeaea !important;margin-bottom:15px; border:0; border-bottom:1px solid #333 !important;  }
+.am-div-list li img{padding-top:3px; }
+.am-div-list li span.am-fl{ display:inline-block; width:26%;  text-align:left; }
+.am-div-list li span.am-fl-1{ display:inline-block; width:35%;  text-align:center; padding-top:7%; color:#5f0011; font-size:24px;}
+
+.am-div-list li .am-fr{ display:inline-block; width:32%; text-align:center;padding-top:6%;}
+.am-div-list li span.am-fl span{ display:inline-block; width:100%; text-align:left; }
+.am-div-list li .am-fr .am-list-ylq{display:block; width:100%;background:url(../weixin/cz_btn.png) no-repeat; background-size:100% 100%; font-size:20px; padding-bottom:18px; color:#fff;}
+.am-div-list li .am-fr p{ margin-bottom:0;}
+
+.cz_font{ text-align:center; width:100%; overflow:hidden; color:#d40000; font-size:20px; padding:30px; padding-top:0;}

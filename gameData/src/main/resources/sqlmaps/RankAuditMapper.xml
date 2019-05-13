@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.RankAudit">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.RankAudit">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_settle_date" jdbcType="BIGINT" property="planSettleDate" />
+    <result column="actual_settle_date" jdbcType="BIGINT" property="actualSettleDate" />
+    <result column="award_status" jdbcType="INTEGER" property="awardStatus" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_settle_date, actual_settle_date, award_status, group_id, ctime, mtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from rank_audit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.RankAudit" useGeneratedKeys="true">
+    insert into rank_audit (plan_settle_date, actual_settle_date, award_status, 
+      group_id, ctime, mtime
+      )
+    values (#{planSettleDate,jdbcType=BIGINT}, #{actualSettleDate,jdbcType=BIGINT}, #{awardStatus,jdbcType=INTEGER}, 
+      #{groupId,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.RankAudit">
+    update rank_audit
+    set plan_settle_date = #{planSettleDate,jdbcType=BIGINT},
+      actual_settle_date = #{actualSettleDate,jdbcType=BIGINT},
+      award_status = #{awardStatus,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      mtime = #{mtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

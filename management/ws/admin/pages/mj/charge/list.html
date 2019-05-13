@@ -1,0 +1,122 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>充值记录列表</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>玩家id：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.userId"/>
+                                </td>
+                                <td>
+                                    <label>操作日期：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.startOrderTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+										   至
+                                    <input type="text" ng-model="query.endOrderTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                            </tr>
+							<tr ui-layout-col="">
+                                <td>
+                                    <label>订单状态:</label>
+                                </td>
+                                <td>
+									<select ng-model="query.orderStatus">
+										<option value="1">已完成</option>
+										<option value="2">未完成</option>
+									</select>
+                                </td>
+                                <td>
+                                    <label>金币/钻石:</label>
+                                </td>
+                                <td>
+									<select ng-model="query.type">
+										<option value="1" selected>钻石</option>
+										<option value="2">金币</option>
+									</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+					<table class="table table-bordered table-striped" style="font-size:20px;color:red">
+						<tr>
+							<td>累计消费(人民币)：{{tmp.totalMoney}}</td>
+							<td>累计消费人数(去重): {{tmp.totalUser}}</td>
+							<td>人均消费: {{tmp.avgBuy}}</td>							
+						</tr>
+					</table>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">id</th>
+                            <th >玩家id</th>
+                            <th >玩家名称</th>
+                            <th >订单号</th>
+                            <th >购买商品id</th>
+                            <th >购买商品名称</th>
+                            <th >充值时间</th>
+                            <th >订单状态</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.userId}}
+                            </td>
+                            <td>
+                                {{one.userName}}
+                            </td>
+                            <td>
+                                {{one.orderId}}
+                            </td>
+                            <td>
+                                {{one.productId}}
+                            </td>
+                            <td>
+                                {{one.productName}}
+                            </td>
+                            <td>
+                                {{one.mtime|date:"yyyy/MM/dd HH:mm:ss" }}
+                            </td>
+                            <td>
+                                <span ng-if="one.orderStatus == 1">待付款</span>
+                                <span ng-if="one.orderStatus == 2">支付成功待发货</span>
+                                <span ng-if="one.orderStatus == 3">支付失败</span>
+                                <span ng-if="one.orderStatus == 4">已发货订单完成</span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

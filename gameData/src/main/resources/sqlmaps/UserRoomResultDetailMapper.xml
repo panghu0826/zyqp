@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserRoomResultDetail">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserRoomResultDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="banker_pos" jdbcType="INTEGER" property="bankerPos" />
+    <result column="winer_pos" jdbcType="INTEGER" property="winerPos" />
+    <result column="game_count" jdbcType="INTEGER" property="gameCount" />
+    <result column="video_id" jdbcType="BIGINT" property="videoId" />
+    <result column="game_id" jdbcType="VARCHAR" property="gameId" />
+    <result column="club_id" jdbcType="BIGINT" property="clubId" />
+    <result column="club_room_type" jdbcType="INTEGER" property="clubRoomType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.buding.db.model.UserRoomResultDetail">
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+    <result column="video_detail" jdbcType="LONGVARCHAR" property="videoDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, room_id, room_name, start_time, end_time, banker_pos, winer_pos,game_count,video_id,game_id,club_id,club_room_type
+  </sql>
+  <sql id="Blob_Column_List">
+    detail,video_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_room_result_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserRoomResultDetail" useGeneratedKeys="true">
+    insert into user_room_result_detail (room_id, room_name, start_time, 
+      end_time, banker_pos, winer_pos,game_count,video_id,detail,video_detail,game_id,club_id,club_room_type)
+    values (#{roomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{bankerPos,jdbcType=INTEGER}, #{winerPos,jdbcType=INTEGER},  #{gameCount,jdbcType=INTEGER},#{videoId,jdbcType=BIGINT},
+      #{detail,jdbcType=LONGVARCHAR},#{videoDetail,jdbcType=LONGVARCHAR},#{gameId,jdbcType=VARCHAR},#{clubId,jdbcType=BIGINT},#{clubRoomType,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.buding.db.model.UserRoomResultDetail">
+    update user_room_result_detail
+    set room_id = #{roomId,jdbcType=BIGINT},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      game_id = #{gameId,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      banker_pos = #{bankerPos,jdbcType=INTEGER},
+      winer_pos = #{winerPos,jdbcType=INTEGER},
+      game_count = #{gameCount,jdbcType=INTEGER},
+      video_id = #{videoId,jdbcType=BIGINT},
+      detail = #{detail,jdbcType=LONGVARCHAR},
+      video_detail = #{videoDetail,jdbcType=LONGVARCHAR},
+      club_id = #{clubId,jdbcType=BIGINT},
+      club_room_type = #{clubRoomType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserRoomResultDetail">
+    update user_room_result_detail
+    set room_id = #{roomId,jdbcType=BIGINT},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      game_id = #{gameId,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      banker_pos = #{bankerPos,jdbcType=INTEGER},
+      game_count = #{gameCount,jdbcType=INTEGER},
+      video_id = #{videoId,jdbcType=BIGINT},
+      winer_pos = #{winerPos,jdbcType=INTEGER},
+      club_id = #{clubId,jdbcType=BIGINT},
+      club_room_type = #{clubRoomType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey">
+    DELETE FROM user_room_result_detail where datediff(now(), end_time) &gt; 2
+  </delete>
+</mapper>

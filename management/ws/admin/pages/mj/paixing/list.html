@@ -1,0 +1,70 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>{{tmp.contentLabel}}列表</h5>
+                    <div class="actions">
+                        <!--<button class="btn" ng-click="goToAdd();">新增</button>-->
+                        <!--<button class="btn" ng-click="changeSeq4Top();" ng-if="tmp.canSetTop">置顶排序</button>-->
+                        <!--<button class="btn" ng-click="setStatusBatch(1);" ng-if="tmp.isAct || tmp.isNews">批量发布</button>-->
+                        <button class="btn" ng-click="addPaixing();">添加牌型</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">
+                                <input type="checkbox" ng-model="tmp.isAllChecked"/>
+                            </th>
+                            <th width="5%">ID</th>
+                            <th width="20%">测试点</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                <input type="checkbox" ng-model="one.isChecked"/>
+                            </td>
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.data.name}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="goToEdit(one)">编辑</button>
+                                <button class="btn" ng-click="push2Desk(one.id)">推到调试桌</button>
+                                <button class="btn" ng-click="del(one)">删除</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowPush', title: '推送牌型', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 600px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label>玩家id：</label></td>
+                <td><input type="text" ng-model="tmp.playerId"/></td>
+            </tr>
+        </table>
+        <button class="btn btn-blue" ng-click="doPush2Desk()">推送</button>
+        <button class="btn" ng-click="ctrl.isShowPush = false">关闭</button>
+    </script>
+</div>

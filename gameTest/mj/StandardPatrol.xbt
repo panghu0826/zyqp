@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tree>
+  <Node id="Node_0" name="StandardPatrol" type="Root">
+    <Children>
+      <Node id="Node_2" type="Sequence">
+        <Children>
+          <Node id="Node_4" name="ComputeCharacterPosition" type="Action" />
+          <Node id="Node_5" type="Repeat">
+            <Children>
+              <Node id="Node_6" type="Sequence">
+                <Children>
+                  <Node id="Node_7" name="ComputeRandomClosePosition" type="Action">
+                    <Parameters>
+                      <Parameter name="initialPosition" fromcontext="true">CharacterPosition</Parameter>
+                    </Parameters>
+                  </Node>
+                  <Node id="Node_8" name="AttackMove" type="Action">
+                    <Parameters>
+                      <Parameter name="target" fromcontext="true">target</Parameter>
+                    </Parameters>
+                  </Node>
+                </Children>
+              </Node>
+            </Children>
+          </Node>
+        </Children>
+      </Node>
+    </Children>
+  </Node>
+</Tree>
+

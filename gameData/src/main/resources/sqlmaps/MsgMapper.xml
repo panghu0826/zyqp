@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.Msg">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.Msg">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="target_id" jdbcType="INTEGER" property="targetId" />
+    <result column="target_type" jdbcType="INTEGER" property="targetType" />
+    <result column="sender_id" jdbcType="INTEGER" property="senderId" />
+    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
+    <result column="popup" jdbcType="BIT" property="popup" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="str_pos" jdbcType="VARCHAR" property="strPos" />
+    <result column="str_client_type" jdbcType="VARCHAR" property="strClientType" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+    <result column="start_date_time" jdbcType="TIMESTAMP" property="startDateTime" />
+    <result column="msg_type" jdbcType="VARCHAR" property="msgType" />
+    <result column="reward_id" jdbcType="BIGINT" property="rewardId" />
+    <result column="stop_date_time" jdbcType="TIMESTAMP" property="stopDateTime" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="str_params" jdbcType="VARCHAR" property="strParams" />
+    <result column="play_setting" jdbcType="VARCHAR" property="playSetting" />
+    <result column="msg_main_type" jdbcType="INTEGER" property="msgMainType" />
+    <result column="attach_num" jdbcType="INTEGER" property="attachNum" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="item_count" jdbcType="INTEGER" property="itemCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, target_id, target_type, sender_id, sender_name, popup, priority, str_pos, str_client_type, 
+    title, msg, start_date_time, msg_type, reward_id, stop_date_time, img, str_params, 
+    play_setting, msg_main_type, attach_num, status, item_id, item_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from msg
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.Msg" useGeneratedKeys="true">
+    insert into msg (target_id, target_type, sender_id, 
+      sender_name, popup, priority, 
+      str_pos, str_client_type, title, 
+      msg, start_date_time, msg_type, 
+      reward_id, stop_date_time, img, 
+      str_params, play_setting, msg_main_type, 
+      attach_num, status, item_id, 
+      item_count)
+    values (#{targetId,jdbcType=INTEGER}, #{targetType,jdbcType=INTEGER}, #{senderId,jdbcType=INTEGER}, 
+      #{senderName,jdbcType=VARCHAR}, #{popup,jdbcType=BIT}, #{priority,jdbcType=INTEGER}, 
+      #{strPos,jdbcType=VARCHAR}, #{strClientType,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{msg,jdbcType=VARCHAR}, #{startDateTime,jdbcType=TIMESTAMP}, #{msgType,jdbcType=VARCHAR}, 
+      #{rewardId,jdbcType=BIGINT}, #{stopDateTime,jdbcType=TIMESTAMP}, #{img,jdbcType=VARCHAR}, 
+      #{strParams,jdbcType=VARCHAR}, #{playSetting,jdbcType=VARCHAR}, #{msgMainType,jdbcType=INTEGER}, 
+      #{attachNum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{itemId,jdbcType=VARCHAR}, 
+      #{itemCount,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.Msg">
+    update msg
+    set target_id = #{targetId,jdbcType=INTEGER},
+      target_type = #{targetType,jdbcType=INTEGER},
+      sender_id = #{senderId,jdbcType=INTEGER},
+      sender_name = #{senderName,jdbcType=VARCHAR},
+      popup = #{popup,jdbcType=BIT},
+      priority = #{priority,jdbcType=INTEGER},
+      str_pos = #{strPos,jdbcType=VARCHAR},
+      str_client_type = #{strClientType,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      msg = #{msg,jdbcType=VARCHAR},
+      start_date_time = #{startDateTime,jdbcType=TIMESTAMP},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      reward_id = #{rewardId,jdbcType=BIGINT},
+      stop_date_time = #{stopDateTime,jdbcType=TIMESTAMP},
+      img = #{img,jdbcType=VARCHAR},
+      str_params = #{strParams,jdbcType=VARCHAR},
+      play_setting = #{playSetting,jdbcType=VARCHAR},
+      msg_main_type = #{msgMainType,jdbcType=INTEGER},
+      attach_num = #{attachNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      item_count = #{itemCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey">
+    DELETE FROM msg where datediff( now(), start_date_time) &gt; 2
+  </delete>
+</mapper>

@@ -1,0 +1,22 @@
+<ul class="ng-ui-table-tree">
+	<#if (data.opts.choose)>
+	<li class="ext-tree-choose-header">
+		<span class="leaf-control expand collapse level0"></span>
+		<input type="checkbox" class="ext-tree-choose-all" />
+	</li>
+	</#if>
+<#list data.list as one>
+	<li class="ext-tree-choose-item <#if (one.level != 1)>ng-hide</#if>" data-index="${one_index}" data-level="${one.level}">
+		<span class="leaf-control expand level${one.level} <#if (one.leaf)>leaf</#if>"></span>
+		<#if (data.opts.choose)>
+		<input type="checkbox"<#if (one.isChecked)> checked="true"</#if> class="ext-tree-choose-one" />
+		</#if>
+
+		<#if (data.opts.fn)>
+		<a href="javascript:void();" class="ext-tree-link">${one.label}</a>
+		<#else>
+		<label>${one.label}</label>
+		</#if>
+	</li>
+</#list>
+</ul>

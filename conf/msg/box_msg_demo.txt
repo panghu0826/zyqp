@@ -1,0 +1,19 @@
+{
+ 	"senderId":-1,
+ 	"senderName":"系统管理员",
+ 	"receiver":1,
+ 	"msgType":"DM01",
+ 	"priority":5,	
+ 	"pos":[1,2,3,4,5,6,7,8],	
+   	"clientType":[1,2,3,4],
+   	"msg":"点击领取房卡",
+   	"startTime":1491198007000,
+	"stopTime":1591198007000,
+	"read":false,
+	"popup":false,
+	"title":"有附件的消息",
+	"img":"a.png",
+	"awardId":329,
+	"param":[],
+	"attachNum":1
+}

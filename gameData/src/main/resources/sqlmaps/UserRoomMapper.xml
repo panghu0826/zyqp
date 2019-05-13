@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserRoom">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserRoom">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="room_code" jdbcType="VARCHAR" property="roomCode" />
+    <result column="room_pwd" jdbcType="VARCHAR" property="roomPwd" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="room_state" jdbcType="INTEGER" property="roomState" />
+    <result column="game_id" jdbcType="VARCHAR" property="gameId" />
+    <result column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="wanfa" jdbcType="VARCHAR" property="wanfa" />
+    <result column="room_conf_id" jdbcType="VARCHAR" property="roomConfId" />
+    <result column="last_active_time" jdbcType="TIMESTAMP" property="lastActiveTime" />
+    <result column="used_count" jdbcType="INTEGER" property="usedCount" />
+    <result column="total_count" jdbcType="INTEGER" property="totalCount" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+    <result column="limit_max" jdbcType="INTEGER" property="limitMax" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, owner_id, room_code, room_pwd, room_name, room_state, game_id, match_id, wanfa, 
+    room_conf_id, last_active_time, used_count, total_count, params, ctime, mtime,limit_max
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_room
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserRoom" useGeneratedKeys="true">
+    insert into user_room (owner_id, room_code, room_pwd, 
+      room_name, room_state, game_id, 
+      match_id, wanfa, room_conf_id, 
+      last_active_time, used_count, total_count, 
+      params, ctime, mtime,limit_max
+      )
+    values (#{ownerId,jdbcType=INTEGER}, #{roomCode,jdbcType=VARCHAR}, #{roomPwd,jdbcType=VARCHAR}, 
+      #{roomName,jdbcType=VARCHAR}, #{roomState,jdbcType=INTEGER}, #{gameId,jdbcType=VARCHAR}, 
+      #{matchId,jdbcType=VARCHAR}, #{wanfa,jdbcType=VARCHAR}, #{roomConfId,jdbcType=VARCHAR}, 
+      #{lastActiveTime,jdbcType=TIMESTAMP}, #{usedCount,jdbcType=INTEGER}, #{totalCount,jdbcType=INTEGER}, 
+      #{params,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP}, #{limitMax,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserRoom">
+    update user_room
+    set owner_id = #{ownerId,jdbcType=INTEGER},
+      room_code = #{roomCode,jdbcType=VARCHAR},
+      room_pwd = #{roomPwd,jdbcType=VARCHAR},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      room_state = #{roomState,jdbcType=INTEGER},
+      game_id = #{gameId,jdbcType=VARCHAR},
+      match_id = #{matchId,jdbcType=VARCHAR},
+      wanfa = #{wanfa,jdbcType=VARCHAR},
+      room_conf_id = #{roomConfId,jdbcType=VARCHAR},
+      last_active_time = #{lastActiveTime,jdbcType=TIMESTAMP},
+      used_count = #{usedCount,jdbcType=INTEGER},
+      total_count = #{totalCount,jdbcType=INTEGER},
+      params = #{params,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      limit_max = #{limitMax,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <delete id="deleteByPrimaryKey">
+    DELETE FROM user_room where datediff(now(), ctime) &gt; 2
+  </delete>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.FuLiCount">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.FuLiCount">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="player_id" jdbcType="INTEGER" property="playerId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="player_name" jdbcType="VARCHAR" property="playerName" />
+    <result column="count_date" jdbcType="TIMESTAMP" property="countDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    player_id,
+    player_name,
+    count_date,
+    num
+  </sql>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.FuLiCount" useGeneratedKeys="true">
+    INSERT INTO
+      t_fuli_count (
+        player_id,
+        player_name,
+        count_date,
+        num)
+    VALUES (
+      #{playerId,jdbcType=INTEGER},
+      (select nickname as player_name from user where id = #{playerId,jdbcType=INTEGER}),
+      now(),
+      #{num,jdbcType=INTEGER}
+      )
+  </insert>
+</mapper>

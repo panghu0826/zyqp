@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+        
+    <bean id="adminServer" class="com.buding.common.admin.AdminServer">
+        <property name="port" value="${server.admin.port}"></property>
+        <property name="globalVars">
+            <map>     
+                <entry key="cache" value-ref="cacheService"></entry>
+                <entry key="db" value-ref="dbService"></entry>
+            </map>            
+        </property>        
+    </bean>
+</beans>

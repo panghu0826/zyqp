@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>季度指标、目标、权重设置</title>
+    <style>
+        body {
+            font-size: 11px;
+        }
+
+        input[type="text"] {
+            width: 60px;
+            margin-right: 2px;
+        }
+
+        input[type="text"].per {
+            width: 20px;
+        }
+
+        h3 {
+            font-weight: bold;
+            color: blue;
+            margin: 2px;
+        }
+
+        label {
+            display: inline-block;
+            width: 130px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        ul {
+            width: 300px;
+        }
+
+        li {
+            border: silver 1px solid;
+            margin: 4px;
+        }
+
+        li div {
+            margin: 2px;
+        }
+
+        #wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 150%;
+        }
+
+        th {
+            max-width: 100px;
+        }
+
+        td {
+            border: blue 1px solid;
+        }
+
+        h3:nth-child(n+9) {
+            color: red;
+        }
+
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+            width: 100%;
+            height: 12px;
+            background: #fff;
+        }
+
+        .pace-inactive {
+            display: none;
+        }
+
+        .pace .pace-progress {
+            background-color: #29d;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .pace .pace-activity {
+            position: fixed;
+            top: 0;
+            right: -32px;
+            bottom: 0;
+            left: 0;
+
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+
+            background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.2)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.75, rgba(255, 255, 255, 0.2)), color-stop(0.75, transparent), to(transparent));
+            background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+            background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+            background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+            -webkit-background-size: 32px 32px;
+            -moz-background-size: 32px 32px;
+            -o-background-size: 32px 32px;
+            background-size: 32px 32px;
+
+            -webkit-animation: pace-theme-barber-shop-motion 500ms linear infinite;
+            -moz-animation: pace-theme-barber-shop-motion 500ms linear infinite;
+            -ms-animation: pace-theme-barber-shop-motion 500ms linear infinite;
+            -o-animation: pace-theme-barber-shop-motion 500ms linear infinite;
+            animation: pace-theme-barber-shop-motion 500ms linear infinite;
+        }
+
+        @-webkit-keyframes pace-theme-barber-shop-motion {
+            0% {
+                -webkit-transform: none;
+                transform: none;
+            }
+            100% {
+                -webkit-transform: translate(-32px, 0);
+                transform: translate(-32px, 0);
+            }
+        }
+
+        @-moz-keyframes pace-theme-barber-shop-motion {
+            0% {
+                -moz-transform: none;
+                transform: none;
+            }
+            100% {
+                -moz-transform: translate(-32px, 0);
+                transform: translate(-32px, 0);
+            }
+        }
+
+        @-o-keyframes pace-theme-barber-shop-motion {
+            0% {
+                -o-transform: none;
+                transform: none;
+            }
+            100% {
+                -o-transform: translate(-32px, 0);
+                transform: translate(-32px, 0);
+            }
+        }
+
+        @-ms-keyframes pace-theme-barber-shop-motion {
+            0% {
+                -ms-transform: none;
+                transform: none;
+            }
+            100% {
+                -ms-transform: translate(-32px, 0);
+                transform: translate(-32px, 0);
+            }
+        }
+
+        @keyframes pace-theme-barber-shop-motion {
+            0% {
+                transform: none;
+                transform: none;
+            }
+            100% {
+                transform: translate(-32px, 0);
+                transform: translate(-32px, 0);
+            }
+        }
+    </style>
+</head>
+<body ng-controller="MyCtrl">
+季度：{{getChoosedSeason()}}
+<select ng-model="year" ng-change="query()">
+    <option value="">-/-</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+</select>
+<select ng-model="season" ng-change="query()">
+    <option value="">-/-</option>
+    <option value="q1">q1</option>
+    <option value="q2">q2</option>
+    <option value="q3">q3</option>
+    <option value="q4">q4</option>
+</select>
+<br/><br/>
+部门：
+<select ng-model="tmp.dept" ng-options="a for a in depts">
+    <option value="">-/-</option>
+</select>
+<br/><br/>
+<hr/>
+<div id="wrap">
+    <ul ng-show="tmp.dept">
+        <li ng-repeat="one in ll|orderBy: 'per'">
+            <h3>{{one.teamname}}</h3>
+            <div>
+                <label>PS</label>
+                <input ng-model="one.ps"/>
+            </div>
+            <div>
+                <label>评级</label>
+                <input ng-model="one.level"/>
+            </div>
+            <div>
+                <label>系数</label>
+                <input ng-model="one.per"/>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<hr/>
+<button ng-click="save()">保存</button>
+</body>
+</html>
+
+<script src="/a/m/data/ana2/target-set/ngjs?pace=1" data-pace-options='{ "ajax": false }'></script>
+<script src="/a/m/data/ana2/target-set/ngjs?underscore=1"></script>
+<script src="/a/m/data/ana2/target-set/ngjs"></script>
+<script>
+    var md = angular.module('tt', []);
+    md.controller('MyCtrl', function ($scope, $http) {
+        $scope.depts = null;
+        $scope.tmp = {dept: ''};
+
+        $scope.ll = [];
+        var allList;
+        var allTeamList;
+
+        var getTeamListInDept = function (dept) {
+            var subList = _.filter(allTeamList, function (it) {
+                return it.deptname == dept;
+            });
+            var subTeamuriList = _.pluck(subList, 'teamuri');
+            var ll = _.filter(allList, function (it) {
+                return subTeamuriList.indexOf(it.teamuri) != -1;
+            });
+            if (ll && ll.length)
+                return ll;
+
+            return subList;
+        };
+
+        $scope.$watch('tmp.dept', function (dept) {
+            $scope.ll = getTeamListInDept(dept);
+        });
+
+        $scope.getChoosedSeason = function () {
+            var s = '';
+            if ($scope.year && $scope.season) {
+                s = $scope.year + $scope.season;
+            }
+            return s;
+        };
+
+        $scope.query = function (force) {
+            var s = $scope.getChoosedSeason();
+            if (!force && !s)
+                return;
+
+            Pace.start();
+            $http.get('/a/m/data/ana/team/level/data?modify=1&season=' + s).success(function (data) {
+                allList = data.list;
+                allTeamList = data.allTeamList;
+                if ($scope.tmp.dept) {
+                    $scope.ll = _.filter(allList, function (it) {
+                        return it.deptname == dept;
+                    });
+                }
+
+                if (!$scope.depts) {
+                    var allDeptList = _.pluck(allTeamList, 'deptname');
+                    $scope.depts = _.filter(_.unique(allDeptList), function (it) {
+                        return it;
+                    });
+                }
+
+                Pace.stop();
+            }).error(function () {
+                Pace.stop();
+            });
+        };
+        $scope.query(true);
+
+        $scope.save = function () {
+            if (!$scope.ll || !$scope.ll.length) {
+                alert('请选择部门！');
+                return;
+            }
+
+            if (_.any($scope.ll, function (it) {
+                        return !it.ps || !it.level || !it.per;
+                    })) {
+                alert('请录入团队得分、分级、系数！');
+                return;
+            }
+
+            var s = $scope.getChoosedSeason();
+            Pace.start();
+            $http.post('/a/m/data/ana/team/level/save', {
+                ll: $scope.ll,
+                season: s
+            }).success(function (data) {
+                alert('保存成功！');
+                Pace.stop();
+            }).error(function () {
+                Pace.stop();
+            });
+        };
+    });
+    angular.bootstrap(document, ['tt']);
+</script>

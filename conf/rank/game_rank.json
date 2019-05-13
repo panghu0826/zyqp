@@ -1,0 +1,26 @@
+[
+	{
+		"id":"GAME_COIN_RANK",
+		"note":"财富排行榜",
+		"name":"财富榜",
+		"pointType":1
+	},
+	{
+		"note":"每周开局排行",
+		"id":"GAME_COUNT_RANK_IN_WEEK",
+		"name":"周开局",
+		"pointType":2
+	},
+	{
+		"note":"每月开局排行",
+		"id":"GAME_COUNT_RANK_IN_MONTH",
+		"name":"月局榜",
+		"pointType":3
+	},
+	{
+		"note":"钻石排行",
+		"id":"GAME_DIAMOND_RANK",
+		"name":"钻石榜",
+		"pointType":4
+	}
+]

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.MallConf">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.MallConf">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="category" jdbcType="INTEGER" property="category" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="item_count" jdbcType="INTEGER" property="itemCount" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="publish" jdbcType="BIT" property="publish" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.buding.db.model.MallConf">
+    <result column="conf_json" jdbcType="LONGVARCHAR" property="confJson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_code, name, category, img, item_count, item_id, price, status, publish
+  </sql>
+  <sql id="Blob_Column_List">
+    conf_json
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.buding.db.model.MallConfKey" resultMap="ResultMapWithBLOBs">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mall_conf
+    where id = #{id,jdbcType=INTEGER}
+      and product_code = #{productCode,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.MallConf" useGeneratedKeys="true">
+    insert into mall_conf (product_code, name, category, 
+      img, item_count, item_id, 
+      price, status, publish, 
+      conf_json)
+    values (#{productCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{category,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{itemCount,jdbcType=INTEGER}, #{itemId,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, #{publish,jdbcType=BIT}, 
+      #{confJson,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.buding.db.model.MallConf">
+    update mall_conf
+    set name = #{name,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      item_count = #{itemCount,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      publish = #{publish,jdbcType=BIT},
+      conf_json = #{confJson,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and product_code = #{productCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.MallConf">
+    update mall_conf
+    set name = #{name,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      item_count = #{itemCount,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      publish = #{publish,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+      and product_code = #{productCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

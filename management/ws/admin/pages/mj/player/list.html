@@ -1,0 +1,148 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>玩家列表</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>玩家id/昵称/帐号：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.name"/>
+                                </td>
+                                <td>
+                                    <label>注册时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.registerStartTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                    -
+                                    <input type="text" ng-model="query.registerEndTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                                <td>
+                                    <label>是否授权：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.auth" >
+                                        <option value="0" selected>不限</option>
+                                        <option value="1" selected>已授权</option>
+                                        <option value="2" selected>未授权</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>帐号类型：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.userType" ng-options="a.code as a.name for a in tmp.userTypeList">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>设备类型：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.deviceType" ng-options="a.code as a.name for a in tmp.deviceTypeList">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>是否在线：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.online" ng-options="a.code as a.name for a in tmp.onlineList">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="widget-content">
+                    <div class="row" style="font-size:20px;color:red">
+                        <div class="md-col-4">
+                            当前在线人数：{{onlinePlayerNum}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">玩家id</th>
+                            <th >玩家类别</th>
+                            <th >玩家账号</th>
+                            <th >玩家名</th>
+                            <th >金币</th>
+                            <th >钻石</th>
+                            <th >注册时间</th>
+                            <th >在线状态</th>
+                            <th >是否授权</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.id}}
+                            </td>
+                            <td>
+                                {{one.role}}
+                            </td>
+                            <td>
+                                {{one.userName}}
+                            </td>
+                            <td>
+                                {{one.nickname}}
+                            </td>
+                            <td>
+                                {{one.coin}}
+                            </td>
+                            <td>
+                                {{one.diamond}}
+                            </td>
+                            <td>
+                                {{one.ctime|date:"yyyy/MM/dd HH:mm:ss" }}
+                            </td>
+                            <td ng-style="{color: one.online === '在线' ? 'red' : 'black'}">
+                                {{one.online}}
+                            </td>
+                            <td>
+                                {{getAuthText(one)}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="view(one)">查看</button>
+                                <button class="btn" ng-if="isAuth(one)" ng-click="cancelAuth(one)">取消授权</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

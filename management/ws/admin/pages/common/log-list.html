@@ -1,0 +1,124 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>日志记录查询</h5>
+                    <div class="actions">
+                        <!--
+                         <button class="btn btn-blue">统计分析</button>
+                        -->
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>开始时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.beginDat"
+                                           ui-date="{dateFormat: 'yy-mm-dd', timeFormat: 'HH:mm:ss', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: true, showMinute: true}"
+                                           ui-valid="datetime"/>
+                                </td>
+                                <td>
+                                    <label>结束时间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.endDat"
+                                           ui-date="{dateFormat: 'yy-mm-dd', timeFormat: 'HH:mm:ss', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: true, showMinute: true}"
+                                           ui-valid="datetime date:range:query.beginDat:+31"
+                                           ui-valid-tips="结束时间和开始时间需要相差1月（31日）之内！"/>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>命名空间：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.ns"/>
+                                </td>
+                                <td>
+                                    <label>模块：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.module"/>
+                                </td>
+                                <td>
+                                    <label>事件：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.action"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="10%">时间</th>
+                            <th width="20%">事件</th>
+                            <th width="10%">app版本</th>
+                            <th width="10%">客户端ip</th>
+                            <th width="10%">用户id</th>
+                            <th width="10%">分享用户id</th>
+                            <th width="10%">耗时</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>{{one.dat|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>
+                                {{one.ns}}
+                                <br/>
+                                {{one.module}}
+                                <br/>
+                                {{one.action}}
+                            </td>
+                            <td>
+                                {{one.appInfo || ''}}
+                                <br/>
+                                {{one.appVer || ''}}
+                                <br ng-if="one.deviceId"/>
+                                <span ng-if="one.deviceId">设备号：{{one.deviceId}}</span>
+                            </td>
+                            <td>{{one.ip || ''}}</td>
+                            <td>{{one.userId || ''}}</td>
+                            <td>
+                                {{one.shareUserId || ''}}
+                                <br/>
+                                {{one.shareApp || ''}}
+                            </td>
+                            <td>{{one.costTime || ''}}</td>
+                            <td class="opts">
+                                <button class="btn" ng-click="showOther(one)">查看其他请求信息</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+</div>

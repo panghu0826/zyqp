@@ -1,0 +1,120 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>商城列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增商品</button>
+                        <button class="btn" ng-click="publish()">发布</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >商品id</th>
+                            <th >商品名称</th>
+                            <th >分类</th>
+                            <th >图片</th>
+                            <th >道具数量</th>
+                            <th >道具类型</th>
+                            <th >价格</th>
+                            <th >状态</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.productCode}}
+                            </td>
+                            <td>
+                                {{one.name}}
+                            </td>
+                            <td>
+                                {{getCategory(one.category)}}
+                            </td>
+                            <td>
+                                {{one.img}}
+                            </td>
+                            <td>
+                                {{one.itemCount}}
+                            </td>
+                            <td>
+                                {{getItemName(one.itemId)}}
+                            </td>
+                            <td>
+                                {{one.price}}
+                            </td>
+                            <td>
+                                {{getStatus(one.status)}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-if="one.status==1" ng-click="changeStatus(one, 0)">下架</button>
+                                <button class="btn" ng-if="one.status==0" ng-click="changeStatus(one, 1)">上架</button>
+                                <button class="btn" ng-click="changeStatus(one, 10)">删除</button>
+                                <button class="btn" ng-click="tmp.editOne = one; ctrl.isShowAdd = true;">编辑</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowAdd', title: '新增代理商', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 600px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label>商品id：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.productCode"/></td>
+            </tr>
+            <tr>
+                <td><label>商品名称：</label></td>
+                <!-- ng-disabled="tmp.editOne.id" -->
+                <td><input type="text" ng-model="tmp.editOne.name"/></td>
+            </tr>
+            <tr>
+                <td><label>分类：</label></td>
+                <td>
+                    <select ng-model="tmp.editOne.category" ng-options="a.code as a.name for a in tmp.catagoryList">
+                        <option value="" selected>--/--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>图片：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.img" /></td>
+            </tr>
+            <tr>
+                <td><label>商品价格：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.price" /></td>
+            </tr>
+            <tr>
+                <td><label>道具数量：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.itemCount" /></td>
+            </tr>
+            <tr>
+                <td><label>道具类型：</label></td>
+                <td>
+                    <select ng-model="tmp.editOne.itemId" ng-options="a.code as a.name for a in tmp.itemType">
+                        <option value="" selected>--/--</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-blue" ng-click="save()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowAdd = false">关闭</button>
+    </script>
+</div>

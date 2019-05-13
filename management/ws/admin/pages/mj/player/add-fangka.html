@@ -1,0 +1,55 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>批量增加房卡</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <div>
+                            <div>玩家ID，用英文逗号分隔，最多50人</div>
+                            <div>
+                                <textarea ng-model="tmp.users" cols="50" rows="10"></textarea>
+                            </div>
+                            <br/>
+                            <div>
+                                每人增加房卡数量：<input type="text" ng-model="tmp.fangka"/>
+                            </div>
+                            <br/>
+                            <div>
+                                <button class="btn-primary" ng-click="addFangka()">确认添加</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div ng-if="results">
+                            处理结果：
+                        </div>
+                        <div>
+                            <table class="table table-bordered table-striped m_top6">
+                                <tr ng-repeat="one in results">
+                                    <td>
+                                        {{one.userId}}
+                                    </td>
+                                    <td>
+                                        <span ng-if="one.result">添加成功</span>
+                                        <span ng-if="!one.result">添加失败:{{one.msg}}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

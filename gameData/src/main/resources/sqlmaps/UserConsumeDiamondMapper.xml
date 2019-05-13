@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserConsumeDiamond">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserConsumeDiamond">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="diamond_num" jdbcType="INTEGER" property="diamondNum" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, match_id, diamond_num, ctime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_consume_diamond
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserConsumeDiamond" useGeneratedKeys="true">
+    insert into user_consume_diamond (match_id, diamond_num, ctime)
+    values (#{matchId,jdbcType=VARCHAR}, #{diamondNum,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserConsumeDiamond">
+    update user_consume_diamond
+    set match_id = #{matchId,jdbcType=VARCHAR},
+      diamond_num = #{diamondNum,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

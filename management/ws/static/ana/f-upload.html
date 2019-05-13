@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C、F指标xls文件上传</title>
+</head>
+<body>
+<form action="/a/m/data/ana/upload-f" enctype="multipart/form-data" method="post">
+    <select name="type">
+        <option value="c">C类</option>
+        <option value="f">F类</option>
+        <option value="cooperate">私募合作开发记录</option>
+        <option value="private_srv">分配私募记录</option>
+        <option value="big_deal">大宗交易记录</option>
+        <option value="people_num">各部门有效人力</option>
+        <option value="people_level">各部门人员评级</option>
+    </select>
+    <a href="javascript: void(0);">下载xls模板</a>
+    <br/>
+    <br/>
+    季度：<input name="season" value="2016q3"/>
+    <br/>
+    <br/>
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+</form>
+</body>
+</html>
+
+<script src="/a/m/data/ana2/target-set/ngjs?jquery=1"></script>
+<script>
+    $(function () {
+        $('select').change(function () {
+            var val = $(this).val();
+            if (!val || ['c', 'f', 'people_num', 'people_level'].indexOf(val) != -1) {
+                $('a').attr('href', 'javascript: alert("该类型模板文件请找数据组同事！");');
+            } else {
+                $('a').attr('href', '/a/m/data/ana/tpl-download/' + val);
+            }
+        });
+    });
+</script>

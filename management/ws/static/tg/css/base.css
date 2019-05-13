@@ -1,0 +1,328 @@
+@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,p,form {margin: 0}
+body {
+    font-family: "Microsoft YaHei","宋体",arial,verdana,sans-serif;
+    font-size: 14px;
+    color: #777;
+    background-color: #fff
+}
+h1,h2,h3,h4,h5,h6 {line-height: 100%}
+ul {margin: 0;padding: 0;list-style: none}
+a {text-decoration: none;outline: 0;}
+a:focus {outline: 0}
+img {border: 0}
+table {border-collapse: collapse}
+input,select,textarea {
+    outline: 0;margin: 0;
+    font-family: "Microsoft YaHei","宋体",arial,verdana,sans-serif
+}
+
+
+
+
+
+/* commond */
+.l{float:left;}
+.r{float:right;}
+.dn{display:none;}
+.db{display:block;}
+.por{position:relative;}
+.poa{position:absolute;}
+.tac{text-align:center;}
+.tal{text-align:left!important;}
+.tar{text-align:right;}
+.seo{text-indent:-9999px;}
+.yahei{font-family:"Microsoft YaHei";}
+.oh{overflow:hidden; zoom:1;}
+.f16{font-size:16px!important;}
+.orange{color:#ff6600;}
+.green{color:#50aa58;}
+.hide{display:none;}
+.mb10{margin-bottom:10px;}
+.mr10{margin-right:10px;}
+.mr40{margin-right:40px;}
+.mt133{margin-top: 133px;}
+.hand{cursor:pointer;}
+.bn{margin:0!important;}
+/* 清除浮 动*/
+.fix { *zoom: 1; }
+.fix:after { display: table; content: ''; clear: both; }
+.break{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.breakRow2 {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+/* box弹性布局 */
+.layout-box {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+}
+.box-col {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    width: 100%;
+}
+.box-col2 {
+    -webkit-box-flex: 2;
+    -moz-box-flex: 2;
+    box-flex: 2;
+    width: 100%;
+}
+.box-start{
+    -moz-box-pack:center;
+    -webkit-box-pack:center;
+    box-pack:center;
+}
+.box-end {
+    -moz-box-pack:end;
+    -webkit-box-pack:end;
+    box-pack:end;
+}
+.box-center {
+    -moz-box-pack:center;
+    -webkit-box-pack:center;
+    box-pack:center;
+}
+.box-justify {
+    -moz-box-pack:justify;
+    -webkit-box-pack:justify;
+    box-pack:justify;
+}
+.box-middle {
+    -moz-box-align:center;
+    -webkit-box-align:center;
+    align:center;
+}
+
+
+
+
+
+
+
+.red {
+    color: #F56868;
+}
+
+.main {
+    padding: 0.17rem 0.1rem;
+    margin: 0.14rem 0;
+    background-color: #fff;
+    border-top: 1px solid #E5E5E5;
+}
+
+.main h1 {
+    color: #F24545;
+    margin-bottom: 0.1rem;
+    font-weight: 300;
+    font-size: 0.14rem;
+}
+
+.main .title {
+    color: #000;
+    margin-bottom: 0.06rem;
+}
+
+.main .time {
+    color: #64686B;
+    margin-bottom: 0.06rem;
+    font-size: 0.10rem;
+}
+
+.main .content {
+    padding: 0.1rem 0.04rem;
+    background-color: #F9F9F9;
+    color: #63686B;
+    font-size: 0.14rem;
+    line-height: 0.18rem;
+    margin-bottom: 0.1rem;
+}
+
+.main .content img {
+    margin-top: 0.08rem;
+}
+
+.main img {
+    max-width: 100%!important;
+}
+
+.tableWrap{
+    overflow: auto;
+    width: 100%;
+    padding-bottom: 0.07rem;
+}
+table {
+    word-break:keep-all;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+table td{
+    text-align: center;
+    font-size: 0.12rem;
+    padding: 0.04rem;
+    word-wrap: break-word;
+}
+table thead td{
+    border: 1px solid #fff;
+    background-color: #214561;
+    color: #fff;
+}
+table tbody td {
+    border: 1px solid #eee;
+    background-color: #fff;
+}
+
+.main .tit {
+    position: relative;
+    margin-bottom: 0.1rem;
+    padding-left: 0.1rem;
+    color: #000;
+}
+
+.main .tit:after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    content: "";
+    width: 0;
+    height: 0;
+    border: 0.07rem solid transparent;
+    border-left-color: #F44545;
+    margin-top: -0.07rem;
+}
+
+.main .tit2 {
+    padding-left: 0.04rem;
+    color: #333;
+    margin-bottom: 0.04rem;
+}
+
+.main .tit2 span {
+    font-size: 0.10rem;
+    color: #959595;
+}
+
+.footer {
+    padding: 0.38rem 0.1rem;
+}
+
+.declare {
+    position: relative;
+    font-size: 0.10rem;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    padding: 0.3rem 0.15rem 0.2rem;
+    margin-bottom: 0.1rem;
+    line-height: 0.18rem;
+}
+
+.declare .tit {
+    position: absolute;
+    top: -0.15rem;
+    left: 50%;
+    width: 1rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    margin-left: -0.5rem;
+    background-color: #F2F2F2;
+}
+
+.cop {
+    font-size: 0.10rem;
+    text-align: center;
+}
+
+.line {
+    height: 0.14rem;
+    background-color: #F9F9F9;
+    margin: 0.1rem 0;
+}
+
+/*继续阅读*/
+.list {
+    margin-bottom: 0.1rem;
+}
+.list .title {
+    margin: 0 0.1rem;
+    padding-bottom: 0.05rem;
+    line-height: 1;
+}
+.list .title span{
+    font-size: 0.12rem;
+    color: #999;
+}
+.list ul{
+    background-color: #fff;
+}
+.list li a, .list .item a{
+    display: block;
+    font-size: 0.13rem;
+    border-bottom: 1px solid #F4F4F4;
+    padding: 0.11rem 0;
+    color: #333;
+    margin: 0 0.1rem;
+}
+.list li:last-of-type a, .list .item:last-of-type a {
+    border: none;
+}
+
+
+
+/* loading */
+.loading {
+    position: fixed;
+    top: 0;left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/loading.gif) no-repeat 50% 50%;
+}
+
+
+
+/* 组合 */
+.groupChartContainer {
+
+}
+.groupChartContainer .chartsNav {
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 0.13rem;
+    border: 1px solid #D2B978;
+}
+.groupChartContainer .chartsNav a {
+    height: 0.25rem;
+    line-height: 0.25rem;
+    background-color: #fff;
+    color: #D2B978;
+    font-size: 0.13rem;
+    border-right: 1px solid #D2B978;
+}
+.groupChartContainer .chartsNav a:last-of-type {
+    border: none;
+}
+.groupChartContainer .chartsNav a.cur {
+    background-color: #D2B978;
+    color: #fff;
+}
+.groupChartContainer .chartsWrap, .groupChartContainer .charts {
+    width: 100%;
+    height: 209px;
+}
+.groupChartContainer .chartsWrap {
+    position: relative;
+}
+.groupChartContainer .chartsLoading {
+    position: absolute;
+    top: 0;left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    background:rgba(0,0,0,.03) url(../images/loading.gif) no-repeat 50% 50%;
+}

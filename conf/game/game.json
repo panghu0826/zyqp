@@ -1,0 +1,27 @@
+[
+  {
+    "gameId":"G_DDZ",
+    "gameName":"斗地主",
+    "isRank":false
+  },
+  {
+    "gameId":"G_ZJH",
+    "gameName":"炸金花",
+    "isRank":false
+  },
+  {
+    "gameId":"G_JACK",
+    "gameName":"杰克",
+    "isRank":false
+  },
+  {
+    "gameId":"G_NN",
+    "gameName":"牛牛",
+    "isRank":false
+  },
+  {
+    "gameId":"G_ErBa",
+    "gameName":"28杠",
+    "isRank":false
+  }
+]

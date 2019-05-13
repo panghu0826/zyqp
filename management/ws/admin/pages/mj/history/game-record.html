@@ -1,0 +1,136 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>服务列表</h5>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>玩家id：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.userId"/>
+                                </td>
+                                <td>
+                                    <label>游戏日期：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.startTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                    至
+                                    <input type="text" ng-model="query.endTime"
+                                           ui-date="{dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, showOtherMonths: true, showHour: false, showMinute: false}"
+                                           ui-valid="datetime"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >赛场名称</th>
+                            <th >桌子id</th>
+                            <th >玩家1id</th>
+                            <th >玩家1分数</th>
+                            <th >玩家1番型</th>
+                            <th >玩家1番数</th>
+                            <th >玩家2id</th>
+                            <th >玩家2分数</th>
+                            <th >玩家2番型</th>
+                            <th >玩家2番数</th>
+                            <th >玩家3id</th>
+                            <th >玩家3分数</th>
+                            <th >玩家3番型</th>
+                            <th >玩家3番数</th>
+                            <th >玩家4id</th>
+                            <th >玩家4分数</th>
+                            <th >玩家4番型</th>
+                            <th >玩家4番数</th>
+                            <th >游戏开始时间</th>
+                            <th >游戏结束时间</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.matchName}}
+                            </td>
+                            <td>
+                                {{one.deskId}}
+                            </td>
+                            <td>
+                                {{one.user1Id}}
+                            </td>
+                            <td>
+                                {{one.user1Score}}
+                            </td>
+                            <td>
+                                {{one.user1FanDesc}}
+                            </td>
+                            <td>
+                                {{one.user1FanNum}}
+                            </td>
+                            <td>
+                                {{one.user2Id}}
+                            </td>
+                            <td>
+                                {{one.user2Score}}
+                            </td>
+                            <td>
+                                {{one.user2FanDesc}}
+                            </td>
+                            <td>
+                                {{one.user2FanNum}}
+                            </td>
+                            <td>
+                                {{one.user3Id}}
+                            </td>
+                            <td>
+                                {{one.user3Score}}
+                            </td>
+                            <td>
+                                {{one.user3FanDesc}}
+                            </td>
+                            <td>
+                                {{one.user3FanNum}}
+                            </td>
+                            <td>
+                                {{one.user4Id}}
+                            </td>
+                            <td>
+                                {{one.user4Score}}
+                            </td>
+                            <td>
+                                {{one.user4FanDesc}}
+                            </td>
+                            <td>
+                                {{one.user4FanNum}}
+                            </td>
+                            <td>
+                                {{one.gameStartTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                            <td>
+                                {{one.gameEndTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                        </tr>
+                    </table>
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+    </div>
+</div>

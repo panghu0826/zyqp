@@ -1,0 +1,190 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>用户管理</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增</button>
+                        <button class="btn btn-blue" ng-click="ctrl.isShowImport = true;">批量导入</button>
+                        <button class="btn btn-blue" ng-click="setRole(null, 'role')">批量修改角色</button>
+                        <button class="btn btn-blue" ng-click="setRole(null, 'label')">批量修改层级</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>用户名：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.username"/>
+                                </td>
+                                <td>
+                                    <label>手机号：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.phone"/>
+                                </td>
+                                <td>
+                                    <label>角色：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.role" ng-options="a.code as a.name for a in tmp.roleList">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>层级：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.label" ng-options="a.code as a.name for a in tmp.labelList">
+                                        <option value="" selected>--/--</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label>状态：</label>
+                                </td>
+                                <td>
+                                    <select ng-model="query.status">
+                                        <option value="" selected>--/--</option>
+                                        <option value="0">屏蔽</option>
+                                        <option value="1">正常</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="5%">
+                                <input type="checkbox" ng-model="tmp.isAllChecked"/>
+                            </th>
+                            <th width="10%">用户名</th>
+                            <th width="10%">电话</th>
+                            <th width="10%">email</th>
+                            <th width="10%">身份证号码</th>
+                            <th width="10%">签名</th>
+                            <th width="10%">角色</th>
+                            <th width="10%">层级</th>
+                            <th width="20%">状态</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                <input type="checkbox" ng-model="one.isChecked"/>
+                            </td>
+                            <td>{{one.username}}</td>
+                            <td>{{one.phone}}</td>
+                            <td>{{one.email}}</td>
+                            <td>{{one.idCard}}</td>
+                            <td>{{one.signature}}</td>
+                            <td>{{getRoleName(one.role, 'role')}}</td>
+                            <td>{{getRoleName(one.label, 'label')}}</td>
+                            <td>{{getStatusLabel(one.status)}}</td>
+                            <td class="opts">
+                                <button ng-if="one.status == 1" class="btn btn-red" ng-click="changeStatus(one, 0)">屏蔽
+                                </button>
+                                <button ng-if="one.status == 0" class="btn btn-red" ng-click="changeStatus(one, 1)">
+                                    解除屏蔽
+                                </button>
+                                <button class="btn" ng-click="edit(one);">编辑
+                                </button>
+                                <button class="btn" ng-click="setRole(one, 'role')">修改角色</button>
+                                <button class="btn" ng-click="setRole(one, 'label')">修改层级</button>
+                                <button class="btn" ng-click="setPwd(one)">修改密码</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowSetRole', title: '编辑角色、层级', dialogId: 'dialogRole', width: 400, lock: true, fixed: true, ext: {max: false}}">
+        <div user-role-label="" info="tmp.roleLabelChoose"></div>
+        <br/>
+        {{tmp.roleLabelChoose|json}}
+        <br/>
+        <button class="btn btn-blue" ng-click="setRoleSave()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowSetRole = false">关闭</button>
+    </script>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowAdd', title: '新增、编辑用户信息', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 600px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label>用户名：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.username" ui-valid="r"/></td>
+                <td><label>手机：</label></td>
+                <!-- ng-disabled="tmp.editOne.id" -->
+                <td><input type="text" ng-model="tmp.editOne.phone" ui-valid="r tel"/></td>
+            </tr>
+            <tr>
+                <td><label>email：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.email" ui-valid="email"/></td>
+                <td><label>ID：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.idCard" ui-valid="idcard"/></td>
+            </tr>
+            <tr>
+                <td><label>昵称：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.nickname"/></td>
+                <td><label>签名：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.signature"/></td>
+            </tr>
+            <tr>
+                <td><label>头像：</label></td>
+                <td>
+                    <img ng-src="{{tmp.editOne.headimgurl ? tmp.editOne.headimgurl+'?imageView2/2/h/100': ''}}"/>
+                    <span id="queue"></span>
+                    <span id="btn-upload"
+                          ext-uploadify="{uploader: '/a/m/ue/manage-user', multi: false, queueID: 'queue', fnSuccess: 'uploadSuccess'}"></span>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <button class="btn btn-blue" ng-click="save()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowAdd = false">关闭</button>
+    </script>
+
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowImport', title: '批量导入', dialogId: 'dialogUserImport', lock: true, fixed: true, width: 200, ext: {max: false}}">
+        <a href="/a/admin/user/import/excel-template" target="_blank">下载样板</a>
+        <br/>
+        <br/>
+        <span id="queue-import"></span>
+        <span id="btn-upload-import"
+              ext-uploadify="{uploader: '/a/admin/user/import', multi: false, queueID: 'queue-import', fnSuccess: 'uploadImport'}"></span>
+        <button class="btn" ng-click="ctrl.isShowImport = false">关闭</button>
+    </script>
+
+
+</div>

@@ -1,0 +1,60 @@
+<#macro filterGridTpl data>
+<table id="${data.tblId}" class="table table-bordered table-striped" ng-form="${data.formName}">
+	<thead>
+	<tr class="grid-header">
+		<#list data.columns as column>
+		<#if (column.choose)>
+		<th width="5%">
+			<#if (column.multiple)>
+			<input type="checkbox" class="grid-choose-all" />
+			</#if>
+		</th>
+		<#else>
+		<th <#if (column.isSortable)>class="grid-sorter ng-ui-sort-all"</#if> 
+			data-column="${column.name}" width="${column.width}">
+			${column.label}
+		</th>					
+		</#if>
+		</#list>
+	</tr>
+	</thead>
+
+	<tbody>
+	<#list data.list as one>
+	<tr class="grid-tr <#if (one_index % 2 == 0)>even<#else>odd</#if>" data-index="${one_index}">
+		<#list data.columns as column>
+		<td>
+			<#if (column.buts)>
+				<#list column.buts as but>
+				<button class="grid-but" data-index="${one_index} ${column_index} ${but_index}">${but.label}</button>
+				</#list>
+			<#elseif (column.choose)>
+				<#if (column.multiple)>
+				<input type="checkbox"<#if (one.isChecked)> checked="true"</#if> class="grid-choose-one" name="grid-choose-${data.gridCountNum}-${column_index}" />
+				<#else>
+				<input type="radio"<#if (one.isChecked)> checked="true"</#if> class="grid-choose-one" name="grid-choose-${data.gridCountNum}-${column_index}" />
+				</#if>
+			<#elseif (column.link)>
+				<a href="javascript:void();" class="grid-link" data-index="${one_index} ${column_index} 0">${one[column.name]}</a>
+			<#elseif (column.bind)>
+				<input type="text" class="grid-bind-input grid-bind-input-${column_index}" 
+					data-index="${one_index} ${column_index} 0" ui-valid="${column.valid}" 
+					style="${column.style}" value="${one[column.name]}" />
+			<#elseif (column.options)>
+				<select class="grid-bind-input grid-bind-input-${column_index}" 
+					data-index="${one_index} ${column_index} 0" ui-valid="${column.valid}" 
+					style="${column.style}">
+					<#list column.options as option>
+					<option value="${option.value}" title="${option.title}" <#if (one[column.name] == option.value)>selected</#if>>${option.title}</option>
+					</#list>
+				</select>
+			<#else>
+				${one[column.name]}
+			</#if>
+		</td>
+		</#list>
+	</tr>				
+	</#list>
+	</tbody>
+</table>
+</#macro>

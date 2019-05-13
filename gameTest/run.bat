@@ -1,0 +1,1 @@
+java -classpath .;C:/workspace3/ddz.git/mj/poker_Server/gameTest/target/lib/*;C:/workspace3/ddz.git/mj/poker_Server/gameTest/target/* main.PokerMain -m 0 -u p1 -p 123456 -s www.xskdqmj3d.cn

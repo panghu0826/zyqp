@@ -1,0 +1,248 @@
+<html style="font-size: 117.188px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
+    <!--忽略页面中的数字识别为电话号码、email识别-->
+    <meta name="format-detection" content="telephone=no, email=no">
+    <!-- 网页不会被缓存 -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>代理商登录</title>
+
+    <style type="text/css">
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://tech11.cn/tj/assets/css/base_961da98.css">
+    <link href="http://tech11.cn/tj/assets/js/need/layer.css" type="text/css" rel="styleSheet" id="layermcss">
+</head>
+<body ng-controller="MyCtrl">
+
+<style type="text/css">
+    html, body {
+        text-align: center;
+        min-height: 100%;
+        /*background-color: #fff;*/
+        background-image: url("../bg.jpg");
+        -webkit-background-size: 100% auto;
+        -moz-background-size: 100% auto;
+        background-size: 100% auto;
+
+    }
+
+    #logininpage .pcheck {
+        padding: .2rem .14rem 0
+    }
+
+    #logininpage .pcheck .ptip {
+        font-size: .14rem;
+        padding-bottom: .12rem;
+    }
+
+    #logininpage .pcheck .pphonewarp, #logininpage .pcheck .pidentifywarp {
+        position: relative;
+        margin-bottom: .12rem;
+        line-height: .44rem
+    }
+
+    #logininpage .pcheck .pphonewarp input, #logininpage .pcheck .pidentifywarp input {
+        text-indent: .5rem;
+        display: inline-block;
+        height: .44rem;
+        width: 100%;
+        border: 1px solid #A4A4A4;
+        padding-right: .12rem;
+        -webkit-border-radius: 10rem;
+        border-radius: 10rem;
+        -webkit-appearance: none;
+        vertical-align: top;
+    }
+
+    #logininpage .pcheck .pphonewarp #pgetidentify, #logininpage .pcheck .pidentifywarp #pgetidentify {
+        position: absolute;
+        border: 1px solid #A4a4a4;
+        border-radius: .04rem;
+        width: 1rem;
+        right: -1.12rem;
+        text-align: center;
+        height: .44rem;
+        top: 0;
+        color: #FD4955;
+        font-size: .12rem;
+        padding: 0 .12rem;
+        vertical-align: top;
+        -webkit-border-radius: 10rem;
+        border-radius: 10rem;
+    }
+
+    #logininpage .pcheck .pidentifywarp {
+        margin-right: 1.12rem
+    }
+
+    #logininpage .pcheck .pphonewarp .iconfont {
+        background-image: url(/tj/assets/img/i-phone.png)
+    }
+
+    #logininpage .pcheck .pidentifywarp .iconfont {
+        background-image: url(/tj/assets/img/i-code.png)
+    }
+
+    #logininpage .pcheck .pphonewarp .iconfont, #logininpage .pcheck .pidentifywarp .iconfont {
+        margin: 0;
+        position: absolute;
+        font-size: .2rem;
+        line-height: .44rem;
+        top: 1px;
+        left: .12rem;
+        color: #999;
+        width: .15rem;
+        height: .44rem;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center
+    }
+
+    #logininpage .pcheck .pphonewarp .iconfont:after, #logininpage .pcheck .pidentifywarp .iconfont:after {
+        content: '';
+        width: 1px;
+        display: block;
+        position: absolute;
+        height: .18rem;
+        top: .13rem;
+        background-color: #999;
+        right: -.12rem
+    }
+
+    #logininpage .ploginin {
+        padding: .12rem .14rem;
+    }
+
+    #logininpage .ploginin #ploginin {
+        height: .44rem;
+        line-height: .44rem;
+        width: 100%;
+        -webkit-border-radius: 10rem;
+        border-radius: 10rem;
+        text-align: center;
+        color: #fff;
+        background-color: #FD4955;
+    }
+
+    .ploginin {
+        margin: 0;
+    }
+</style>
+
+<!-- loading -->
+<!-- <div class="loading loadingCenter tac indLoading"><link rel="import" href="../common/loading.html?__inline"></div> -->
+
+<!-- top -->
+<div class="top">
+    <div class="title">代理商登录</div>
+</div>
+
+<div id="logininpage" class="mtop">
+
+    <div class="pcheck">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="color: #e74c3c">北京万线科技发展有限责任公司</div>
+        <div style="color: #e74c3c">咨询热线:010-69406664</div>
+        <br>
+        <br>
+        <div class="pphonewarp">
+            <input type="string" ng-model="one.username" placeholder="请输入代理商帐号" id="username">
+        </div>
+        <div class="pphonewarp">
+            <input type="password" ng-model="one.password" placeholder="请输入代理商密码" id="pwd">
+        </div>
+        <!--<div class="pphonewarp">-->
+        <!--<input type="string" ng-model="one.verifyCode" placeholder="请输入验证码">-->
+        <!--</div>-->
+        <!--<div class="pphonewarp">-->
+        <!--&nbsp;&nbsp;<img src="{{verifyCodeImgUrl}}" style="cursor: hand" alt="看不清，点击换一张" id="randImg" ng-click="changeVerifyCode()">-->
+        <!--</div>-->
+    </div>
+    <div class="ploginin">
+        <div id="ploginin" ng-click="login()">登录</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script src="/a/agent/data/ana2/target-set/ngjs?pace=1" data-pace-options='{ "ajax": false }'></script>
+<script src="/a/agent/data/ana2/target-set/ngjs?underscore=1"></script>
+<script src="/a/agent/data/ana2/target-set/ngjs"></script>
+<script>
+
+    function savaLocalStorage (name,pwd) {
+        window.localStorage.setItem("name",name);
+        window.localStorage.setItem("pwd",pwd);
+        window.localStorage.setItem("remeber",true);
+    };
+
+    var md = angular.module('tt', []);
+    md.controller('MyCtrl', function ($scope, $http) {
+        $scope.one = {};
+        $scope.one.password = window.localStorage.getItem("pwd");
+        $scope.one.username = window.localStorage.getItem("name");
+        var remeber = window.localStorage.getItem("remeber");
+        if (remeber) {
+            if ($scope.one.password) {
+                if ($scope.one.username) {
+                    Pace.start();
+                    $http.get('/a/agent/login', {params: $scope.one}).success(function (data) {
+                        if (data.statusCode == 0) {
+                            // 存储信息
+                            savaLocalStorage($scope.one.username, $scope.one.password);
+                            window.location = "/a/agent/home"
+                        } else {
+                            alert(data.message);
+                            $scope.changeVerifyCode();
+                        }
+                    }).error(function () {
+                        Pace.stop();
+                    });
+                }
+            }
+        }
+//        $scope.verifyCodeImgUrl = "/a/agent/get_verify_code?d=" + new Date().getTime();
+//
+//        $scope.changeVerifyCode = function () {
+//            $scope.verifyCodeImgUrl = "/a/agent/get_verify_code?d=" + new Date().getTime();
+//        }
+        $scope.login = function () {
+            if (!$scope.one.username) {
+                alert("请输入用户名");
+                return;
+            }
+            if (!$scope.one.password) {
+                alert("请输入密码");
+                return;
+            }
+            Pace.start();
+            $http.get('/a/agent/login', {params: $scope.one}).success(function (data) {
+                if (data.statusCode == 0) {
+                    // 存储信息
+                    savaLocalStorage($scope.one.username,$scope.one.password);
+                    window.location = "/a/agent/home"
+                } else {
+                    alert(data.message);
+                    $scope.changeVerifyCode();
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        };
+    });
+    angular.bootstrap(document, ['tt']);
+</script>

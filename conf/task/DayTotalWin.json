@@ -1,0 +1,23 @@
+[
+    {
+        "note": "任意一局累计赢X局",
+        "taskId": "DayTotalWinX",
+        "taskType": 7,
+        "amount": 1,
+        "resetTime": 0,
+        "autoAward": false,
+        "preTaskId": null,
+        "initWinedCount": 10,
+        "maxWinedCount": 50,
+        "stepWinedCount": 10,
+        "gameId": "",
+        "taskImg": "lord.png",
+        "title": "累计赢有奖 50金币",
+        "awardItems": [
+            {
+                "itemId": "D011",
+                "count": 50
+            }
+        ]
+    }
+]

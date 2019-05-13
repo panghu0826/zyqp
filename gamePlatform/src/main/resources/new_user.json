@@ -1,0 +1,16 @@
+{
+	 "headImg":"img01.jpg",
+	 "gender":0,
+	 "coin": 3000,
+	 "gold": 3000,
+	 "bindedMobile":0,
+	 "winCount":0,
+	 "loseCount":0,
+	 "threeRank":0,
+	 "lzRank":0,
+	 "feeTicket":0,
+	 "vipType":0,
+	 "userType":0,
+	 "threeRankPoint":0,
+	 "lzRankPoint":0
+}

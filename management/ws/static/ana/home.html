@@ -1,0 +1,613 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>新时空代理商管理后台</title>
+    <style>
+        body{
+            /*background-color: #fff;*/
+            background-image: url("../bg.jpg");
+            -webkit-background-size: 100% auto;
+            -moz-background-size: 100% auto;
+            background-size: 100% auto;
+        }
+        div{margin:0 auto;}
+/* ============ HomePage.html =========*/
+#table1
+ {  margin:0 auto;
+    width:100%;
+ }
+ #table1 td
+ {
+   font-size:17px;
+   text-align: center;
+   }
+ #table2{margin:0 auto;width:100%; font-size:90%;}
+ #table2 tr th{text-align: left;}
+ #table2 tr{height: 40px;}
+ #table tr td{text-align: left;}
+
+
+ .black{color:black;}
+ .red{ color:#FF4040;}
+ .green{ color: #90EE90;}
+ .orange{color: #FFA500;}
+
+ form{margin:0 auto;width: 90%;}
+
+.but001
+{
+	width: 100%;
+	margin-bottom: 10px;
+	height: 50px;
+	background:#00BFFF;
+	border-radius:8px;
+}
+ #divtp
+{
+	width: 100%;
+	height: 180px;
+
+}
+ #divImg1
+ {
+     float:left;
+	 width:100%;
+	 height:80%;
+	 margin-top: 2.5%;
+ }
+
+  #divImg2
+ {
+     float:left;
+	 width: 45%;
+	 height: 80%;
+	 margin-left:2.5%;
+	 margin-top: 2.5%;
+ }
+ img
+ {
+   max-width: 100%;
+   max-height: 100%;
+ }
+
+
+/* ======== announcement.html ========== */
+
+ #table3
+ {
+   margin-top:20px;
+   width: 100%;
+   height: auto;
+ }
+ #table3 th
+ {
+  text-align: left;
+  font-family: '楷体';
+  font-size: 18px;
+  font-weight: 800;
+  border-bottom:1px solid #CCCCCC;
+  border-top:1px solid #CCCCCC;
+ }
+ #table3 tr
+ {
+
+   height: 50px;
+   font-family: '宋体';
+   font-weight: 500;
+ }
+#table3 td
+{
+	border-bottom:1px solid #CCCCCC;
+}
+#table3 td a:LINK{color: blue;text-decoration: none;	}
+#table3 td a:ACTIVE,#table3 td a:HOVER{color: red;text-decoration: underline;}
+
+
+/* ==================management.html=================*/
+#Manager_div1
+{
+	overflow:hidden;
+	width: 100%;
+	height: 200px;
+}
+ #managerDiv1
+{
+	width: 100%;
+	height: 180px;
+    margin-bottom: -5%;
+}
+ #managerDivImg1
+ {
+     overflow:hidden;
+     float:left;
+	 width:45%;
+	 height:80%;
+	 margin-left:2.5%;
+	 margin-top: 2.5%;
+	 background-color: #FFB6C1;
+	 overflow-y:auto;
+
+ }
+  #managerDivImg2
+ {
+     overflow:hidden;
+     float:left;
+	 width: 100%;
+	 height: 90%;
+	 background-color: #FFDEAD;
+	 overflow-y:auto;
+ }
+ #managerDivImg1 table
+ {
+   margin-left:10%;
+   margin-top:15%;
+   font-family: "楷体";
+   font-size:80%;
+ }
+  #managerDivImg2 table
+ {
+   margin-left:25%;
+   margin-top:8%;
+   font-family: "楷体";
+   font-size:20px;
+ }
+ #managerDivImg1 table tr
+ {
+   height: 25px;
+ }
+#managerDivImg2 table tr
+ {
+   height: 25px;
+ }
+
+
+
+/* ==================goodsManager.html =================*/
+
+ #goodsTable
+ {
+   margin-top:20px;
+   width: 100%;
+   height: 100%;
+ }
+ #goodsTable th
+ {
+  text-align: left;
+  font-family: '楷体';
+  font-size: 18px;
+  font-weight: 800;
+  border-bottom:1px solid #CCCCCC;
+  border-top:1px solid #CCCCCC;
+ }
+ #goodsTable tr
+ {
+
+   height: 50px;
+   font-family: '楷体';
+   font-weight: 500;
+ }
+#goodsTable td
+{
+	border-bottom:1px solid #CCCCCC;
+}
+/* ==================rankingManager.html =================*/
+
+ #rankingTable
+ {
+   margin-top:20px;
+   width: 100%;
+   height: 100%;
+ }
+ #rankingTable th
+ {
+  text-align: left;
+  font-family: '楷体';
+  font-size: 18px;
+  font-weight: 800;
+  border-bottom:1px solid #CCCCCC;
+  border-top:1px solid #CCCCCC;
+ }
+ #rankingTable tr
+ {
+   height: 50px;
+   font-family: '楷体';
+   font-weight: 500;
+ }
+#rankingTable td
+{
+	border-bottom:1px solid #CCCCCC;
+}
+
+.rankingBut
+{
+	width:15%;
+	height:23px;
+	color: red;
+	margin-top: -6%;
+	background-color: #00EEEE;
+	border-radius:8px;
+}
+
+	div{margin:0 auto;}
+	ul li{float:left; list-style-type: none; font-family:'宋体'; padding-left:12px;}
+	ul li a{text-decoration:none; color:black;}
+
+.forminfo{padding-left:23px;}
+.forminfo li{margin-bottom:13px; clear:both;}
+.forminfo li label{width:86px;line-height:34px; display:block; float:left;font-size: 9pt;}
+.forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
+.forminfo li cite{display:block; padding-top:10px;}
+.forminfo b{color:#ea2020; padding-left:3px;}
+.forminfo_ul1 li{height:50px;border:1px solid #ddd;margin-bottom:0;line-height:50px;padding-left:10px;}
+.forminfo_ul1 .forminfo_l1{background:#eee;text-align:center; font-size:18px;}
+.forminfo_ul1 .forminfo_l2{padding-left:40px;}
+.dfinput{width:345px; height:32px; line-height:32px; border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; text-indent:10px;}
+.tabson{margin:18px 0px;}
+    </style>
+</head>
+
+<body ng-controller="MyCtrl">
+<div>
+    <ul>
+        <li>
+            <a ng-click="showHome()" target="mainFrame" style="font-size:15px">首页</a>
+        </li>
+        <li>
+            <a ng-click="showNotice()" target="mainFrame" style="font-size:15px">公告</a>
+        </li >
+        <li>
+            <a ng-click="showCenter()" target="mainFrame" style="font-size:15px">个人</a>
+        </li>
+        <li>
+            <a ng-click="showLog()" target="mainFrame" style="font-size:15px">充卡记录</a>
+        </li>
+        <li>
+            <a ng-click="logout()" target="mainFrame" style="font-size:15px;color: green">切换账号</a>
+        </li>
+    </ul>
+</div>
+<div style="clear:both;margin-bottom:20px;">
+</div>
+<div id="chongka_div" ng-if="ctrl.page=='home'">
+    <div id="divtp">
+        <div id="divImg1"><img src="/static/banner.png"></div>
+    </div>
+    <table id="table1">
+        <tbody><tr>
+            <td class="black">房卡数量</td>
+            <td class="red">今日售卡</td>
+            <td class="orange">积分值</td>
+            <td class="green">售卡金额</td>
+            <!-- <td class="orange">今日排名</td> -->
+        </tr>
+        <tr>
+            <td class="black"><b>{{main.fangka}}</b></td>
+            <td class="red" ><b>{{main.todaySell}}</b></td>
+            <td class="orange" ><b>{{main.integral}}</b></td>
+            <td class="green"><b>{{main.money}}元</b></td>
+
+        </tr>
+        </tbody></table>
+    <br>
+    <div id="Div1">
+        <form>
+            <label>房卡类型：</label>
+            <input id="roomCard" name="roomCardID" type="radio" style="margin-bottom:15px;" value="3003" checked="checked">房卡
+
+            <br>
+            玩家ID号: <input type="text" value="请输入玩家ID" ng-click="user.id=''" ng-model="user.id" ng-blur="loadUserInfo()" style="width:150px;height:25px;color:#999999;margin-bottom:10px;"><span class="red" id="online"></span><br>
+            玩家名称: <input type="text" ng-model="user.nickName" readonly="readonly" style="width:150px;height:25px;color:#999999;margin-bottom:10px;"><br>
+            剩余房卡: <input type="text" ng-model="user.fangka" readonly="readonly" style="width:150px;height:25px;color:#999999;margin-bottom:10px;"><br>
+            充值数量: <input type="text" value="充值数量" ng-model="user.chargeCount" id="saleCard" name="saleCard" style="width:150px;height:25px;color:#999999;margin-bottom: 10px;"><br>
+            <img id="addCardBtn" src="/static/chongzhi.png" ng-click="doCharge()" ng-if="user.chargeCount && user.id && user.nickName"><br>
+            <img id="queryChongKaBtn" src="/static/chakan_begin.png" ng-click="searchChargeLog(user.id)">
+        </form>
+    </div>
+</div>
+<div ng-if="ctrl.page == 'notice'">
+    <span style="font-size: 24px;font-weight:800;margin-left: 10px;">最新公告</span>
+    <table id="table3" cellspacing="0px">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>标题</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr ng-repeat="one in noticeList">
+            <td>{{one.id}}</td>
+            <td><a ng-click="showNoticeDetail(one)">{{one.title}}</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<div ng-if="ctrl.page=='noticeDetail'">
+    <div align="center">
+        <span style="color:black;font-size:25px;">{{curNotice.title}}</span>
+    </div>
+    <div>
+                    <span style="color:black;font-size:20px;">{{curNotice.content}}</span>
+    </div>
+</div>
+<div ng-if="ctrl.page=='center'">
+    <!--<link href="/static/style.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="/static/select.css" rel="stylesheet" type="text/css">-->
+    <div id="usual1" class="usual">
+        <!-- <div class="itab">
+            <ul>
+                <li><a href="#tab1" class="selected">代理商详细信息</a></li>
+            </ul>
+        </div>  -->
+        <div id="tab1" class="tabson tab_add">
+            <div class="formtext" style="color: tomato">Hi，欢迎您使用信息修改功能！</div>
+            <div class="tabson_title" style="color: #006dcc"><span>个人资料</span></div>
+            <form id="updateForm" method="post" action="dealAgent.do" style="width:100%">
+                <ul class="forminfo">
+                    <li><label>本月售卡数量</label><input type="text" ng-model="agent.monthSalled" class="dfinput" value="10" readonly="readonly" style="width:200px;background:#eee;"></li>
+                    <li><label>本月进卡数量</label><input type="text" ng-model="agent.monthBuyed" class="dfinput" value="0" readonly="readonly" style="width:200px;background:#eee;"></li>
+                    <li><label>累计售卡数量</label><input type="text" ng-model="agent.totalSelled" class="dfinput" value="65" readonly="readonly" style="width:200px;background:#eee;"></li>
+                    <li><label>累计进卡数量</label><input type="text" ng-model="agent.totalBuyed" class="dfinput" value="1100" readonly="readonly" style="width:200px;background:#eee;"></li>
+                    <li><label>代理商ID</label><input type="text" ng-model="agent.id" class="dfinput" value="7" readonly="readonly" style="width:200px;background:#eee;"></li>
+                    <li><label>代理商账号</label><input type="text" ng-model="agent.username" class="dfinput" value="13634595123" readonly="readonly" style="width:200px; background:#eee;"></li>
+                    <li><label>代理商姓名</label><input type="text" ng-model="agent.name" class="dfinput" value="甲方测试" readonly="readonly" style="width:200px; background:#eee;"></li>
+                    <li><label>代理商密码</label><input type="text" ng-model="agent.passwd" class="dfinput" value="13634595123" readonly="readonly" style="width:200px;background:#eee;"></li>
+                    <li><label>设置新密码</label>
+                        <input id="newPwd" name="newPwd" type="password" ng-model="agent.newpasswd" class="dfinput" value="" style="width:200px;background:#eee;">
+                        <span id="newPwd_Tip" style="color:red;font-size:20px;"></span>
+                    </li>
+                    <li>
+                        <input type="button" style="text-align: center;" class="btn" ng-click="modifyAgentInfo()" value="确认修改">
+                        <a ng-click="logout()">
+                            <input type="button" style="text-align: center;" class="btn" value="退出登陆">
+                        </a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="Div4" ng-if="ctrl.page=='log'">
+    <form method="post" id="queryForm">
+        查询玩家ID <br>
+        <input type="text" ng-model="searchUser" ng-click="searchUser=''" name="searchStr" style="width:98%;height:25px;color:#999999;margin-bottom:10px; margin-top: 10px; height:30px;"><br>
+        <input class="but001" type="button" value="查询记录 " ng-click="searchChargeLog(searchUser)">
+        <span id="userID2_tip" style="color:red;font-size:15px;"></span>
+    </form>
+
+    <hr style="width: 88%;">
+    <form>
+        <table id="table2">
+            <thead>
+            <tr>
+                <th>用户ID</th>
+                <th>用户昵称</th>
+                <th>数量</th>
+                <th>充值时间</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="one in logList">
+                <td>{{one.toUserId}}</td>
+                <td>{{one.nickname}}</td>
+                <td>{{one.dealAmount}}</td>
+                <td>{{one.dealDate|date:"yyyy/MM/dd HH:mm:ss"}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+
+</html>
+
+
+<script src="/a/agent/data/ana2/target-set/ngjs?pace=1" data-pace-options='{ "ajax": false }'></script>
+<script src="/a/agent/data/ana2/target-set/ngjs?underscore=1"></script>
+<script src="/a/agent/data/ana2/target-set/ngjs"></script>
+<script>
+    var md = angular.module('tt', []);
+    md.controller('MyCtrl', function ($scope, $http) {
+        $scope.one = {};
+        $scope.user = {};
+        $scope.ctrl={}
+        $scope.noticeList = []
+        $scope.verifyCodeImgUrl = "/a/agent/get_verify_code?d="+new Date().getTime();
+
+        $scope.changeVerifyCode = function(){
+            $scope.verifyCodeImgUrl = "/a/agent/get_verify_code?d="+new Date().getTime();
+        }
+
+
+        $scope.login = function () {
+            if(!$scope.one.username){
+                alert("请输入用户名");
+                return;
+            }
+            if(!$scope.one.password){
+                alert("请输入密码");
+                return;
+            }
+            if(!$scope.one.verifyCode){
+                alert("请输入验证码");
+                return;
+            }
+            Pace.start();
+            $http.get('/a/agent/login', {params:$scope.one}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    window.location = "/a/agent/home"
+                } else {
+                    alert(data.message);
+                    $scope.changeVerifyCode();
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        };
+
+        $scope.loadMain = function () {
+            Pace.start();
+            $http.get('/a/agent/home/main', {}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    $scope.main = data.data;
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        };
+
+        $scope.showHome = function(){
+            $scope.ctrl.page = 'home'
+            $scope.loadMain();
+        }
+        $scope.showNotice = function(){
+            $scope.ctrl.page = 'notice'
+            Pace.start();
+            $http.get('/a/agent/notice/list', {}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    $scope.noticeList = data.data;
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        }
+        $scope.showCenter = function(){
+            $scope.ctrl.page = 'center'
+            Pace.start();
+            $http.get('/a/agent/my_info', {}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    $scope.agent = data.data;
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        }
+        $scope.showLog = function(){
+            $scope.ctrl.page = 'log'
+        }
+        $scope.showNoticeDetail = function(one){
+            $scope.curNotice = one;
+            $scope.ctrl.page = 'noticeDetail'
+        }
+
+        $scope.modifyAgentInfo = function(){
+            Pace.start();
+            $http.get('/a/agent/modify', {params:$scope.agent}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    alert("修改成功");
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        }
+
+        $scope.logout = function(){
+            window.localStorage.removeItem("remeber");
+            window.location.href="/static/ana/login.html"
+        }
+
+        $scope.loadUserInfo = function(){
+             if(!$scope.user || !$scope.user.id) {
+                 $scope.user = {};
+                  return;
+             }
+             $scope.user = {id:$scope.user.id}
+             Pace.start();
+            $http.get('/a/agent/user_info', {params:$scope.user}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    $scope.user = data.data;
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        }
+
+        $scope.doCharge = function(){
+            if(!$scope.user || !$scope.user.id || !$scope.user.chargeCount) {
+                  $scope.user = {};
+                  return;
+             }
+             Pace.start();
+            $http.get('/a/agent/user_charge', {params:$scope.user}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    alert("充值成功");
+                    $scope.loadMain();
+                    $scope.loadUserInfo();
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        }
+
+        $scope.searchChargeLog = function(id) {
+           $scope.ctrl.page = 'log'
+           var params = {}
+           if(id) {
+                params.searchUser = id;
+                $scope.searchUser = id;
+           }
+           Pace.start();
+            $http.get('/a/agent/user_charge_log', {params:params}).success(function (data) {
+                if(data.statusCode == -999) {
+                     window.location.href='/static/ana/login.html'
+                     return;
+                }
+                if(data.statusCode == 0){
+                    $scope.logList = data.data;
+                } else {
+                    alert(data.message);
+                }
+            }).error(function () {
+                Pace.stop();
+            });
+        }
+
+        $scope.showHome();
+    });
+    angular.bootstrap(document, ['tt']);
+</script>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="com.tk.tr" module="framework" revision="2.0" status="integration" publication="20170705194520">
+    <description/>
+  </info>
+  <configurations>
+    <conf name="archives" visibility="public" description="Configuration for archive artifacts."/>
+    <conf name="compile" visibility="private" description="Dependencies for source set 'main'."/>
+    <conf name="compileClasspath" visibility="private" description="Compile classpath for source set 'main'." extends="compileOnly"/>
+    <conf name="compileOnly" visibility="private" description="Compile dependencies for source set 'main'." extends="compile"/>
+    <conf name="default" visibility="public" description="Configuration for default artifacts." extends="runtime"/>
+    <conf name="runtime" visibility="private" description="Runtime dependencies for source set 'main'." extends="compile"/>
+    <conf name="testCompile" visibility="private" description="Dependencies for source set 'test'." extends="compile"/>
+    <conf name="testCompileClasspath" visibility="private" description="Compile classpath for source set 'test'." extends="testCompileOnly"/>
+    <conf name="testCompileOnly" visibility="private" description="Compile dependencies for source set 'test'." extends="testCompile"/>
+    <conf name="testRuntime" visibility="private" description="Runtime dependencies for source set 'test'." extends="runtime,testCompile"/>
+  </configurations>
+  <publications>
+    <artifact name="framework" type="jar" ext="jar" conf="archives,runtime"/>
+  </publications>
+  <dependencies>
+    <dependency org="org.codehaus.groovy" name="groovy-all" rev="2.4.1" conf="compile-&gt;default"/>
+    <dependency org="javax.servlet" name="javax.servlet-api" rev="3.1.0" conf="compile-&gt;default"/>
+    <dependency org="org.apache.commons" name="commons-io" rev="1.3.2" conf="compile-&gt;default"/>
+    <dependency org="org.apache.commons" name="commons-pool2" rev="2.4.2" conf="compile-&gt;default"/>
+    <dependency org="org.apache.httpcomponents" name="httpclient" rev="4.5" conf="compile-&gt;default"/>
+    <dependency org="commons-codec" name="commons-codec" rev="1.10" conf="compile-&gt;default"/>
+    <dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.2" conf="compile-&gt;default"/>
+    <dependency org="com.alibaba" name="fastjson" rev="1.2.1" conf="compile-&gt;default"/>
+    <dependency org="asm" name="asm-all" rev="3.3.1" conf="compile-&gt;default"/>
+    <dependency org="redis.clients" name="jedis" rev="2.4.1" conf="compile-&gt;default"/>
+    <dependency org="com.github.adyliu" name="zkclient" rev="2.1.1" conf="compile-&gt;default"/>
+    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.6" conf="compile-&gt;default"/>
+    <dependency org="ch.qos.logback" name="logback-core" rev="1.1.1" conf="compile-&gt;default"/>
+    <dependency org="ch.qos.logback" name="logback-classic" rev="1.1.1" conf="compile-&gt;default"/>
+    <dependency org="mysql" name="mysql-connector-java" rev="5.1.36" conf="compile-&gt;default"/>
+    <dependency org="net.sf.fastupload" name="fastupload-core" rev="0.6.3" conf="compile-&gt;default"/>
+    <dependency org="com.google.zxing" name="core" rev="3.1.0" conf="compile-&gt;default"/>
+    <dependency org="com.google.zxing" name="javase" rev="3.1.0" conf="compile-&gt;default"/>
+    <dependency org="com.github.kevinsawicki" name="http-request" rev="5.6" conf="compile-&gt;default"/>
+    <dependency org="com.belerweb" name="pinyin4j" rev="2.5.0" conf="compile-&gt;default"/>
+    <dependency org="com.qiniu" name="qiniu-java-sdk" rev="7.0.+" conf="compile-&gt;default"/>
+    <dependency org="org.mongodb" name="mongo-java-driver" rev="3.2.2" conf="compile-&gt;default"/>
+    <dependency org="javax.mail" name="mail" rev="1.4.1" conf="compile-&gt;default"/>
+    <dependency org="net.sourceforge.jexcelapi" name="jxl" rev="2.6.12" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-core" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-expression" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-beans" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-context" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-context-support" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-jdbc" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="org.springframework" name="spring-tx" rev="4.1.7.RELEASE" conf="compile-&gt;default"/>
+    <dependency org="us.codecraft" name="webmagic-core" rev="0.5.3" conf="compile-&gt;default"/>
+    <dependency org="us.codecraft" name="webmagic-extension" rev="0.5.3" conf="compile-&gt;default"/>
+    <dependency org="us.codecraft" name="webmagic-selenium" rev="0.5.2" conf="compile-&gt;default"/>
+    <dependency org="com.github.sgroschupf" name="zkclient" rev="0.1" conf="compile-&gt;default"/>
+    <dependency org="net.sourceforge.htmlcleaner" name="htmlcleaner" rev="2.10" conf="compile-&gt;default"/>
+    <dependency org="org.jsoup" name="jsoup" rev="1.10.1" conf="compile-&gt;default"/>
+    <dependency org="org.quartz-scheduler" name="quartz" rev="2.1.7" conf="compile-&gt;default"/>
+    <dependency org="org.ccil.cowan.tagsoup" name="tagsoup" rev="1.2.1" conf="compile-&gt;default"/>
+    <dependency org="org.apache.ivy" name="ivy" rev="2.2.0" conf="compile-&gt;default"/>
+  </dependencies>
+</ivy-module>

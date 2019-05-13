@@ -1,0 +1,20 @@
+package com.buding.hall.module.constants;
+
+public class Constants {
+	public static final String PAY_IP = "120.27.111.211";
+	public static final String PAY_RUL = "www.xinshikongqp.cn:8087";
+
+
+	public static final String ORDER_PAY = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+	public static final String SEARCH_ORDER_PAY = "https://api.mch.weixin.qq.com/pay/orderquery";
+
+	public static final String WX_APP_ID = "wx4092483f061c6f16";
+	public static final String WX_MCH_SECRET = "m3tkwJFQmJEN1ggHuHhbmtV0IAMyn1Jw";
+	public static final String WX_MCH_ID = "1501885071";
+	public static final String WX_PARTERN_ID = "";
+	public static final String WX_PARTNER_KEY = "";
+	// public static final String WX_APP_KEY = "";
+
+	public static final String ALI_APP_ID = "2018032702453869";
+	public static final String ALI_PRIVATE_KEY = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCNXCNbGE/4pUN2x/ZFa05raCw+hObqb5bxjIfo4hp9jhGaSf+TUIgiv2PmZ6Lz4lOaqu1Aa3OQReZEw9Twdt98P/BMt4qT9netjZNcaszIsPKR2E3Bsjavz8eOIE7sZZRnrbXciKNI9smVsD3uczpxzBFV7oX59yJ4Q9IMgGJ0mdwPTqSlkMUu0i6XXFhquUqRJvihjygilph64+ZF8EuNips4yXgN2LhE/sXiMC/Zn1h2xeGxRorSAAnQJeVK6Uyvy1T48jhKLBwA2cWmpjXU6zffcwiVB/4LkXBTbJZPuY45kBoI0uN/JYT2egQyef7ioK5opmdaqn6Mht38D7PDAgMBAAECggEAUID3lapr6NPdbukEJJau61ZBVD2F8F8qnFeHEyapJXXiKncX+QJ09S0ALLg6wh/TsxLC2NwYzUIxmFnajDN2pSEYregdIJTNpWYqVQhxpZ24Fz0TU0s1/7waDqPxrolPEhiIqJacPzJkrT3Yl1LCJwqrmL+lRyzqUYl2Ny5qY7JfKUdcvtVSeqCxutABxNWv8ZvV/zQFAjAHKyHEeEoQNcoNg1OirgscmAAuYT/rXwTMF/dMYdZUPXc1cVk7NXsEv+PL2JwUU24PS2CtcbbzWbqHbd5U0q6ZBDwDi6D9U6ObZNxFj1STzRdbcv0UAPqAJOsm+JVgBhPZNLheuzNRWQKBgQDEjI8XIp6H8rsVrdvi+gpGaoCkS49htFpVXH6ZxXhH2SNOxtSGlZmoITliS3TtKdpy7+TRFckAyw/7XCtVVCqtWYlCmK8l8wmiRuQ5cSYo01KHVnGixE5xs7I9LJB19IxeEJUYtGB1sr2hVkiER56oIhyEDAOAnXttilx+sY2AvwKBgQC4HhoZTCRc6P3jTGIvkXW7JCzUwetOaODUJu3E4KuJQhNAsWil+zbcs/hgY7f/iXlUayp7TkJyr+u8Yzzye3Ooits45oV5dmqGVlFs/2Z1kxPZddmMfk29aDk/L1yFZjTQrdQlVfD6MQwlUbxsOYbLIiOTxD1iIwxg2cTHpb9J/QKBgQCUGKj0sLQtEXtgIWlOhELbvgICSaDW6NMsAI6wBPfVg0o0YGLgqbZm1ensI5kN3nxoIFQUK0sSGu+G4XMRT2L8zTs8f9lxSchXiv0KPzSWjGxh54OmNi45REIoD/0ls8dUVUBSpg8MgEqcV2w6p9BnNZSw9nBpJ8BJ0HhTSiup9wKBgGw8jf03LN1NvwtjeQkbywlD//LnOSx0LU+qvvaRWWYsaOMMKEgDQcJHLomDtcRMjf4ZrfSlEh0X3E54THkEJ/75+lwd8HNyMLdegSnBjvsphm69gDG+gncJkTXa4totNnlC50c3mZ2LPeemgE1jGCHMpPuWTrulfP5mpu7zOlwFAoGAV9GgzICgEt83tzfFB9PloMkfMdw9qdcU7dzpDc2GOGI+ybyBWLXtC1gCzMmPB+lKX0U+1fHOmVs0/hLfrvczSxxAk6JlcAPanVy6+KOrWQlKseMnawTw7ukBnhdeDco1lfn9NqZt2uO0EuQ71J6DxlFW0gKgHAc37jLDpZQxBcA=";
+}

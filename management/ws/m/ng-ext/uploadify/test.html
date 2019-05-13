@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title> Title </title>
+		<link href="uploadify.css" rel="stylesheet" type="text/css" />
+		<script src="../js/jquery-1.10.2.min.js"></script>
+		<script src="jquery.uploadify.js"></script>
+		<script language="javascript">
+		$(function(){
+			var props = {auto: true, multi: false, width: 80, height: 25, 
+				buttonText: '选择文件', fileObjName: 'file', debug: true};
+			props.queueID = 'queue';
+
+			props.uploader = '/webx/controller/test/TestAction/upload.gym';
+			props.swf = 'uploadify.swf';
+			props.cancelImg = 'cancel.png';
+			
+			// 重新设置formData
+			props.onSelect = function(file){
+				console.log(file);
+			};
+
+			props.onUploadError = function(file, errorCode, errorMsg, errorString){
+				console.log('Upload error : ' + errorCode);
+				console.log(errorMsg);
+				console.log(errorString);
+			};
+
+			props.onUploadSuccess = function(file, data, response){
+				console.log(file);
+				console.log(data);
+			};
+
+			$('#btn-upload').uploadify(props);
+		});
+		</script>
+	</head>
+
+	<body>
+	<div id="queue"></div>
+	<br />
+	<span id="btn-upload"></span>
+	
+	</body>
+</html>

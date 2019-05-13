@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.User">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
+    <result column="last_offline" jdbcType="TIMESTAMP" property="lastOffline" />
+    <result column="continue_login" jdbcType="INTEGER" property="continueLogin" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+    <result column="coin" jdbcType="INTEGER" property="coin" />
+    <result column="fanka" jdbcType="INTEGER" property="fanka" />
+    <result column="diamond" jdbcType="INTEGER" property="diamond" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="binded_mobile" jdbcType="VARCHAR" property="bindedMobile" />
+    <result column="binded_match" jdbcType="VARCHAR" property="bindedMatch" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="wxopenid" jdbcType="VARCHAR" property="wxopenid" />
+    <result column="wxunionid" jdbcType="VARCHAR" property="wxunionid" />
+    <result column="qqopenid" jdbcType="VARCHAR" property="qqopenid" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+    <result column="auth_time" jdbcType="TIMESTAMP" property="authTime" />
+    <result column="has_invitecode" jdbcType="INTEGER" property="hasInvitecode" />
+    <result column="sign_day" jdbcType="INTEGER" property="signDay" />
+    <result column="first_login" jdbcType="TIMESTAMP" property="firstLogin" />
+    <result column="sign_week" jdbcType="INTEGER" property="signWeek" />
+    <result column="sign_nums" jdbcType="INTEGER" property="signNums" />
+    <result column="lunpan_nums" jdbcType="INTEGER" property="lunpanNums" />
+    <result column="can_sign" jdbcType="INTEGER" property="canSign" />
+    <result column="can_lunpan" jdbcType="INTEGER" property="canLunpan" />
+    <result column="last_sign" jdbcType="INTEGER" property="lastSign" />
+    <result column="sign_week_first_day" jdbcType="TIMESTAMP" property="signWeekFirstDay" />
+    <result column="shouchong1" jdbcType="INTEGER" property="shouchong1" />
+    <result column="shouchong2" jdbcType="INTEGER" property="shouchong2" />
+    <result column="shouchong3" jdbcType="INTEGER" property="shouchong3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_type, user_name, passwd, nickname, gender, last_login, last_offline, continue_login, 
+    phone, weixin, coin, fanka,diamond, integral, head_img, binded_mobile, binded_match, token,
+    wxopenid, wxunionid, qqopenid, device_id, device_type, role, ctime, mtime, auth_time, has_invitecode,sign_day,
+    first_login,sign_week,sign_nums,lunpan_nums,can_sign,can_lunpan,last_sign,sign_week_first_day,shouchong1,shouchong2,shouchong3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.User" useGeneratedKeys="true">
+    insert into user (user_type, user_name, passwd, 
+      nickname, gender, last_login, 
+      last_offline, continue_login, phone, 
+      weixin, coin, fanka, diamond,
+      integral, head_img, binded_mobile, 
+      binded_match, token, wxopenid, wxunionid,
+      qqopenid, device_id, device_type, 
+      role, ctime, mtime, 
+      auth_time,has_invitecode,sign_day,
+      first_login,sign_week,
+      sign_nums,lunpan_nums,can_sign,can_lunpan,last_sign,sign_week_first_day,
+      shouchong1,shouchong2,shouchong3)
+    values (#{userType,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{lastLogin,jdbcType=TIMESTAMP}, 
+      #{lastOffline,jdbcType=TIMESTAMP}, #{continueLogin,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{weixin,jdbcType=VARCHAR}, #{coin,jdbcType=INTEGER}, #{fanka,jdbcType=INTEGER}, #{diamond,jdbcType=INTEGER},
+      #{integral,jdbcType=INTEGER}, #{headImg,jdbcType=VARCHAR}, #{bindedMobile,jdbcType=VARCHAR}, 
+      #{bindedMatch,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{wxopenid,jdbcType=VARCHAR}, #{wxunionid,jdbcType=VARCHAR},
+      #{qqopenid,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
+      #{role,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, #{mtime,jdbcType=TIMESTAMP},
+      #{authTime,jdbcType=TIMESTAMP},#{hasInvitecode,jdbcType=INTEGER},#{signDay,jdbcType=INTEGER},
+      #{firstLogin,jdbcType=TIMESTAMP},#{signWeek,jdbcType=INTEGER},
+      #{signNums,jdbcType=INTEGER},#{lunpanNums,jdbcType=INTEGER},#{canSign,jdbcType=INTEGER},#{canLunpan,jdbcType=INTEGER},#{lastSign,jdbcType=TIMESTAMP},#{signWeekFirstDay,jdbcType=TIMESTAMP},
+      #{shouchong1,jdbcType=INTEGER},#{shouchong2,jdbcType=INTEGER},#{shouchong3,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.User">
+    update user
+    set user_type = #{userType,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      last_offline = #{lastOffline,jdbcType=TIMESTAMP},
+      continue_login = #{continueLogin,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      coin = #{coin,jdbcType=INTEGER},
+      fanka = #{fanka,jdbcType=INTEGER},
+      diamond = #{diamond,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      binded_mobile = #{bindedMobile,jdbcType=VARCHAR},
+      binded_match = #{bindedMatch,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      wxopenid = #{wxopenid,jdbcType=VARCHAR},
+      wxunionid = #{wxunionid,jdbcType=VARCHAR},
+      qqopenid = #{qqopenid,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
+      role = #{role,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP},
+      has_invitecode = #{hasInvitecode,jdbcType=INTEGER},
+      sign_day = #{signDay,jdbcType=INTEGER},
+      first_login = #{firstLogin,jdbcType=TIMESTAMP},
+      sign_week = #{signWeek,jdbcType=INTEGER},
+      sign_nums = #{signNums,jdbcType=INTEGER},
+      lunpan_nums = #{lunpanNums,jdbcType=INTEGER},
+      can_sign = #{canSign,jdbcType=INTEGER},
+      can_lunpan = #{canLunpan,jdbcType=INTEGER},
+      last_sign = #{lastSign,jdbcType=TIMESTAMP},
+      sign_week_first_day = #{signWeekFirstDay,jdbcType=TIMESTAMP},
+      shouchong1 = #{shouchong1,jdbcType=INTEGER},
+      shouchong2 = #{shouchong2,jdbcType=INTEGER},
+      shouchong3 = #{shouchong3,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

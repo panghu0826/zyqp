@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.ClubScoreLog">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.ClubScoreLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="club_id" jdbcType="BIGINT" property="clubId" />
+    <result column="player_id" jdbcType="INTEGER" property="playerId" />
+    <result column="score_modify" jdbcType="INTEGER" property="scoreModify" />
+    <result column="score_left" jdbcType="INTEGER" property="scoreLeft" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="player_name" jdbcType="VARCHAR" property="playerName" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    club_id,
+    player_id,
+    score_modify,
+    score_left,
+    mtime,
+    type,
+    info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+      'false' as QUERYID,
+      a.id,
+      a.club_id,
+      a.player_id,
+      a.score_modify,
+      a.score_left,
+      a.mtime,
+      a.type,
+      a.info,
+      b.nickname as player_name
+    FROM
+      t_clubscore_log a,
+      user b
+    WHERE
+      a.player_id = b.id
+    AND
+      a.id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.ClubScoreLog" useGeneratedKeys="true">
+    INSERT INTO
+      t_clubscore_log (
+        club_id,
+        player_id,
+        score_modify,
+        score_left,
+        mtime,
+        type,
+        info)
+    VALUES (
+      #{clubId,jdbcType=BIGINT},
+      #{playerId,jdbcType=INTEGER},
+      #{scoreModify,jdbcType=INTEGER},
+      #{scoreLeft,jdbcType=INTEGER},
+      #{mtime,jdbcType=TIMESTAMP},
+      #{type,jdbcType=INTEGER},
+      #{info,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.ClubScoreLog">
+    UPDATE
+      t_clubscore_log
+    SET
+      club_id = #{clubId,jdbcType=BIGINT},
+      player_id = #{playerId,jdbcType=INTEGER},
+      score_modify = #{scoreModify,jdbcType=INTEGER},
+      score_left = #{scoreLeft,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR}
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM
+      t_clubscore_log
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </delete>
+</mapper>

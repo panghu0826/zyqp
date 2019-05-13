@@ -1,0 +1,134 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>桌子列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增代理商</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>玩家id：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.playerId" placeholder="输入玩家id"/>
+                                </td>
+                                <td>
+                                    <label>桌子id：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.deskId" placeholder="输入玩家id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <!--<th width="5%">游戏id</th>-->
+                            <th >游戏名称</th>
+                            <!--<th >赛场id</th>-->
+                            <!--<th >房间id</th>-->
+                            <!--<th >房间名称</th>-->
+                            <th >桌子id</th>
+                            <th >俱乐部id</th>
+                            <!--<th >桌子状态</th>-->
+                            <th >0号玩家</th>
+                            <th >1号玩家</th>
+                            <th >2号玩家</th>
+                            <th >3号玩家</th>
+                            <th >4号玩家</th>
+                            <th >5号玩家</th>
+                            <th >6号玩家</th>
+                            <th >7号玩家</th>
+                            <td>已玩局数</td>
+                            <td>创建时间</td>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <!--<td>-->
+                                <!--{{one.gameId}}-->
+                            <!--</td>-->
+                            <td>
+                                {{one.gameName}}
+                            </td>
+                            <!--<td>-->
+                                <!--{{one.matchId}}-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--{{one.roomId}}-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--{{one.roomName}}-->
+                            <!--</td>-->
+                            <td>
+                                {{one.deskId}}
+                            </td>
+                            <td>
+                                {{one.clubId}}
+                            </td>
+                            <!--<td>-->
+                                <!--{{one.deskStatus}}-->
+                            <!--</td>-->
+                            <td ng-style="{color: (one.players && one.players.length > 0 && one.players[0].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 0 ? one.players[0].playerId + "-" + one.players[0].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 1 && one.players[1].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 1 ? one.players[1].playerId + "-" + one.players[1].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 2 && one.players[2].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 2 ? one.players[2].playerId + "-" + one.players[2].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 3 && one.players[3].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 3 ? one.players[3].playerId + "-" + one.players[3].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 4 && one.players[4].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 4 ? one.players[4].playerId + "-" + one.players[4].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 5 && one.players[5].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 5 ? one.players[5].playerId + "-" + one.players[5].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 6 && one.players[6].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 6 ? one.players[6].playerId + "-" + one.players[6].name: ''}}
+                            </td>
+                            <td ng-style="{color: (one.players && one.players.length > 7 && one.players[7].online == '在线') ? 'black' : 'red'}">
+                                {{one.players && one.players.length > 7 ? one.players[7].playerId + "-" + one.players[7].name: ''}}
+                            </td>
+                            <td>
+                                {{one.gameCount}}
+                            </td>
+                            <td>
+                                {{one.createTime|date:"yyyy/MM/dd HH:mm:ss"}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="dismissDesk(one)">解散</button>
+                                <button class="btn" ng-click="dump(one)">记录</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

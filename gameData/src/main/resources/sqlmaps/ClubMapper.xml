@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.Club">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.Club">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="club_name" jdbcType="VARCHAR" property="clubName" />
+    <result column="club_wanfa" jdbcType="VARCHAR" property="clubWanfa" />
+    <result column="club_notice" jdbcType="VARCHAR" property="clubNotice" />
+    <result column="create_room_mode" jdbcType="INTEGER" property="createRoomMode" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="enter_score" jdbcType="INTEGER" property="enterScore" />
+    <result column="can_fufen" jdbcType="INTEGER" property="canFufen" />
+    <result column="choushui_score" jdbcType="INTEGER" property="choushuiScore" />
+    <result column="choushui_num" jdbcType="INTEGER" property="choushuiNum" />
+    <result column="zengsong_num" jdbcType="INTEGER" property="zengsongNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    club_name,
+    club_wanfa,
+    club_notice,
+    create_room_mode,
+    enter_score,
+    can_fufen,
+    choushui_score,
+    choushui_num,
+    zengsong_num,
+    ctime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+      'false' as QUERYID,
+      <include refid="Base_Column_List" />
+    FROM
+      t_club
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.Club" useGeneratedKeys="true">
+    INSERT INTO
+      t_club (
+        club_name,
+        club_wanfa,
+        club_notice,
+        create_room_mode,
+        enter_score,
+        can_fufen,
+        choushui_score,
+        choushui_num,
+        zengsong_num,
+        ctime)
+    VALUES (
+      #{clubName,jdbcType=VARCHAR},
+      #{clubWanfa,jdbcType=VARCHAR},
+      #{clubNotice,jdbcType=VARCHAR},
+      #{createRoomMode,jdbcType=INTEGER},
+      #{enterScore,jdbcType=INTEGER},
+      #{canFufen,jdbcType=INTEGER},
+      #{choushuiScore,jdbcType=INTEGER},
+      #{choushuiNum,jdbcType=INTEGER},
+      #{zengsongNum,jdbcType=INTEGER},
+      #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.Club">
+    UPDATE
+      t_club
+    SET
+      club_name = #{clubName,jdbcType=VARCHAR},
+      club_wanfa = #{clubWanfa,jdbcType=VARCHAR},
+      club_notice = #{clubNotice,jdbcType=VARCHAR},
+      create_room_mode = #{createRoomMode,jdbcType=INTEGER},
+      enter_score = #{enterScore,jdbcType=INTEGER},
+      can_fufen = #{canFufen,jdbcType=INTEGER},
+      choushui_score = #{choushuiScore,jdbcType=INTEGER},
+      choushui_num = #{choushuiNum,jdbcType=INTEGER},
+      zengsong_num = #{zengsongNum,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM
+      t_club
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </delete>
+</mapper>

@@ -1,0 +1,79 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="widget-title">
+                <span class="icon"><i class="icon-info"></i></span>
+                <h5>url版本管理</h5>
+                <div class="actions">
+                    <button class="btn" ng-click="init()">初始化数据</button>
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>模块：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.module"/>
+                                </td>
+                                <td>
+                                    <label>服务名称：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.srvName"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>版本开始：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.verFrom"/>
+                                </td>
+                                <td>
+                                    <label>版本结束：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="query.verTo"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="al">
+                                    <button class="btn-primary" ng-click="queryLl()">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="10%">模块</th>
+                            <th width="10%">服务名称</th>
+                            <th width="10%">服务描述</th>
+                            <th width="10%">版本开始</th>
+                            <th width="10%">版本结束</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>{{one.module}}</td>
+                            <td>{{one.srvname}}</td>
+                            <td>{{one.descUrl}}</td>
+                            <td>{{one.verfrom}}</td>
+                            <td>{{one.verto}}</td>
+                        </tr>
+                    </table>
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+
+        </div><!-- /.row-fluid -->
+    </div>
+</div>

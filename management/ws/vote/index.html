@@ -1,0 +1,517 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <title>抢券大作战</title>
+    {literal}
+    <style type="text/css">
+        /* reset */
+        html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;vertical-align:baseline;outline:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;}
+        html{font-size: 10px;height:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust: 100%;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+        body{background: #f7f6f8;color: #bcbcbc;font-size: 14px;line-height:1;font-family:"微软雅黑",Helvetica,Arial,Tahoma,sans-serif;-webkit-user-select:none;width: 100%;overflow-x: hidden;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:moz-none;user-select:none;}
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+        ol,ul{list-style:none}
+        blockquote,q{quotes:none}
+        blockquote:before,blockquote:after,q:before,q:after{content:none}
+        table{border-collapse:collapse;border-spacing:0}
+        img{max-width:100%;border:0;vertical-align:middle;-ms-interpolation-mode:bicubic;}
+        a{text-decoration:none;}
+        a:focus,a:hover,a:active,a:visited,input{outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);-moz-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0)}
+        .btn:active,.btn:visited{ color: #fff;}
+        input,button{vertical-align:middle;border: 1px solid #95b8e7;font-family:Helvetica,​Arial,​Tahoma,​sans-serif;}
+        .clearfix:before, .clearfix:after {content: " ";display: table;}
+        .clearfix:after {clear: both;}
+        .clearfix {*zoom: 1;}
+        *:focus {outline:none;}
+        *{word-break:break-all; word-wrap:break-word;}
+        /* 样式 */
+        .lottery-wrap{ width: 100%; background: url("/vote/images/vote_bg1.jpg") no-repeat; background-size: 100% 100%;}
+        .msg_warp{ width: 100%; background: url("/vote/images/vote_bg2.jpg") no-repeat; background-size: 100% 100%; display: none;position: relative;z-index: 99;}
+        .game-wrap{ width: 90%; background: transparent no-repeat; background-size: 100% 100%; padding: 20px; position: absolute; top:26%; left: 4.5%; z-index: 8;}
+        .game-wrap table{ border: none; width: 100%; height: 100%;}
+        .game-wrap table td{ height: 33%; width:33%;}
+        .game-wrap table td span{ display: block; height: 100%; width: 100%; background-size: 95% 95%;}
+        table .y5 span{ background: url("/vote/images/5y.png") no-repeat center;}
+        table .y5.hold span{ background: url("/vote/images/5y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y4 span{ background: url("/vote/images/4y.png") no-repeat center;}
+        table .y4.hold span{ background: url("/vote/images/4y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y3 span{ background: url("/vote/images/3y.png") no-repeat center;}
+        table .y3.hold span{ background: url("/vote/images/3y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y2 span{ background: url("/vote/images/2y.png") no-repeat center;}
+        table .y2.hold span{ background: url("/vote/images/2y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .y1 span{ background: url("/vote/images/1y.png") no-repeat center;}
+        table .y1.hold span{ background: url("/vote/images/1y_on.png") no-repeat center; background-size: 95% 95%;}
+        table .gx span{ background: url("/vote/images/gx.png") no-repeat center;}
+        table .gx.hold span{ background: url("/vote/images/gx_on.png") no-repeat center; background-size: 95% 95%;}
+        table .more span{ background: url("/vote/images/more.png") no-repeat center;}
+        table .more.hold span{ background: url("/vote/images/more_on.png") no-repeat center; background-size: 95% 95%;}
+        table .sj span{ background: url("/vote/images/sj.png") no-repeat center;}
+        table .sj.hold span{ background: url("/vote/images/sj_on.png") no-repeat center; background-size: 95% 95%;}
+        table .start span{ background: url("/vote/images/start_on.png") no-repeat center;}
+        table .start.on span{ background: url("/vote/images/start.png") no-repeat center; background-size: 95% 95%;}
+
+        .game-wrap .game-yes{ top:0;left:0;position: absolute; width: 91%; height: 97%; background: url("/vote/images/game-over.png") no-repeat center; opacity: 0.87; background-size: 100% 100%; display: none;margin: 3% 4.3%;}
+        .game-wrap .game-over{ top:0;left:0;position: absolute; width: 91%; height: 97%; background: url("/vote/images/game-over.png") no-repeat center; opacity: 0.87; background-size: 100% 100%; display: none;margin: 3% 4.3%;}
+        .pop_wrap .pop_body{display: none;}
+        .pop_wrap{ width: 80%; z-index: 98; position:fixed; top: 27%; left: 50%; margin-left: -40%;}
+        .pop_wrap .bottom p{color: #f8d267;font-size: 24px;text-align: center;line-height: 2.6em; padding: 15px 20px 20px 20px;}
+        .pop_wrap .moreagain .bottom p{padding-top: 23%;}
+        .pop_wrap .bottom img{width: 80%;}
+        .close_btn{ display: block; background: url("/vote/images/isee3.png") no-repeat; width: 190px; height: 55px; line-height: 41px; color: #fff; font-size: 16px; text-align: center; margin: 14px auto; position: absolute;left: 50%;transform: translateX(-50%);-ms-transform:translateX(-50%);-moz-transform:translateX(-50%);-webkit-transform:translateX(-50%);-o-transform:translateX(-50%);top: 65%; bottom: 3%;}
+        .get .close_btn{background-image: url("/vote/images/lg.png");background-size: 100% 100%;}
+        .share .close_btn{background-image: url("/vote/images/fx.png");background-size: 100% 100%;}
+        .moreagain .close_btn, .again .close_btn{background-image: url("/vote/images/ag.png");background-size: 100% 100%;}
+        .moreagain p span, .share p span, .again p span{display: block;color: #f4e7c3;line-height: 100%;padding-top: 23%;font-size: 22px;}
+        .moreagain p span{padding-top:0;}
+        .share p i{color: #ec6159;font-style: normal;}
+        .moreagain p i{font-size: 38px; font-style: normal;}
+        .pop_wrap .moreagain .bottom p, .pop_wrap .share .bottom p, .pop_wrap .again .bottom p{font-size: 27px;line-height: 3.3rem}
+        .title{ background: transparent no-repeat center bottom; background-size: 100%; width: 100%; position: absolute; top: 0; z-index: 9;}
+        .rule{width: 6%;position: absolute;top:40%;left: 0;height: 48%;}
+        .time{position: absolute;top:24vh;left: 64%;color:#fff;font-size: 18px;}
+        .mation{background: transparent no-repeat center top; background-size: 100%; position: absolute; bottom: 0; width: 100%; z-index: 7;}
+        .close-img{ background: url("/vote/images/cancle.png") no-repeat; width: 33px; height: 30px; position: absolute; top: 10px; right: 10px; background-size: 100% 100%;}
+        .lottery_list{ height: 9%; width: 70%; margin: 0 auto; position: fixed; bottom:5%; border-radius: 12px; z-index: 999; left: 15%;}
+        .scroll_name { height: 100%; width: 100%; overflow: hidden; position: relative; }
+        .scroll_name ul { position: absolute; width: 100%;}
+        .scroll_name li { height: 100%; line-height: 100%; padding: 2px 6px; color: #000;}
+        .scroll_name li img {  width: 36px; height: 36px; border-radius:18px;}
+        .scroll_name li strong{ font-weight: normal; display:inline-block; width: 50px; padding-left: 12px; overflow: hidden; white-space:nowrap; text-overflow:ellipsis; vertical-align: middle;}
+        .scroll_name li span{ padding-left: 4px; display:inline-block; vertical-align: middle;}
+
+        .msg_title{background: url(/vote/images/t_02.png) no-repeat center bottom; background-size: 100%; width: 65%; position: absolute; top: 0; z-index: 9;margin: 0 17.5%;}
+        .content_title{color:#f4e7c3;font-size: 2rem;text-align: center;padding: 2rem 0;font-weight: 900;}
+        .Msg_cancelbtn{background: url(/vote/images/cancle.png) no-repeat;position: absolute;background-size: 100% 100%;height: 8%;width: 10%;right: 10%;top: 4%;}
+        .msg_content{position: absolute;top:24%;}
+        .content_val{padding: 0 10%;color: #fff;line-height: 1.3;font-size: 1.24rem;}
+        .content_val p{padding-bottom: 0.5rem}
+        .content_val img{width: 90%;display: block;margin: 0 auto;padding-top: 5%;}
+
+        .get_warp{ width: 100%; background: url("/vote/images/vote_bg3.png") no-repeat; background-size: 100% 100%; display: none;position: relative;z-index: 99;}
+        .get_title{color: #de5b53;font-size: 24px;height: 24px;position: absolute;top: 9.5%;left: 0;font-weight: 900;width: 100%;text-align: center;}
+        .get_code{color: #263448;font-size: 34px;height: 34px;position: absolute;top: 14.5%;left: 0;font-weight: 900;width: 100%;text-align: center;}
+        .get_content{position: absolute;top:30%;width: 100%;}
+        .get_warp .content_val{font-size: 18px;line-height: 28px;text-align: center;}
+        .get_warp .content_val span{font-size: 20px;line-height: 28px;padding: 0 7px;border-radius: 8px;display: inline-block;background: #ef665b;color: #000;margin: 0 5px;}
+        .get_warp .content_val img{height: 170px;width: auto;}
+        .share-warp{z-index: 100;display: none;width: 100vw;height: 100vh;background-image: url(/vote/images/share.jpg);opacity: 0.87; position: fixed;  top: 0;left: 0;background-size: 100% 100%;}
+        .aboutme{position: absolute;bottom: 1%;left:0;right:0;width: 100%;text-align: center;font-size: 12px;color:#fff;}
+
+        .prize_info {text-align: center;font-size: 1.2em;}
+    </style>
+</head>
+<body>
+<!--抽奖开始-->
+<div class="lottery-wrap">
+    <div class="title">
+        <div class="rule"></div>
+        <div class="time">X<span>0</span></div>
+    </div>
+    <div class="game-wrap">
+        <table id="gameTable">
+            <tbody>
+            <tr>
+                <td class="y5"><span></span></td>
+                <td class="gx"><span></span></td>
+                <td class="y1"><span></span></td>
+            </tr>
+            <tr>
+                <td class="y4"><span></span></td>
+                <td class="start" id="gameBtn"><span></span></td>
+                <td class="y2"><span></span></td>
+            </tr>
+            <tr>
+                <td class="y3"><span></span></td>
+                <td class="more"><span></span></td>
+                <td class="sj"><span></span></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="game-yes"></div>
+        <div class="game-over"></div>
+    </div>
+    <div class="mation"></div>
+    <div class="lottery_list">
+        <div id="scrollable" class="scroll_name">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div class="aboutme">-活动最终解释权归国信泰九所有-</div>
+</div>
+<!-- 预加载 -->
+<div style="display: none;">
+    <img src="/vote/images/5y_on.png"/>
+    <img src="/vote/images/4y_on.png"/>
+    <img src="/vote/images/3y_on.png"/>
+    <img src="/vote/images/2y_on.png"/>
+    <img src="/vote/images/1y_on.png"/>
+    <img src="/vote/images/gx_on.png"/>
+    <img src="/vote/images/more_on.png"/>
+    <img src="/vote/images/start_on.png"/>
+</div>
+<!--抽奖结束-->
+
+<!-- 中奖提示框 -->
+<div class="pop_wrap" id="choujiang_jg" style="display:none;">
+    <div class="pop_body share">
+        <div class="bottom">
+            <p><span>呜呜呜~机会用光了</span>赶紧分享好友<br/>获得<i>1次</i>新的抽奖机会</p>
+            <a class="close_btn" href="javascript:void(0)"></a>
+        </div>
+    </div>
+    <div class="pop_body again">
+        <div class="bottom">
+            <p><span>艾玛~没中（哭</span>继续试手气<br/>万一中了呢</p>
+            <a class="close_btn" href="javascript:void(0)"></a>
+        </div>
+    </div>
+    <div class="pop_body moreagain">
+        <div class="bottom">
+            <p style="font-size: 22px;"><i>恭喜你</i><br/>获得1次新的抽奖机会<span>距离大奖只有一步之遥啦~</span></p>
+            <a class="close_btn" href="javascript:void(0)"></a>
+        </div>
+    </div>
+    <div class="pop_body get">
+        <div class="bottom">
+            <p>恭喜你！已经抢到<img src=""></p>
+            <a class="close_btn" href="javascript:void(0)"></a>
+        </div>
+    </div>
+</div>
+<!-- 兑奖方法页面 -->
+<div class="get_warp">
+    <div class="get_title">您的中奖兑换码</div>
+    <div class="get_code"></div>
+    <div class="get_content">
+        <div class="prize_info"></div>
+        <div class="content_title">兑换步骤</div>
+        <div class="content_val">
+            <p>1、长按扫描下方二维码，关注<br/>　<span>[泰九股市攻略]</span>微信号</p>
+            <p>2、在微信号里直接输入上方的<br/>　<span>兑奖码</span>再按提示操作即可</p>
+            <p><a href="javascript:;"><img src="/vote/images/ewm.png"></a></p>
+        </div>
+    </div>
+</div>
+<!-- 说明页面 -->
+<div class="msg_warp">
+    <div class="msg_title"></div>
+    <div class="msg_content">
+        <div class="Msg_cancelbtn"></div>
+        <div class="content_title">活动规则</div>
+        <div class="content_val">
+            <p>1、活动时间：2016年8月4日-8月10日。</p>
+            <p>2、用户进入活动页面，每人每天有3次抽奖机会，机会用光后，用户需将活动分享给好友，获得新的抽奖机会，抽奖机会当天不使用，即被清零。</p>
+            <p>3、奖品派发：当用户抽中奖券后，需要在【泰九股市攻略】微信号中凭兑换码兑换奖品，每位用户只有一次中奖机会。如抽中奖券是电子奖券，将直接通过微信号获取，如抽中实物奖券，则需要用户在微信号中填写邮寄地址，活动结束后2个工作日内寄出奖品。</p>
+            <p>4、本次活动派发的奖券仅限深圳地区的连锁实体店使用，外地用户暂无法使用，邮寄范围仅限深圳市内。</p>
+            <p>5、如用户通过任何作弊行为获得奖品，一经发现，立即取消活动资格，本活动最终解释权归国信泰九所有。</p>
+            <img src="/vote/images/code.png">
+        </div>
+    </div>
+</div>
+
+<!-- 分享 -->
+<div class="share-warp"></div>
+
+<script src="/vote/js/jquery.min.js"></script>
+<script type="text/javascript" src="/vote/js/vote.js"></script>
+{/literal}
+
+{if $isWx}
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+{else}
+<script src="/vote/js/wx-mock.js"></script>
+{/if}
+
+<script>
+    var cookieuserid = '{$openid}';
+    var isDebug = 'true' == '{$isDebug}';
+    wx.config({
+        debug: isDebug,
+        appId: '{$appid}',
+        timestamp: '{$timestamp}',
+        nonceStr: '{$nonce}',
+        signature: '{$signature}',
+        jsApiList: [
+            'onMenuShareAppMessage',
+            'onMenuShareTimeline'
+        ]
+    });
+
+    var shareObj = {
+        title: '{$shareTitle}',
+        link: '{$shareLink}',
+        imgUrl: '{$shareImgUrl}',
+        desc: '{$shareDesc}',
+        type: 'link', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+            $.get('/a/m/act/prize-draw/share', function (data) {
+                if (data.flag) {
+                    leftDrawNum++;
+                    $('.time span').text(leftDrawNum < 0 ? 0 : leftDrawNum);
+
+                    // todo
+                    if (leftDrawNum > 0) {
+                        $(".game-over").hide();
+                        $("#choujiang_jg").hide();
+                        $(".pop_body").hide();
+                        initTable();
+
+                        $('.share-warp').hide();
+                    }
+                }
+            });
+            _czc.push(["_trackEvent",'20160804抢券活动','分享成功','',cookieuserid]);
+        },
+        cancel : function () {
+            _czc.push(["_trackEvent",'20160804抢券活动','取消分享','',cookieuserid]);
+        }
+    };
+    wx.ready(function () {
+        wx.onMenuShareAppMessage(shareObj);
+        wx.onMenuShareTimeline(shareObj);
+    });
+</script>
+
+{literal}
+<script type="text/javascript">
+    var leftDrawNum = 3;
+    var prizeTypeLast = -1;
+    var isInitTable = false;
+
+    var initTable = function () {
+        if (isInitTable) {
+            $("#gameTable").triggerHandler('resetval');
+            $('#gameBtn').removeClass('off');
+            return;
+        }
+
+        isInitTable = true;
+        $("#gameTable").wen_plug_award2({
+            star: "#gameBtn",
+            data_url: '/a/m/act/prize-draw',
+            star_fn: function (elm) {
+                elm.addClass("on");
+                setTimeout(function () {
+                    elm.removeClass("on");
+                }, 200);
+
+								alert('活动已经结束！');
+								return false;
+
+                if(leftDrawNum <= 0){
+                    $(".pop_body").hide();
+
+                    $(".game-over").show();
+                    $('.share').show();
+                    $("#choujiang_jg").show();
+                    return false;
+                    _czc.push(["_trackEvent",'20160804抢券活动','没次数点击抽奖','',cookieuserid]);
+                }
+                _czc.push(["_trackEvent",'20160804抢券活动','有次数点击抽奖','',cookieuserid]);
+
+                return true;
+            },
+            end_fn: function (obj, cjdata) {
+                // 又中一次，继续
+                if (cjdata.grid != '8') {
+                    leftDrawNum--;
+                    $('.time span').text(leftDrawNum < 0 ? 0 : leftDrawNum);
+                }
+
+                // 还可以继续，用剩余次数去限制
+                initTable();
+
+                $(".pop_body").hide();
+
+                if (cjdata.flag) {
+                    $('.get img').attr('src', '/vote/images/get' + cjdata.img + '.png');
+                    $('.get').show();
+                    showPrize(cjdata.code, cjdata.name, cjdata.amount, true);
+                    _czc.push(["_trackEvent",'20160804抢券活动','中奖'+cjdata.name,'',cookieuserid]);
+                }
+
+                if (cjdata.grid == '2' || cjdata.grid == '5' || cjdata.grid == '6') {
+                    $('.again').show();
+                    _czc.push(["_trackEvent",'20160804抢券活动','没中奖'+cjdata.grid,'',cookieuserid]);
+                } else if (cjdata.grid == '8') {
+                    $('.moreagain').show();
+                    _czc.push(["_trackEvent",'20160804抢券活动','中奖新机会','',cookieuserid]);
+                }
+
+                $(".game-over").show();
+                $("#choujiang_jg").show();
+            }
+        });
+    };
+
+    var showPrize = function (code, name, amount, noShowYes) {
+        $('.get_code').text(code);
+        $('.prize_info').text('您已获得：' + amount + '元' + name);
+        if (!noShowYes) {
+            $('.get_warp').show();
+            $('.lottery-wrap').hide();
+
+            var wh = $(window).height();
+            var getcontent = $('.get_content').offset().top+$('.get_content').height()+20;
+            var getwarph = wh>getcontent?wh:getcontent;
+            $('.get_warp').css({"height":getwarph});
+
+            var getcontent = $('.get_content').offset().top+$('.get_content').height()+20;
+            var getwarph = wh>getcontent?wh:getcontent;
+            $('.get_warp').css({"height":getwarph});
+        }
+
+        shareObj.title = '我刚刚抢到了' + amount + '元' + name + '，你也来试试手气吧~ ';
+        shareObj.desc = '一大波健身券、洗牙券、洗车券等你来抽，人品爆发就是现在!';
+
+        wx.onMenuShareAppMessage(shareObj);
+        wx.onMenuShareTimeline(shareObj);
+    };
+
+    var refreshWhenTimeChange = function (num) {
+        $('.time span').text(num < 0 ? 0 : num);
+
+//        if (num <= 0) {
+//            $(".game-over").show();
+//            $('.share').show();
+//            $("#choujiang_jg").show();
+//        }
+    };
+    $(document).ready(function () {
+        //调整显示布局
+        var gameTable= $("#gameTable");
+        var gameYes= $(".game-yes");
+        var gameOver= $(".game-over");
+        var gameWrap = $(".game-wrap");
+        var title = $(".title");
+        function viewreset() {
+            var ww = $(window).width();
+            var wh = $(window).height();
+            var msgcontent = $('.msg_content').offset().top+$('.msg_content').height()+20;
+            var getcontent = $('.get_content').offset().top+$('.get_content').height()+20;
+            var msgwarph = wh>msgcontent?wh:msgcontent;
+            var getwarph = wh>getcontent?wh:getcontent;
+            $('.msg_warp').css({"height":msgwarph});
+            $(".lottery-wrap").css({"height":wh});
+            $('.get_warp').css({"height":getwarph});
+            $(".game-wrap").css({"height":wh*0.54});
+            $('.bottom').height(wh*0.54);
+            var titleH = wh*0.26+20;
+            var msgtitleH2 = msgcontent*0.26+20;
+            title.height(titleH);
+            $('.msg_title').height((titleH>=msgtitleH2?titleH:msgtitleH2)-40);
+            $(".mation").height(wh-gameTable.height()-title.height()+22);
+        }
+        window.onresize = function() {viewreset();};
+        viewreset();
+
+        //请求用户数据userId从cookie还是哪里取？
+        $.get('/a/m/act/prize-draw/info', function (json) {
+            //中奖列表滚动数据
+            var list = json.prizedUserList, str = "";
+            for (var i = 0, len = list.length; i < len; i++) {
+                // <img src="'+list[i].headimgurl+'" />
+                str += '<li><strong>' + list[i].nickname + '</strong><span>抽中价值' + list[i].prizeAmount + '元' + list[i].prizeName + '</span></li>';
+            }
+            $("#scrollable ul").append(str);
+            if ($("#scrollable li").length > 1) {
+                $("#scrollable").Scroll({line: 1, speed: 30, timer: 60});
+            }
+
+            if (json.alreadyDraw) {
+                var a = json.winPrize;
+                showPrize(a.code, a.name, a.amount);
+                return;
+            }
+
+            leftDrawNum = json.leftDrawNum;
+
+            refreshWhenTimeChange(leftDrawNum);
+            if (leftDrawNum <= 0) {
+//                $('.share').show();
+//                $("#choujiang_jg").show();
+//                return;
+            }
+
+            gameTable.show();
+            gameOver.hide();
+            gameWrap.css("padding", "5%").show();
+            initTable();
+        });
+
+        //各种结果按钮
+        $('.share').on('click', '.close_btn', function (event) {
+            $('.share-warp').show();
+            _czc.push(["_trackEvent",'20160804抢券活动','点击分享','','',cookieuserid]);
+        });
+        $('.again').on('click', '.close_btn', function (event) {
+            $("#choujiang_jg").hide();
+            $(".game-over").hide();
+            _czc.push(["_trackEvent",'20160804抢券活动','点击再抽一次','','',cookieuserid]);
+        });
+        $('.moreagain').on('click', '.close_btn', function (event) {
+            $("#choujiang_jg").hide();
+            $(".game-over").hide();
+            _czc.push(["_trackEvent",'20160804抢券活动','中了再抽点再抽一次','','',cookieuserid]);
+        });
+        $('.get').on('click', '.close_btn', function (event) {
+            $("#choujiang_jg").hide();
+            fnGameYes();
+            _czc.push(["_trackEvent",'20160804抢券活动','中奖查看领奖方法','','',cookieuserid]);
+        });
+        $('.share-warp').on('click', function (event) {
+            event.preventDefault();
+            $(this).hide();
+            _czc.push(["_trackEvent",'20160804抢券活动','关闭分享蒙层','','',cookieuserid]);
+        });
+
+        //兑奖方法页面
+        function fnGameYes() {
+            var wh = $(window).height();
+            $('.get_warp').show();
+            $('.lottery-wrap').hide();
+            var getcontent = $('.get_content').offset().top+$('.get_content').height()+20;
+            var getwarph = wh>getcontent?wh:getcontent;
+            $('.get_warp').css({"height":getwarph});
+            var getcontent = $('.get_content').offset().top+$('.get_content').height()+20;
+            var getwarph = wh>getcontent?wh:getcontent;
+            $('.get_warp').css({"height":getwarph});
+        }
+
+        //说明页面
+        $('.rule').on('click', function (event) {
+            var wh = $(window).height();
+            $('.msg_warp').show();
+            $('.lottery-wrap').hide();
+            var msgcontent = $('.msg_content').offset().top+$('.msg_content').height()+20;
+            var msgwarph = wh>msgcontent?wh:msgcontent;
+            $('.msg_warp').css({"height":msgwarph});
+            var msgcontent = $('.msg_content').offset().top+$('.msg_content').height()+20;
+            var msgwarph = wh>msgcontent?wh:msgcontent;
+            $('.msg_warp').css({"height":msgwarph});
+
+            _czc.push(["_trackEvent",'20160804抢券活动','查看说明','','',cookieuserid]);
+        });
+        $('.Msg_cancelbtn').on('click', function (event) {
+            $('.lottery-wrap').show();
+            $('.msg_warp').hide();
+            _czc.push(["_trackEvent",'20160804抢券活动','关闭说明页面','','',cookieuserid]);
+        });
+
+				alert('活动已经结束！');
+    });
+    //统计
+    var _czc = _czc || [];
+    _czc.push(["_setAccount", '1260000516']);
+    $(function() {
+        _czc.push(["_trackEvent",'20160804抢券活动','加载完毕','','',cookieuserid]);
+    });
+</script>
+<style type="text/css">#cnzz_stat_icon_1260000516{display: none;}</style>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260000516'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260000516' type='text/javascript'%3E%3C/script%3E"));document.getElementById('cnzz_stat_icon_1260000516').style.display='none';</script>
+{/literal}
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserTask">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="completed_count" jdbcType="INTEGER" property="completedCount" />
+    <result column="required_count" jdbcType="INTEGER" property="requiredCount" />
+    <result column="finish" jdbcType="BIT" property="finish" />
+    <result column="close" jdbcType="BIT" property="close" />
+    <result column="award" jdbcType="BIT" property="award" />
+    <result column="prompt_count" jdbcType="INTEGER" property="promptCount" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, task_id, task_type, day, completed_count, required_count, finish, close, 
+    award, prompt_count, mtime, ctime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.UserTask" useGeneratedKeys="true">
+    insert into user_task (user_id, task_id, task_type, 
+      day, completed_count, required_count, 
+      finish, close, award, prompt_count, 
+      mtime, ctime)
+    values (#{userId,jdbcType=INTEGER}, #{taskId,jdbcType=VARCHAR}, #{taskType,jdbcType=INTEGER}, 
+      #{day,jdbcType=INTEGER}, #{completedCount,jdbcType=INTEGER}, #{requiredCount,jdbcType=INTEGER}, 
+      #{finish,jdbcType=BIT}, #{close,jdbcType=BIT}, #{award,jdbcType=BIT}, #{promptCount,jdbcType=INTEGER}, 
+      #{mtime,jdbcType=TIMESTAMP}, #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserTask">
+    update user_task
+    set user_id = #{userId,jdbcType=INTEGER},
+      task_id = #{taskId,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER},
+      completed_count = #{completedCount,jdbcType=INTEGER},
+      required_count = #{requiredCount,jdbcType=INTEGER},
+      finish = #{finish,jdbcType=BIT},
+      close = #{close,jdbcType=BIT},
+      award = #{award,jdbcType=BIT},
+      prompt_count = #{promptCount,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

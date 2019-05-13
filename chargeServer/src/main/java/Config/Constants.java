@@ -1,0 +1,17 @@
+package Config;
+
+public class Constants {
+	
+	public static final String ORDER_PAY = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+	public static final String SEARCH_ORDER_PAY = "https://api.mch.weixin.qq.com/pay/orderquery";
+	
+	public static final String WX_APP_ID = "wxd3f3edd3f562c25c";
+	public static final String WX_MCH_SECRET = "C4XOliNB3EuI867qDAa7Z2TTQo3D6a3L";
+	public static final String WX_MCH_ID = "1462111702";
+	public static final String WX_PARTERN_ID = "";
+	public static final String WX_PARTNER_KEY = "";
+	//public static final String WX_APP_KEY = "";
+	
+	public static final String ALI_APP_ID = "2017041606755978";
+    public static final String ALI_PRIVATE_KEY = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0ROBai3w2QIunc71ouvXxMYkM6r+JQ7ENfmScmXIGykEVzl8numKra+AhXYYZPIQM+5LCnYtw9HsYenOTej+fa9x7ClC+KZ9wn8yw5k9+FVfOLF1OzvNEKSy4n6WMUnOGkSo0jfP04E6uKy99qHMixg4Usz0q22Otzl4woPCxsB8Pv3eshP4EW4wQzGrj3OlpgUuTY5IDJh9CDvg28FBtw9AUSpHhDVVrQmWOMZVz/cffMJiGiCJUAd1yAd+bmmYQokdqdGm6cOdu1+ppBhj7yjM9Yr12gHc0rtk11SSTbFuAcQoCvBElHwmdxChJlYiLHpgrJkrQ2G/GllSm/iYBAgMBAAECggEAIN96hihvgzkr/mJFxQZq+QvOcTORsAdPDyXgVQpKV+CkE8TpZ0Y+3gGzAoKahJmbfv6VWbX/Cp8an3EdCGS/m2PA9hMAfFz8vT32xr+I+XYM6AUBEvD8PY7An/5E4xzaAk0QhDrqpNoOnwYzB9gi/tFdGftBiUIuoDBEzttaaRxkWVVBLXmanRBYVSac6Mzt34vjYbrtdg+hFypo96CgqA8XVInmpVBC2N1IUkZVja2Y82GELZ034+gVc+ciC22iF+T2HimRFbBwn4FKnZiCe+xaEtD+D+A0xYPVmZC9gIbI6NXBLWem2kTwYC3Wh4MtVUOsIoWjhvwU5h1dBG207QKBgQD/QE5cB0A5JJb+WXKYxB+lnqZ9e3ZYD/rGRym/sXJddOgjlWr/CjzlXW9YFvmLw4WTGyLo6bBST7dOYpq9Rex9gF/4IPfmi1AbCBua7k+WEfr4p4HXpkkCe+JzcR32ta7KUQOBWhFDN9kJwacHCwQb5C8h1SzEGGqWZj+puC4wswKBgQC0zEI0+IO5DpK4ZbIorTSr3arS8VdXRnOTRTx8fSWEmPDvs1luvY+i53/1E68ONXfUGB6/E2CS1hZOSLDjFqUSaJCqr9z3CzG21O0PxruQooDOr26ezmPeawcm/zVeHxxSy2vc3FEAvRo+jlSNPZbIbkb6peEQCSwnbfThAOBAewKBgQCJJ3Wzj5Xb3qRf0ZJ5MdFLfh86B/BES3nVtwFg5qlsPFhMXopatpaYLIeazuWSSyJoNEmi24cKA5mcvfElyP/VQ/jNbHGoaK1HiSjELE+JdOnlWKS1Sr2qXwUEQQD3wxJD1hpLFCl4c/bkfjEQ4MN5dTg6NsDSMch8Pj7xJG11bwKBgG7pT0RHoCcKdZ+BY4Xom4NDfOPjAf2cTpJtyuljrHxnhobFs3tn9pGtCqZB6QYCbvxBv7rgHEJ36z8jAMCOx70/QGA1eoxi5aCPhs5C0BWuWu5wWKA7ZLCxX7XgodCXrTxtZkIbNeYKG+t8TQpIWhOi8xAYarT3q4qUvcC6VNe5AoGAf5EDRjl4ohAes0ngVsaUnTxWFcP67kNl4xiZLRLEYQILAo2m4tiDv1SR6ioJPlK3pFXR9oe3u/eyKsAGnfBWNxjoiRflIG7Df46mQtrl/7tRdl/D6/91X6n1bMRJnf+16hqEyX6X2TUz1sZL4jByBCxFxWnBl6gT2RjxByp3qaY=";
+}

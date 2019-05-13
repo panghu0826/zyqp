@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" href="assets/base.css"/>
+    <link rel="stylesheet" href="../m/tpl/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="../m/tpl/css/bootstrap-custom.css"/>
+    <link rel="stylesheet" href="../m/tpl/css/main.css"/>
+    <link id="themes" rel="stylesheet" type="text/css" href="../m/tpl/css/themes/blue/default.css">
+    <style>
+        .no-print {
+            display: none;
+        }
+    </style>
+</head>
+
+<body ng-controller="MainCtrl">
+</body>
+</html>
+
+
+<script type="text/javascript">
+    var appname = '/m';
+</script>
+<script src="../m/ng-ext/consts.js"></script>
+<script src="../m/ng-ext/all.js"></script>
+<script src="../m/ng-ext/ng.ext.js"></script>
+<script src="assets/director.min.js"></script>
+
+<script src="assets/base.js"></script>
+<script>
+    (function () {
+        var store = new Store(true);
+        var tpl = store.get('tpl');
+        var data = store.get('tplData');
+        if (!tpl || !data) {
+            return;
+        }
+
+        $('body').html(tpl);
+
+        var md = angular.module('md', []);
+        md.controller('MainCtrl', function ($scope) {
+            for (key in data) {
+                $scope[key] = data[key];
+            }
+        });
+
+        angular.bootstrap(document, ['md']);
+    })();
+</script>

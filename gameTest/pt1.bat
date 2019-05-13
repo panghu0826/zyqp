@@ -1,0 +1,1 @@
+start java -classpath .;./target/lib/*;./target/* com.buding.ptest.PTestStarter -wc 400 -s www.xskdqmj3d.cn

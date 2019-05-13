@@ -1,0 +1,41 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>每日开局统计</h5>
+                    <div class="actions">
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >日期</th>
+                            <th >开局数</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.gameDay }}
+                            </td>
+                            <td>
+                                {{one.playCount }}
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+</div>

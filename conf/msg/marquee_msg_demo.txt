@@ -1,0 +1,13 @@
+{
+ 	"senderId":-1,
+ 	"senderName":"系统管理员",
+ 	"receiver":-1,
+ 	"msgType":"PM01",
+ 	"pos":[1,2,3,4,5,6,7,8],
+	"priority":5,
+	"playSetting":"5x3",
+   	"clientType":[1,2,3,4],
+   	"msg":"测试后台跑马灯",
+   	"startTime":1491198007,
+	"stopTime":1591198007  	
+}

@@ -1,0 +1,326 @@
+package packet.club;
+
+
+
+//俱乐部Req(打开俱乐部面板或者切换到俱乐部面板)
+message ClubInfoReq {
+
+}
+
+//俱乐部Rsp(打开俱乐部面板或者切换到俱乐部面板)
+message ClubInfoRsp {
+    repeated ClubSyn clubs = 3; //俱乐部列表
+}
+
+//俱乐部对象
+message ClubSyn {
+    required sint32 synType = 1; //同步类型,0:全量同步,1:解散俱乐部(删除),2:增加,3:修改
+    required sint64 clubId = 2; //俱乐部ID
+    optional string clubName = 3; //俱乐部名字
+}
+
+//俱乐部成员列表Req
+message ClubMemberReq {
+    required sint64 clubId = 2; //俱乐部ID
+}
+
+//俱乐部成员列表Rsp
+message ClubMemberRsp {
+    repeated ClubMemberSyn members = 4; //俱乐部成员列表
+}
+
+//俱乐部成员对象(积分操作,权限操作都推送此消息)
+message ClubMemberSyn {
+    required sint32 synType = 1; //同步类型,0:全量同步,1:删除,2:增加,3:修改
+    required sint64 clubId = 2; //俱乐部ID
+    optional sint32 memberType = 3; //成员类型,0:普通成员,1:拥有者,2:管理
+    required sint64 memberId = 4; //成员id
+    optional string memberImg = 5; //成员头像
+    optional sint32 memberScore = 6; //成员积分
+    optional string memberName = 7; //成员名字
+    optional sint32 online = 8;//状态 0 离线，1在线
+}
+
+//俱乐部房间列表Req
+message ClubRoomListReq {
+    required sint64 clubId = 1; //俱乐部ID
+    required sint32 roomType = 2; //房间类型,0:普通场,1:积分场
+}
+
+//俱乐部房间列表Rsp
+message ClubRoomListRsp {
+    required sint64 clubId = 1; //俱乐部ID
+    repeated ClubRoomModelSyn roomList = 2;
+}
+
+message ClubRoomModelSyn{
+    required sint32 synType = 1;  //同步类型,0:全量同步,1:删除,2:增加,3:修改
+    required sint32 roomType = 2; //房间类型,0:俱乐部普通场,1:俱乐部积分场,-1,大厅场(在大厅创建的个人房间)
+    required string deskId = 3; //桌子id
+    required sint32 curJuNum = 4; //当前局数
+    required sint32 juNum = 5; //总局数
+    required sint32 wanfa = 6; //玩法
+    repeated DeskPalyer playerList = 7;//玩家列表
+    required string gameId = 8;//游戏id
+    required sint64 clubId = 9; //俱乐部ID
+    required string matchId = 10; //赛场ID
+    required int32 limitMax = 11; //封顶分数
+}
+
+message DeskPalyer{
+    required sint64 playerId = 1;//玩家ID
+    required string nickName = 2;//玩家昵称
+    required sint32 playerScore = 3;//玩家积分
+    required string imgUrl = 4;//玩家微信头像url
+}
+
+//俱乐部设置Req
+message ClubConfigReq {
+    required sint64 clubId = 1; //俱乐部ID
+}
+
+//俱乐部设置Rsp
+message ClubConfigSyn {
+    required sint64 clubId = 1; //俱乐部ID
+    optional string wanfa = 2; //玩法json,格式:待定
+    optional sint32 createRoomMode = 3; //开房模式,1:管理员开房,2:所有人开房
+    optional string notice = 4; //公告
+    optional string clubName = 5; //俱乐部名字
+    optional sint32 clubRoomEnterScore = 6; //俱乐部房间为积分场时有值,否则为-1,为准入分数
+    optional sint32 clubRoomChouShuiScore = 7; //俱乐部房间为积分场时有值,否则为-1,为抽水分数(赢得分数达到这个分数开始抽水)
+    optional sint32 clubRoomCanFuFen = 8; //俱乐部房间为积分场时是否可以负分,-1不是积分场,1不可以,2可以
+    optional sint32 clubRoomChouShuiNum = 9; //俱乐部房间为积分场时赢家抽水数量,-1,不是积分场,100,所有赢家
+    optional sint32 clubRoomZengSongNum = 10; //俱乐部房间为积分场时赢家抽水比例,-1,不是积分场,1为1%,2为2%,以此类推
+}
+
+//申请列表Rsp
+message ApplyInfoRsp {
+    repeated ApplyInfo apply = 1; //申请信息
+}
+
+//服务器单方面推送
+message ApplyInfo {
+    required sint32 synType = 1; //同步类型,0:全量同步,1:删除,2:增加
+    required sint32 applyType = 2; //申请类型,0:申请加入俱乐部,1:申请好友
+    optional sint64 clubId = 3; //俱乐部ID
+    optional sint64 playerId = 4; //申请人ID
+    optional string playerName = 5; //申请人名字
+    optional string playerImg = 6; //申请人头像
+}
+
+//聊天列表Req
+message ChatListReq {
+
+}
+
+//聊天列表Rsp
+message ChatListRsp {
+    repeated ChatListSyn chatList = 1;//
+}
+
+//聊天列表同步
+message ChatListSyn {
+    required sint32 synType = 1; //同步类型,0:全量同步,2:增加
+    required sint64 chatId = 2; //聊天id,唯一的,每个俱乐部单独一个,每两个聊天玩家(私聊)一个,大厅聊天一个
+    required sint32 type = 3; //类型:0:俱乐部,1:私聊,2:大厅聊天
+    optional sint64 clubId = 4; //俱乐部ID
+    optional sint64 reciverId = 5; //收信人ID
+    optional string reciverName = 6; //收信人名字
+    optional string reciverImg = 7; //收信人头像
+}
+
+//聊天内容Req
+message ChatContentReq {
+    required sint64 chatId = 1; //聊天id,唯一的,每个俱乐部单独一个,每两个聊天玩家(私聊)一个,大厅聊天一个
+}
+
+//聊天内容Rsp
+message ChatContentRsp {
+    required sint64 chatId = 1; //聊天id,唯一的,每个俱乐部单独一个,每两个聊天玩家(私聊)一个,大厅聊天一个
+    repeated ChatContentSyn content = 2;//内容
+}
+
+//聊天内容同步
+message ChatContentSyn {
+    required sint32 synType = 1; //同步类型,0:全量同步,1:删除,2:增加,3:修改
+    required sint64 chatId = 2; //聊天id,唯一的,每个俱乐部单独一个,每两个聊天玩家(私聊)一个,大厅聊天一个
+    required sint64 time = 3; //时间戳
+    required sint64 playerId = 4; //说话人ID
+    required string playerName = 5; //说话人名字
+    required string playerImg = 6; //说话人头像
+    required string content = 7; //说话人内容
+}
+
+//联系人列表Req
+message FriendListReq {
+
+}
+
+//联系人列表Rsp
+message FriendListRsp {
+    repeated FriendSyn friends = 1;//内容
+}
+
+//联系人同步
+message FriendSyn {
+    required sint32 synType = 1; //同步类型,0:全量同步,1:删除,3:修改
+    required sint64 chatId = 2; //聊天id,唯一的,每个俱乐部单独一个,每两个聊天玩家(私聊)一个,大厅聊天一个
+    required sint32 type = 3; //类型:0:俱乐部,1:好友
+    optional sint64 clubId = 4; //俱乐部ID
+    optional sint64 playerId = 5; //联系人ID
+    optional string playerName = 6; //联系人名字
+    optional string playerImg = 7; //联系人头像
+    optional sint32 online = 8;//状态 0 离线，1在线
+}
+
+//搜索好友Req
+message FriendSearchReq {
+    required sint64 playerId = 1;//玩家ID
+}
+
+//搜索好友Rsp
+message FriendSearchRsp {
+    repeated Player players = 1;//内容
+}
+
+message Player {
+    optional sint32 playerId = 1;
+    optional string playerName = 2;
+    optional string playerImg = 3;
+    optional sint32 sex = 4;//性别 值为1时是男性，值为2时是女性，值为0时是未知
+    optional sint32 diamond = 5;//钻石
+    optional string unionid = 6;//微信的unionid
+    required sint32 online = 7;//状态 0 离线，1在线
+}
+
+//申请好友/俱乐部Req
+message ApplyReq {
+    required sint32 type = 1;//申请类型:0:申请俱乐部,1:申请好友
+    optional sint64 playerId = 2;//申请好友,玩家ID
+    optional sint64 clubId = 3;//申请俱乐部,俱乐部ID
+}
+
+//申请结果Req
+message ApplyResultReq {
+    required sint32 type = 1;//申请类型:0:申请俱乐部,1:申请好友
+    optional sint64 playerId = 2;//申请好友,申请人ID
+    optional sint64 clubId = 3;//申请俱乐部,俱乐部ID
+    optional bool isAgree = 4;//同意/拒绝
+}
+
+//俱乐部成员权限管理
+message ClubAuthorityManageReq {
+    required sint32 type = 1;//0:转让群主,1:添加管理,2:减少管理
+    optional sint64 playerId = 2;//玩家ID
+    optional sint64 clubId = 3;//俱乐部ID
+}
+
+//关闭俱乐部页面
+message ClubClose {
+
+}
+
+//积分详情查询req
+message ClubScoreInfoReq {
+    required sint64 clubId = 1;//俱乐部ID
+    optional sint64 playerId = 2;//玩家ID
+    optional sint64 startTime = 3 ;//根据时间查询,开始时间
+    optional sint64 endTime = 4 ;//根据时间查询,结束时间
+    optional sint32 type = 5;//根绝类型查询,1:初始化,2:管理员修改,3:游戏消耗,4:表情消耗,5:转让群主
+    required sint32 pageNum = 6;//分页,第几页
+}
+
+//积分详情查询rsp
+message ClubScoreInfoRsp {
+    repeated ClubScoreInfo infos = 1;
+}
+
+message ClubScoreInfo {
+    optional sint64 playerId = 1;//玩家ID
+    optional string playerName = 2;//玩家名字
+    optional sint32 modifyScore = 3;//变化积分
+    optional sint32 leftScore = 4;//剩余积分
+    optional sint64 time = 5 ;//时间
+    optional sint32 type = 6;//类型,1:初始化,2:管理员修改,3:游戏消耗,4:表情消耗,5:转让群主
+    optional string info = 7;//具体说明
+}
+
+//修改备注
+message RemarkSyn {
+    optional sint64 playerId = 1;//玩家ID
+    optional string playerName = 2;//玩家名字
+}
+
+//备注请求req
+message UpdateRemarkReq {
+
+}
+
+//备注回复rsp
+message UpdateRemarkRsp {
+    repeated RemarkSyn remark = 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

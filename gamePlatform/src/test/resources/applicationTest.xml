@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+			>
+   
+    <!-- 开启自动扫描 autowire 配置 -->
+    <context:component-scan base-package="com.yayo" />
+    <context:component-scan base-package="com.buding"/>
+    <context:property-placeholder location="classpath*:*.properties"/>
+    
+    <import resource="rmi-client.xml"/>
+    
+    <bean id="configManager" class="com.buding.hall.config.ConfigManager">
+        <property name="matchConfigFolder">
+			<value>${matchConfigFolder}</value>
+        </property>
+        <property name="itemConfigFolder">
+			<value>${shopConfigFolder}</value>
+        </property>
+        <property name="taskConfigFolder">
+			<value>${taskConfigFolder}</value>
+        </property>
+    </bean>
+</beans>

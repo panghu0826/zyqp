@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tree>
+  <Node id="Node_0" name="Login" type="Root">
+    <Children>
+      <Node id="Node_1" type="DynamicPriorityList">
+        <Children>
+          <Node id="Node_2" name="Login" type="Action">
+            <Guard>
+              <Node id="Node_5" name="needLogin" type="Condition" />
+            </Guard>
+            <Parameters>
+              <Parameter name="userName" fromcontext="true">userName</Parameter>
+              <Parameter name="password" fromcontext="true">password</Parameter>
+            </Parameters>
+          </Node>
+          <Node id="Node_8" name="InitMsg" type="Action">
+            <Guard>
+              <Node id="Node_9" name="needInitMsg" type="Condition" />
+            </Guard>
+          </Node>
+          <Node id="Node_4" name="MsgAuth" type="Action">
+            <Guard>
+              <Node id="Node_6" name="needAuthMsg" type="Condition" />
+            </Guard>
+          </Node>
+          <Node id="Node_10" name="InitGame" type="Action">
+            <Guard>
+              <Node id="Node_11" name="needInitGame" type="Condition" />
+            </Guard>
+          </Node>
+          <Node id="Node_5" name="GameAuth" type="Action">
+            <Guard>
+              <Node id="Node_7" name="needAuthGame" type="Condition" />
+            </Guard>
+          </Node>
+        </Children>
+      </Node>
+    </Children>
+  </Node>
+</Tree>
+

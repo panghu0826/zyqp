@@ -1,0 +1,28 @@
+{
+    "note": "首次登录大礼包",
+    "taskId": "FirstLogin",
+    "taskType": 1,
+    "amount": 1,
+    "resetTime": -1,
+    "autoAward": false,
+    "preTaskId": null,
+    "clientType": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "taskGroup": 1,
+    "taskImg": "lord.png",
+    "title": "首次登录礼包 3000金币+1天记牌器",
+    "awardItems": [
+        {
+            "itemId": "D011",
+            "count": 3000
+        },
+        {
+            "itemId": "B003",
+            "count": 1
+        }
+    ]
+}

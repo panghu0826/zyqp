@@ -1,0 +1,236 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>赛场列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增赛场</button>
+                        <button class="btn" ng-click="publish()">发布</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <form name="queryForm">
+
+                    </form>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >房间id</th>
+                            <th >房间名称</th>
+                            <th >房间类型</th>
+                            <th >赛场id</th>
+                            <th >低分</th>
+                            <th >金币限制(低)</th>
+                            <th >金币限制(高)</th>
+                            <th >图标</th>
+                            <th >操作超时(秒)</th>
+                            <th >出牌时间(毫秒)</th>
+                            <th >吃碰牌时间(毫秒)</th>
+                            <th >一轮局数(比赛场)</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.roomId}}
+                            </td>
+                            <td>
+                                {{one.roomName}}
+                            </td>
+                            <td>
+                                {{one.roomType}}
+                            </td>
+                            <td>
+                                {{one.matchId}}
+                            </td>
+                            <td>
+                                {{one.baseScore}}
+                            </td>
+                            <td>
+                                {{one.minCoinLimit}}
+                            </td>
+                            <td>
+                                {{one.maxCoinLimit}}
+                            </td>
+                            <td>
+                                {{one.icon}}
+                            </td>
+                            <td>
+                                {{one.gameParamOperTimeOut}}
+                            </td>
+                            <td>
+                                {{one.gameParamChuPlayMills}}
+                            </td>
+                            <td>
+                                {{one.gameParamChiPengPlayMills}}
+                            </td>
+                            <td>
+                                {{one.juNum}}
+                            </td>
+                            <td class="opts">
+                                <button class="btn" ng-click="edit(one)">编辑</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowAdd', title: '新增代理商', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 1200px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label>房间ID：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.roomId"><span style="color:red">一旦保存请勿修改</span></td>
+
+                <td><label>房间名称：</label></td>
+                <td>
+                    <input type="text" ng-model="tmp.editOne.roomName">
+                </td>
+            </tr>
+
+            <tr ui-layout-col="">
+                <td><label>房间类型：</label></td>
+                <td>
+                    <select ng-model="tmp.editOne.roomType" ng-options="a.code as a.name for a in tmp.roomTypeList">
+                        <option value="" selected>--/--</option>
+                    </select>
+                </td>
+
+                <td><label>赛场id：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.matchId"><span style="color:red">一旦保存请勿修改</span></td>
+            </tr>
+
+            <tr ui-layout-col="">
+                <td><label>底分：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.baseScore"></td>
+
+                <td><label>图标：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.icon"><span style="color:red">前端显示图标,普通场需要填写，其它场留空</span></td>
+            </tr>
+
+            <tr ui-layout-col="" ng-if="tmp.editOne.matchId != 'G_SYMJ_MATCH_MULTI'">
+                <td><label>金币限制(低)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.minCoinLimit"><span style="color:red">-1或0代表无限制</span></td>
+
+                <td><label>金币限制(高)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.maxCoinLimit"><span style="color:red">-1或0代表无限制</span></td>
+            </tr>
+
+            <tr ui-layout-col="" ng-if="tmp.editOne.matchId == 'G_SYMJ_MATCH_MULTI'">
+                <td><label>钻石限制(低)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.minCoinLimit"><span style="color:red">-1或0代表无限制</span></td>
+
+                <td><label>钻石限制(高)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.maxCoinLimit"><span style="color:red">-1或0代表无限制</span></td>
+            </tr>
+
+
+
+            <tr ui-layout-col="">
+                <td><label>赛场cls：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.matchClassFullName"></td>
+
+                <td><label>游戏cls：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.gameClassFullName"></td>
+            </tr>
+            <tr ui-layout-col="">
+                <td><label>桌子cls：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.deskClassFullName"></td>
+
+                <td><label>房间cls：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.roomClassFullName"></td>
+            </tr>
+
+            <tr ui-layout-col="">
+                <td><label>操作超时(秒)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.gameParamOperTimeOut"></td>
+
+                <td><label>超时自动托管：</label></td>
+                <td><input type="checkbox" ng-model="tmp.editOne.gameParamAutoOperWhenTimeout"></td>
+            </tr>
+
+            <tr ui-layout-col="">
+                <td><label>自动托管时出牌思考时间(毫秒)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.gameParamThinkMillsWhenAutoOper"><span style="color:red">等待指定时间才出牌</span></td>
+                <td><label>启用机器人：</label></td>
+                <td><input type="checkbox" ng-model="tmp.editOne.supportRobot"></td>
+            </tr>
+
+            <tr ui-layout-col="">
+                <td><label>吃碰动画播放时间(毫秒)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.gameParamChiPengPlayMills"></td>
+
+                <td><label>出牌动画播放时间(毫秒)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.gameParamChuPlayMills"></td>
+            </tr>
+
+
+            <tr ui-layout-col="">
+                <td><label>最小开赛人数：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.seatSizeLower"><span style="color:red">4：4人麻将，2：2人麻将</span></td>
+
+                <td><label>最大开赛人数：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.seatSizeUpper"><span style="color:red">4：4人麻将，2：2人麻将</span></td>
+            </tr>
+
+
+            <tr ui-layout-col="" ng-if="tmp.editOne.roomType != 'VIP' && tmp.editOne.matchId != 'G_SYMJ_MATCH_MULTI'">
+                <td><label>台费(金币)：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.srvFee"></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr ui-layout-col="" ng-if="tmp.editOne.matchId == 'G_SYMJ_MATCH_MULTI'">
+                <td>
+                    <label>比赛轮数：</label>
+                </td>
+                <td><input type="text" ng-model="tmp.editOne.juNum"></td>
+                <td></td><td></td>
+            </tr>
+
+            <tr ui-layout-col="" ng-if="tmp.editOne.roomType == 'VIP'">
+                <td><label>8局钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.eightJuDiamond"></td>
+                <td><label>16局钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.sixteenJuDiamond"></td>
+            </tr>
+            <tr ui-layout-col="" ng-if="tmp.editOne.roomType == 'VIP'">
+                <td><label>24局钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.twentyfourJuDiamond"></td>
+                <td><label>2圈钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.twoQuanDiamond"></td>
+            </tr>
+            <tr ui-layout-col="" ng-if="tmp.editOne.roomType == 'VIP'">
+                <td><label>4圈钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.fourQuanDiamond"></td>
+                <td><label>锅(底分100)钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.guo100Diamond"></td>
+            </tr>
+            <tr ui-layout-col="" ng-if="tmp.editOne.roomType == 'VIP'">
+                <td><label>锅(底分200)钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.guo200Diamond"></td>
+                <td><label>锅(底分300)钻石：</label></td>
+                <td><input type="text" ng-model="tmp.editOne.guo300Diamond"></td>
+            </tr>
+
+            <!--<tr ui-layout-col="" ng-if="tmp.editOne.matchId == 'G_SYMJ_MATCH_4VIP'">-->
+                <!--<td><label>4张房卡可玩：</label></td>-->
+                <!--<td><input type="text" ng-model="tmp.editOne.gameCountLow">圈</td>-->
+                <!--<td><label>8张房卡可玩：</label></td>-->
+                <!--<td><input type="text" ng-model="tmp.editOne.gameCountHigh">圈</td>-->
+            <!--</tr>-->
+        </table>
+        <button class="btn btn-blue" ng-click="save()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowAdd = false">关闭</button>
+    </script>
+</div>

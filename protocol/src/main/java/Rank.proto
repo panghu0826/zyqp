@@ -1,0 +1,28 @@
+package packet.rank;
+
+
+message RankRequest {
+    optional string gameId = 1;
+    optional string rankType = 2;//1:财富榜,2:周开,3:月开
+}
+
+message RankSyn {
+	repeated RankItem rankList = 1;
+    optional string gameid = 2;//财富榜:ALL,周开月开:真实gameid
+    optional string rankType = 3;//1:财富榜,2:周开,3:月开
+}
+
+message RankItem {
+   optional int32 rank = 1; //排名
+   optional int32 playerId = 2; //
+   optional string playerName = 3;
+   optional string playerHeadImg = 4;
+   optional int32 point = 5;
+   optional string ip = 6;
+   optional sint32 coin = 7;
+   optional sint32 fanka = 8;
+   optional sint32 continueWinCount = 9;
+   optional sint32 totalGameCount = 10;
+   optional double winRate = 11;
+   optional sint32 diamond = 12;
+}

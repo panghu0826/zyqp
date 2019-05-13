@@ -1,0 +1,65 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>代理列表</h5>
+                    <div class="actions">
+                        <button class="btn" ng-click="tmp.editOne = {}; ctrl.isShowAdd = true;">新增下级代理</button>
+                    </div>
+                </div>
+
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th >一级代理</th>
+                            <th >二级代理</th>
+                            <th >三级代理</th>
+                        </tr>
+                        <tr ng-repeat="one in ll">
+                            <td>
+                                {{one.firstAgent}}
+                            </td>
+                            <td>
+                                {{one.secondAgent}}
+                            </td>
+                            <td>
+                                {{one.thirdAgent}}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div ui-pagi="" pager="pager" on-change-page="queryLl(cp)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/x-template"
+            ui-dialog="{showModel: 'ctrl.isShowAdd', title: '新增、编辑用户信息', dialogId: 'dialogUser', lock: true, fixed: true, ext: {max: false}}">
+        <table class="table table-bordered table-striped m_top6" style="width: 600px;" ng-form="tmp.addForm">
+            <tr ui-layout-col="">
+                <td><label style="color: orange">用户名</label><label style="color: red">*</label></td>
+                <td><input type="text" ng-model="tmp.editOne.username" ui-valid="r"/></td>
+            </tr>
+            <tr>
+                <td><label style="color: orange">手机</label><label style="color: red">*</label></td>
+                <td><input type="text" ng-model="tmp.editOne.phone" ui-valid="r tel"/></td>
+            </tr>
+            <tr>
+                <td><label style="color: orange">密码</label><label style="color: red">*</label></td>
+                <td><input type="text" ng-model="tmp.editOne.password" /></td>
+            </tr>
+            <tr>
+                <label style="color: red"> 温馨提示:这是添加后台登陆账号,用户名和手机号必填,使用手机号登录,用户名不能纯数字</label>
+            </tr>
+        </table>
+        <button class="btn btn-blue" ng-click="addSubUser()">保存</button>
+        <button class="btn" ng-click="ctrl.isShowAdd = false">关闭</button>
+    </script>
+
+</div>

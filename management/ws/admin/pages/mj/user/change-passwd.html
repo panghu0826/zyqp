@@ -1,0 +1,44 @@
+<div ng-controller="MainCtrl">
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-info"></i></span>
+                    <h5>修改密码</h5>
+                </div>
+                <div class="widget-content">
+                    <form name="queryForm">
+                        <table class="table table-bordered table-striped m_top6">
+                            <tr ui-layout-col="">
+                                <td>
+                                    <label>原密码：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="tmp.oldPasswd"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>新密码：</label>
+                                </td>
+                                <td>
+                                    <input type="text" ng-model="tmp.newPasswd"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td colspan="5" class="al">
+                                    <button class="btn-primary" ng-click="changePasswd()">修改</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.row-fluid -->
+    </div>
+</div>

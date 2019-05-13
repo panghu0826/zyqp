@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.Chat">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.Chat">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="chat_type" jdbcType="INTEGER" property="chatType" />
+    <result column="club_id" jdbcType="BIGINT" property="clubId" />
+    <result column="user1_id" jdbcType="INTEGER" property="user1Id" />
+    <result column="user2_id" jdbcType="INTEGER" property="user2Id" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="user1_name" jdbcType="VARCHAR" property="user1Name" />
+    <result column="user2_name" jdbcType="VARCHAR" property="user2Name" />
+    <result column="user1_img" jdbcType="VARCHAR" property="user1Img" />
+    <result column="user2_img" jdbcType="VARCHAR" property="user2Img" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    chat_type,
+    club_id,
+    user1_id,
+    user1_name,
+    user1_img,
+    user2_id,
+    user2_name,
+    user2_img,
+    ctime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+            'false' as QUERYID,
+            a.id,
+            a.chat_type,
+            a.club_id,
+            a.user1_id,
+            b.nickname as user1_name,
+            b.head_img as user1_img,
+            a.user2_id,
+            c.nickname as user2_name,
+            c.head_img as user2_img,
+            a.ctime
+        FROM
+          t_chat a,
+          user b,
+          user c
+        WHERE
+          a.user1_id = b.id
+        AND
+          a.user2_id = c.id
+        AND
+          a.id = #{id,jdbcType=BIGINT}
+    UNION
+        SELECT
+            'false' as QUERYID,
+            d.id,
+            d.chat_type,
+            d.club_id,
+            d.user1_id,
+            d.user2_id,
+            '' as user1_name,
+            '' as user1_img,
+            '' as user2_img,
+            '' as user2_name,
+            d.ctime
+         FROM
+          t_chat d
+         WHERE
+          d.user1_id IS NULL
+         AND
+          d.user2_id IS NULL
+         AND
+          d.id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.Chat" useGeneratedKeys="true">
+    INSERT INTO
+      t_chat (
+        chat_type,
+        club_id,
+        user1_id,
+        user2_id,
+        ctime)
+    VALUES (
+      #{chatType,jdbcType=INTEGER},
+      #{clubId,jdbcType=BIGINT},
+      #{user1Id,jdbcType=INTEGER},
+      #{user2Id,jdbcType=INTEGER},
+      #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.Chat">
+    UPDATE
+      t_chat
+    SET
+      chat_type = #{chatType,jdbcType=INTEGER},
+      club_id = #{clubId,jdbcType=BIGINT},
+      user1_id = #{user1Id,jdbcType=INTEGER},
+      user2_id = #{user2Id,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM
+      t_chat
+    WHERE
+      id = #{id,jdbcType=BIGINT}
+  </delete>
+</mapper>

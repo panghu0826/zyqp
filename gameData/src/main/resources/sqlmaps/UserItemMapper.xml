@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.UserItem">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.UserItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="item_type" jdbcType="INTEGER" property="itemType" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_count" jdbcType="INTEGER" property="itemCount" />
+    <result column="effect_end_time" jdbcType="TIMESTAMP" property="effectEndTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, item_id, item_type, item_name, item_count, effect_end_time, expire_time, 
+    ctime, mtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.buding.db.model.UserItem">
+    insert into user_item (id, user_id, item_id, 
+      item_type, item_name, item_count, 
+      effect_end_time, expire_time, ctime, 
+      mtime)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{itemId,jdbcType=VARCHAR}, 
+      #{itemType,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}, #{itemCount,jdbcType=INTEGER}, 
+      #{effectEndTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{mtime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.UserItem">
+    update user_item
+    set user_id = #{userId,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      item_type = #{itemType,jdbcType=INTEGER},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_count = #{itemCount,jdbcType=INTEGER},
+      effect_end_time = #{effectEndTime,jdbcType=TIMESTAMP},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      mtime = #{mtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

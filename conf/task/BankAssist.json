@@ -1,0 +1,32 @@
+{
+    "note": "每日可领3次破产救济，蓝钻用户更多优惠",
+    "taskId": "BankAssist",
+    "taskType": 3,
+    "amount": 1,
+    "resetTime": 0,
+    "autoAward": false,
+    "preTaskId": null,
+    "clientType": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "taskGroup": 2,
+    "taskImg": "lord.png",
+    "title": "破产救济 1000金币",
+    "repeatCount": 3,
+    "blueVipRepeatCount": 10,
+    "awardItems": [
+        {
+            "itemId": "D011",
+            "count": 1000
+        }
+    ],    
+    "bludVipAwardItems": [
+        {
+            "itemId": "D011",
+            "count": 1000
+        }
+    ]
+}

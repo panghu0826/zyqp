@@ -1,0 +1,55 @@
+[
+{
+	"id":"DH001",
+	"name":"5000金币",
+	"img":"red_diamond",
+	"startTime":1450706986,
+	"stopTime":1482249600,
+	"totalBalance":123,
+	"dayBalance":12,
+	"clientType":[1,2,3,4],
+	"price":12,
+	"status":1,
+	"currency":1, //1 Gold 2 coin 3 zz 4 RMB
+	"type":1, //1 虚拟物品 2：话费流量 3 其它实物
+	"msgId":"SX001",
+	"items":[
+		{
+			"itemId":"D010",
+			"count":1
+		}
+	]
+},
+{
+	"id":"DH002",
+	"name":"10元话费",
+	"img":"red_diamond",
+	"startTime":1450706986,
+	"stopTime":1482249600,
+	"totalBalance":123,
+	"dayBalance":12,
+	"clientType":[1,2,3,4],
+	"price":300,
+	"status":1,
+	"currency":1, //1 Gold 2 coin 3 zz 4 RMB
+	"type":2, //1 虚拟物品 2：话费流量 3 其它实物
+	"msgId":"SX002",
+	"items":[]
+},
+{
+	"id":"DH003",
+	"name":"小米手机",
+	"img":"red_diamond",
+	"startTime":1450706986,
+	"stopTime":1482249600,
+	"totalBalance":123,
+	"dayBalance":12,
+	"clientType":[1,2,3,4],
+	"price":1000,
+	"status":1,
+	"currency":1, //1 Gold 2 coin 3 zz 4 RMB
+	"type":3, //1 虚拟物品 2：话费流量 3 其它实物
+	"msgId":"SX002",
+	"items":[]
+}
+]

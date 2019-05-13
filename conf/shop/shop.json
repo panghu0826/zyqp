@@ -1,0 +1,82 @@
+[
+{
+	"id":"31001",
+	"name":"金币",
+	"category":0,
+	"img":"gold_J1",
+	"clientType":[1,2,3,4],
+	"desc":"2.4万游戏金币",
+	"cItemCount":24000,
+	"price":{
+	   "currenceType":"4",
+	   "currenceCount":3
+	},
+	"status":1,
+	"items":[
+		{
+			"itemId":"D001",
+			"count":24000
+		}
+	]
+},
+{
+	"id":"31002",
+	"name":"金币",
+	"category":0,
+	"img":"gold_J2",
+	"clientType":[1,2,3,4],
+	"desc":"7.3万游戏金币",
+	"cItemCount":73000,
+	"price":{
+	   "currenceType":"4",
+	   "currenceCount":3
+	},
+	"status":1,
+	"items":[
+		{
+			"itemId":"D001",
+			"count":73000
+		}
+	]
+},
+{
+	"id":"31003",
+	"name":"金币",
+	"category":0,
+	"img":"gold_J3",
+	"clientType":[1,2,3,4],
+	"desc":"22万游戏金币",
+	"cItemCount":220000,
+	"price":{
+	   "currenceType":"4",
+	   "currenceCount":3
+	},
+	"status":1,
+	"items":[
+		{
+			"itemId":"D001",
+			"count":220000
+		}
+	]
+},
+{
+	"id":"DJB01",
+	"name":"房卡X4",
+	"category":2,
+	"img":"fangka_4",
+	"clientType":[1,2,3,4],
+	"desc":"4张房卡",
+	"cItemCount":4,
+	"price":{
+	   "currenceType":"4",
+	   "currenceCount":3
+	},
+	"status":1,
+	"items":[
+		{
+			"itemId":"A001",
+			"count":4
+		}
+	]
+}
+]

@@ -1,0 +1,47 @@
+[
+{
+	"msgType":"PM01",
+	"pos":[1,2,3,4,5,6,7,8],
+	"priority":5,
+	"playSetting":"5x3",
+	"lifeTime":172800,
+   	"clientType":[1,2,3,4],
+   	"contentTpl":"恭喜昵称为${userName}的用户，${time}在奖品兑换中获得${itemName}x${itemCount}！"
+},
+{
+	"msgType":"PM02",
+	"pos":[2,3],
+	"priority":3,
+	"playSetting":"10x3",
+	"lifeTime":600,
+   	"clientType":[1,2,3,4],
+   	"contentTpl":"${groupName}阶段奖将在${time}发放，冠军奖励${awardDesc}，祝您游戏愉快！"
+},
+{
+	"msgType":"PM03",
+	"pos":[2,3],
+	"priority":3,
+	"playSetting":"10x3",
+	"lifeTime":600,
+   	"clientType":[1,2,3,4],
+   	"contentTpl":"${groupName}将在${time}结束，冠军奖励${awardDesc}，祝您游戏愉快！"
+},
+{
+	"msgType":"PM04",
+	"pos":[2,3],
+	"priority":1,
+	"playSetting":"10x3",
+	"lifeTime":600,
+   	"clientType":[1,2,3,4],
+   	"contentTpl":"${groupName}将在${time}结束，冠军奖励${awardDesc}，祝您游戏愉快！"
+},
+{
+	"msgType":"PM05",
+	"pos":[2,3],
+	"priority":1,
+	"playSetting":"10x3",
+	"lifeTime":600,
+   	"clientType":[1,2,3,4],
+   	"contentTpl":"${groupName}阶段奖已在${time}发放，奖品已发送，请前往大厅消息栏查看！"
+}
+]

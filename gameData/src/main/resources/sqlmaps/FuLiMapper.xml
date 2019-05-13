@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.FuLi">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.FuLi">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="game_id" jdbcType="VARCHAR" property="gameId" />
+    <result column="player_id" jdbcType="INTEGER" property="playerId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,game_id,player_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_fuli
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

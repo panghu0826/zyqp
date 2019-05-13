@@ -1,0 +1,1 @@
+java -Xdebug -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n -Duser.timezone=GMT+08 -Xms64M -Xmx64M -XX:PermSize=64M -XX:MaxPermSize=64M -classpath "lib/*;". com.guosen.webx.web.ServerJetty config/server.properties

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>藏金阁</title>
+	<link rel="stylesheet" href="css/base.css">
+	<script type="text/javascript">
+	!(function(){
+		var doc = document;
+		var win = window;
+		var arg = arguments;
+		var docEl = doc.documentElement,
+		resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		recalc = function () {
+			var clientWidth = docEl.clientWidth;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
+			// if (window._ua.platform=='windows' || window._ua.platform=='ios') {
+			// 	docEl.style.fontSize = 100 + 'px';
+			// } else {
+			// 	var clientWidth = docEl.clientWidth;
+			// 	if (!clientWidth) return;
+			// 	docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
+			// }
+		};
+		if (!doc.addEventListener) return;
+		win.addEventListener(resizeEvt, recalc, false);
+		doc.addEventListener('DOMContentLoaded', recalc, false);
+		if(!arg.callee.init) {
+			arg.callee.init = 1;
+			window.onresize = arg.callee();		
+		}
+	})();
+	</script>
+	<style type="text/css">
+		.loginPage{
+			padding: 0.6rem 14px;
+			background-color: rgb(255,94,92);
+		}
+		h1,h2{
+			color: #fff;
+		}
+		h1{
+			font-size: 0.18rem;
+		}
+		h2{
+			font-size: 0.16rem;
+			padding: 0.18rem 0;
+			font-weight: 100;
+		}
+		.loginBox{
+			padding-top: 0.4rem;
+			position: relative;
+		}
+		.tit{
+			text-align: left;
+			font-size: 0.1rem;
+			color: #fff;
+			font-weight: 100;
+		}
+		.input{
+			display: block;
+			width: 100%;
+			border: 0;
+			background-color: #fff;
+			margin: 0.1rem 0 0.4rem 0;
+			height: 0.4rem;
+			font-size: 0.16rem;
+			padding: 0 0.32rem;
+			box-sizing: border-box;
+		}
+		#clear{
+			position: relative;
+		}
+		#clear div{
+			position: absolute;
+			top: 0;right: 0;
+			width: 0.4rem;
+			height: 0.4rem;
+			background: url(img/i-close.png) no-repeat 50% 50%;
+			background-size: 35%;
+		}
+		#errTips {
+			display: none;
+			position: fixed;
+			top: 30%;
+			left: 50%;
+			width: 1.8rem;
+			padding: 0.15rem 0;
+			text-align: center;
+			margin: 0 0 0 -0.9rem;
+			color: #fff;
+			background-color: rgba(0,0,0,.7);
+			font-size: 0.16rem;
+			border-radius: 0.03rem;
+		}
+		#errTips.show {
+			display: block;
+		}
+		#errTips img{
+			position: relative;
+			top: 0.02rem;
+			height: 0.16rem;
+			margin-right: 0.14rem;
+		}
+	</style>
+	<script type="text/javascript">
+		//s20是代表20秒
+		//h是指小时，如12小时则是：h12
+		//d是天数，30天则：d30
+		//setCookie("name","hayden","s20");
+		//设置cookie
+		function setCookie(name,value,time) {
+		    var strsec = getsec(time);
+		    var exp = new Date();
+		    exp.setTime(exp.getTime() + strsec*1);
+		    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+		}
+
+		function getsec(str) {
+		    var str1=str.substring(1,str.length)*1;
+		    var str2=str.substring(0,1);
+		    if (str2=="s") {
+		        return str1*1000;
+		    }
+		    else if (str2=="h") {
+		        return str1*60*60*1000;
+		    }
+		    else if (str2=="d") {
+		        return str1*24*60*60*1000;
+		    }
+		}
+
+		//读取cookies
+		function getCookie(name) {
+		    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		  if(arr=document.cookie.match(reg))
+		        return (arr[2]);
+		  else
+		    return null;
+		}
+
+		//删除cookies
+		function delCookie(name) {
+		  var exp = new Date();
+		  exp.setTime(exp.getTime() - 1);
+		  var cval=getCookie(name);
+		  if(cval!=null)
+		      document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+		}
+
+		window.onload = function() {
+			var errTips = document.getElementById('errTips');
+			var form = document.getElementById('form');
+			
+			//校验并提交
+			document.getElementById('go').addEventListener('click', function (e) {
+				e.preventDefault();
+				var password = document.getElementById('password').value;
+				if (!password || !password.match(/.{6}/)) {
+					//alert('请输入正确的资金账号');
+					errTips.className = "show";
+					setTimeout(function() {
+						errTips.className = "";
+					}, 3000);
+					return false;
+				}
+				console.log(password);
+				//form.submit();
+				//setCookie(name,value,time)
+				//getCookie(name)
+				return false;
+			}, false);
+
+			//清除输入框
+			document.getElementById('clear').addEventListener('click', function (e) {
+				document.getElementById('password').value ='';
+				return false;
+			}, false);
+
+			//提示框点击消失
+			errTips.addEventListener('click', function (e) {
+				this.className = "";
+				return false;
+			}, false);
+
+			//体验要求
+			var h2 = document.getElementById('h2');
+			window.onresize = function() {
+				var t = h2.offsetTop;
+				window.scrollTo(0, t);
+			}
+		}
+	</script>
+</head>
+
+<body class="loginPage">
+	<h1 class="tac">财富</h1>
+	<h2 class="tac" id="h2">这里是一句话标题</h2>
+	<div class="loginBox">
+		<form action="##" id="form">
+			<div class="tit tac">请输入您资金账户的后6位后继续阅读</div>
+			<div id="clear">
+				<div class="close"></div>
+				<input id="password" class="input" type="password" maxlength="6" placeholder="请输入6位资金账号">
+			</div>
+			<input id="go" class="input" type="submit" value="确定">
+		</form>
+	</div>
+	<div class="" id="errTips">
+		<div class=""><img src="img/i_err.png" alt="">验证失败！</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.GameLog">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.GameLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="game_id" jdbcType="VARCHAR" property="gameId" />
+    <result column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="desk_id" jdbcType="VARCHAR" property="deskId" />
+    <result column="user1_id" jdbcType="INTEGER" property="user1Id" />
+    <result column="user2_id" jdbcType="INTEGER" property="user2Id" />
+    <result column="user3_id" jdbcType="INTEGER" property="user3Id" />
+    <result column="user4_id" jdbcType="INTEGER" property="user4Id" />
+    <result column="user1_score" jdbcType="INTEGER" property="user1Score" />
+    <result column="user2_score" jdbcType="INTEGER" property="user2Score" />
+    <result column="user3_score" jdbcType="INTEGER" property="user3Score" />
+    <result column="user4_score" jdbcType="INTEGER" property="user4Score" />
+    <result column="user1_fan_num" jdbcType="INTEGER" property="user1FanNum" />
+    <result column="user2_fan_num" jdbcType="INTEGER" property="user2FanNum" />
+    <result column="user3_fan_num" jdbcType="INTEGER" property="user3FanNum" />
+    <result column="user4_fan_num" jdbcType="INTEGER" property="user4FanNum" />
+    <result column="user1_fan_desc" jdbcType="VARCHAR" property="user1FanDesc" />
+    <result column="user2_fan_desc" jdbcType="VARCHAR" property="user2FanDesc" />
+    <result column="user3_fan_desc" jdbcType="VARCHAR" property="user3FanDesc" />
+    <result column="user4_fan_desc" jdbcType="VARCHAR" property="user4FanDesc" />
+    <result column="game_start_time" jdbcType="TIMESTAMP" property="gameStartTime" />
+    <result column="game_end_time" jdbcType="TIMESTAMP" property="gameEndTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, game_id, match_id, room_id, desk_id, user1_id, user2_id, user3_id, user4_id, 
+    user1_score, user2_score, user3_score, user4_score, user1_fan_num, user2_fan_num, 
+    user3_fan_num, user4_fan_num, user1_fan_desc, user2_fan_desc, user3_fan_desc, user4_fan_desc, 
+    game_start_time, game_end_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from game_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.GameLog" useGeneratedKeys="true">
+    insert into game_log (game_id, match_id, room_id, 
+      desk_id, user1_id, user2_id, 
+      user3_id, user4_id, user1_score, 
+      user2_score, user3_score, user4_score, 
+      user1_fan_num, user2_fan_num, user3_fan_num, 
+      user4_fan_num, user1_fan_desc, user2_fan_desc, 
+      user3_fan_desc, user4_fan_desc, game_start_time, 
+      game_end_time)
+    values (#{gameId,jdbcType=VARCHAR}, #{matchId,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, 
+      #{deskId,jdbcType=VARCHAR}, #{user1Id,jdbcType=INTEGER}, #{user2Id,jdbcType=INTEGER}, 
+      #{user3Id,jdbcType=INTEGER}, #{user4Id,jdbcType=INTEGER}, #{user1Score,jdbcType=INTEGER}, 
+      #{user2Score,jdbcType=INTEGER}, #{user3Score,jdbcType=INTEGER}, #{user4Score,jdbcType=INTEGER}, 
+      #{user1FanNum,jdbcType=INTEGER}, #{user2FanNum,jdbcType=INTEGER}, #{user3FanNum,jdbcType=INTEGER}, 
+      #{user4FanNum,jdbcType=INTEGER}, #{user1FanDesc,jdbcType=VARCHAR}, #{user2FanDesc,jdbcType=VARCHAR}, 
+      #{user3FanDesc,jdbcType=VARCHAR}, #{user4FanDesc,jdbcType=VARCHAR}, #{gameStartTime,jdbcType=TIMESTAMP}, 
+      #{gameEndTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.GameLog">
+    update game_log
+    set game_id = #{gameId,jdbcType=VARCHAR},
+      match_id = #{matchId,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      desk_id = #{deskId,jdbcType=VARCHAR},
+      user1_id = #{user1Id,jdbcType=INTEGER},
+      user2_id = #{user2Id,jdbcType=INTEGER},
+      user3_id = #{user3Id,jdbcType=INTEGER},
+      user4_id = #{user4Id,jdbcType=INTEGER},
+      user1_score = #{user1Score,jdbcType=INTEGER},
+      user2_score = #{user2Score,jdbcType=INTEGER},
+      user3_score = #{user3Score,jdbcType=INTEGER},
+      user4_score = #{user4Score,jdbcType=INTEGER},
+      user1_fan_num = #{user1FanNum,jdbcType=INTEGER},
+      user2_fan_num = #{user2FanNum,jdbcType=INTEGER},
+      user3_fan_num = #{user3FanNum,jdbcType=INTEGER},
+      user4_fan_num = #{user4FanNum,jdbcType=INTEGER},
+      user1_fan_desc = #{user1FanDesc,jdbcType=VARCHAR},
+      user2_fan_desc = #{user2FanDesc,jdbcType=VARCHAR},
+      user3_fan_desc = #{user3FanDesc,jdbcType=VARCHAR},
+      user4_fan_desc = #{user4FanDesc,jdbcType=VARCHAR},
+      game_start_time = #{gameStartTime,jdbcType=TIMESTAMP},
+      game_end_time = #{gameEndTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

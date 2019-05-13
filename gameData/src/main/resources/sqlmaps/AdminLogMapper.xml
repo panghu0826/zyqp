@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.AdminLog">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.AdminLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="oper_target" jdbcType="VARCHAR" property="operTarget" />
+    <result column="oper_type" jdbcType="VARCHAR" property="operType" />
+    <result column="change_from" jdbcType="VARCHAR" property="changeFrom" />
+    <result column="change_to" jdbcType="VARCHAR" property="changeTo" />
+    <result column="change_val" jdbcType="VARCHAR" property="changeVal" />
+    <result column="oper_time" jdbcType="TIMESTAMP" property="operTime" />
+    <result column="oper_desc" jdbcType="VARCHAR" property="operDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, oper_target, oper_type, change_from, change_to, change_val, oper_time, 
+    oper_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from admin_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" keyProperty="id" parameterType="com.buding.db.model.AdminLog" useGeneratedKeys="true">
+    insert into admin_log (user_id, oper_target, oper_type, 
+      change_from, change_to, change_val, 
+      oper_time, oper_desc)
+    values (#{userId,jdbcType=INTEGER}, #{operTarget,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, 
+      #{changeFrom,jdbcType=VARCHAR}, #{changeTo,jdbcType=VARCHAR}, #{changeVal,jdbcType=VARCHAR}, 
+      #{operTime,jdbcType=TIMESTAMP}, #{operDesc,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.AdminLog">
+    update admin_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      oper_target = #{operTarget,jdbcType=VARCHAR},
+      oper_type = #{operType,jdbcType=VARCHAR},
+      change_from = #{changeFrom,jdbcType=VARCHAR},
+      change_to = #{changeTo,jdbcType=VARCHAR},
+      change_val = #{changeVal,jdbcType=VARCHAR},
+      oper_time = #{operTime,jdbcType=TIMESTAMP},
+      oper_desc = #{operDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buding.db.model.RobotSetting">
+  <resultMap id="BaseResultMap" type="com.buding.db.model.RobotSetting">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="robot_playing" jdbcType="INTEGER" property="robotPlaying" />
+    <result column="robot_waiting" jdbcType="INTEGER" property="robotWaiting" />
+    <result column="total_played" jdbcType="BIGINT" property="totalPlayed" />
+    <result column="total_wined" jdbcType="BIGINT" property="totalWined" />
+    <result column="total_earn_coin" jdbcType="BIGINT" property="totalEarnCoin" />
+    <result column="total_lost_coin" jdbcType="BIGINT" property="totalLostCoin" />
+    <result column="min_init" jdbcType="INTEGER" property="minInit" />
+    <result column="total_robot" jdbcType="INTEGER" property="totalRobot" />
+    <result column="id_range" jdbcType="VARCHAR" property="idRange" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, match_id, robot_playing, robot_waiting, total_played, total_wined, total_earn_coin, 
+    total_lost_coin, min_init, total_robot, id_range, mtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from robot_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.buding.db.model.RobotSetting">
+    insert into robot_setting (id, match_id, robot_playing, 
+      robot_waiting, total_played, total_wined, 
+      total_earn_coin, total_lost_coin, min_init, 
+      total_robot, id_range, mtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{matchId,jdbcType=VARCHAR}, #{robotPlaying,jdbcType=INTEGER}, 
+      #{robotWaiting,jdbcType=INTEGER}, #{totalPlayed,jdbcType=BIGINT}, #{totalWined,jdbcType=BIGINT}, 
+      #{totalEarnCoin,jdbcType=BIGINT}, #{totalLostCoin,jdbcType=BIGINT}, #{minInit,jdbcType=INTEGER}, 
+      #{totalRobot,jdbcType=INTEGER}, #{idRange,jdbcType=VARCHAR}, #{mtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.buding.db.model.RobotSetting">
+    update robot_setting
+    set match_id = #{matchId,jdbcType=VARCHAR},
+      robot_playing = #{robotPlaying,jdbcType=INTEGER},
+      robot_waiting = #{robotWaiting,jdbcType=INTEGER},
+      total_played = #{totalPlayed,jdbcType=BIGINT},
+      total_wined = #{totalWined,jdbcType=BIGINT},
+      total_earn_coin = #{totalEarnCoin,jdbcType=BIGINT},
+      total_lost_coin = #{totalLostCoin,jdbcType=BIGINT},
+      min_init = #{minInit,jdbcType=INTEGER},
+      total_robot = #{totalRobot,jdbcType=INTEGER},
+      id_range = #{idRange,jdbcType=VARCHAR},
+      mtime = #{mtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
